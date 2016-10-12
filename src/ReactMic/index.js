@@ -188,10 +188,12 @@ function makeDistortionCurve(amount) {
 
 ReactMic.propTypes = {
   backgroundColor : React.PropTypes.string,
+  strokeColor     : React.PropTypes.string,
   className       : React.PropTypes.string
 };
 
 ReactMic.defaultProps = {
-  backgroundColor : '4bb8d1',
+  backgroundColor : '#4bb8d1',
+  strokeColor     : '#000000',
   className       : 'visualizer'
 }
