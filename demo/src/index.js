@@ -10,29 +10,8 @@ import Component from '../../src'
 
 injectTapEventPlugin();
 
-class Demo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      record : false
-    }
-  }
-
-  toggleMicrophone() {
-    alert('toggling')
-  }
-
-  getMicrophoneIcon() {
-    if(this.state.record) {
-      return(<MicrophoneOn />);
-    } else {
-      return(<MicrophoneOff />);
-    }
-  }
-
+let Demo = React.createClass({
   render() {
-    const microphone = this.getMicrophoneIcon();
-
     return <MuiThemeProvider>
       <div>
         <Component
@@ -40,12 +19,16 @@ class Demo extends Component {
           strokeColor="#000000" />
         <FloatingActionButton
           secondary={true}
-          onTouchTap={this.toggleMicrophone.bind(this)}>
-          {microphone}
+          onTouchTap={toggleMicrophone}>
+          <MicrophoneOff />
         </FloatingActionButton>
       </div>
     </MuiThemeProvider>
   }
+})
+
+function toggleMicrophone(){
+  
 }
 
 render(<Demo/>, document.querySelector('#demo'))
