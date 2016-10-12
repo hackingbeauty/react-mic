@@ -7,7 +7,8 @@ let Demo = React.createClass({
   render() {
     return <div>
       <Component
-        backgroundColor="FF4081"
+        backgroundColor="#FF4081"
+        strokeColor="#000000"
       />
     </div>
   }
