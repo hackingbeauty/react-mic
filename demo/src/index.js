@@ -6,7 +6,7 @@ import injectTapEventPlugin    from 'react-tap-event-plugin';
 import MicrophoneOff            from 'material-ui/svg-icons/av/mic';
 import MicrophoneOn             from 'material-ui/svg-icons/av/stop';
 
-import Component from '../../src'
+import { ReactMic, startRecording, stopRecording } from '../../src';
 
 injectTapEventPlugin();
 
@@ -14,7 +14,7 @@ let Demo = React.createClass({
   render() {
     return <MuiThemeProvider>
       <div>
-        <Component
+        <ReactMic
           backgroundColor="#FF4081"
           strokeColor="#000000" />
         <FloatingActionButton
@@ -25,10 +25,11 @@ let Demo = React.createClass({
       </div>
     </MuiThemeProvider>
   }
-})
+});
 
 function toggleMicrophone(){
-  
+  debugger;
+  startRecording();
 }
 
 render(<Demo/>, document.querySelector('#demo'))
