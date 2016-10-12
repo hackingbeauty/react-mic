@@ -197,6 +197,6 @@ ReactMic.propTypes = {
 
 ReactMic.defaultProps = {
   backgroundColor : '4bb8d1',
-  className : 'visualizer'
+  className       : 'visualizer'
 }
 
