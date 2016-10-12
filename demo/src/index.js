@@ -28,7 +28,6 @@ let Demo = React.createClass({
 });
 
 function toggleMicrophone(){
-  debugger;
   startRecording();
 }
 
