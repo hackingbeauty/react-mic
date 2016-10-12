@@ -4,7 +4,9 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Describe react-mic here.
+Recording audio from a microphone from via the MediaRecorder API and display a volume meter.
+
+Demo coming soon, hold on!
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/user/repo
