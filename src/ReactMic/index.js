@@ -56,7 +56,7 @@ class ReactMic extends Component {
   render() {
     return (
       <div className="visualizer-container">
-        <canvas ref="visualizer" height="100" className={this.props.className}></canvas>
+        <canvas ref="visualizer" height={this.props.height} className={this.props.className}></canvas>
       </div>
     );
   }
@@ -189,11 +189,13 @@ function makeDistortionCurve(amount) {
 ReactMic.propTypes = {
   backgroundColor : React.PropTypes.string,
   strokeColor     : React.PropTypes.string,
-  className       : React.PropTypes.string
+  className       : React.PropTypes.string,
+  height          : React.PropTypes.number
 };
 
 ReactMic.defaultProps = {
   backgroundColor : '#4bb8d1',
   strokeColor     : '#000000',
-  className       : 'visualizer'
+  className       : 'visualizer',
+  height          : 100
 }
