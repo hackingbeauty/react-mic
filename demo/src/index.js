@@ -7,7 +7,7 @@ import MicrophoneOff            from 'material-ui/svg-icons/av/mic';
 import MicrophoneOn             from 'material-ui/svg-icons/av/stop';
 
 import { ReactMic, startRecording, stopRecording } from '../../src';
-
+require ('./styles.scss');
 injectTapEventPlugin();
 
 let Demo = React.createClass({
