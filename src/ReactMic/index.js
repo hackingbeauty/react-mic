@@ -114,7 +114,7 @@ function startRecorder() {
   if (navigator.getUserMedia) {
     navigator.getUserMedia(mediaConstraints, (stream) => {
       mediaRecorder = new MediaStreamRecorder(stream);
-      mediaRecorder.mimeType = 'audio/wav';
+      mediaRecorder.mimeType = 'audio/webm';
       mediaRecorder.start(6000);
 
     }, () => {
