@@ -1,6 +1,6 @@
 {
   "name": "react-mic",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Record audio from your microphone and display a volume meter",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
