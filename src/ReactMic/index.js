@@ -72,44 +72,49 @@ export default {
 function startRecording() {
   const self = this;
 
-  startRecorder();
-
-  if (navigator.getUserMedia) {
-   console.log('getUserMedia supported.');
-   navigator.getUserMedia (
-      // constraints - only audio needed for this app
-        {
-           audio: true
-        },
-
-        // Success callback
-        function(stream) {
-          source = audioCtx.createMediaStreamSource(stream);
-          source.connect(analyser);
-          analyser.connect(distortion);
-          distortion.connect(biquadFilter);
-          biquadFilter.connect(convolver);
-          convolver.connect(gainNode);
-          gainNode.connect(audioCtx.destination);
-        },
-
-        // Error callback
-        function(err) {
-           console.log('The following gUM error occured: ' + err);
-        }
-     );
+  if(audioCtx.state === 'suspended') {
+    audioCtx.resume();
   } else {
-    console.log('getUserMedia not supported on your browser!');
-  }
+    startRecorder();
 
+    if (navigator.getUserMedia) {
+     console.log('getUserMedia supported.');
+     navigator.getUserMedia (
+        // constraints - only audio needed for this app
+          {
+             audio: true
+          },
+
+          // Success callback
+          function(stream) {
+            source = audioCtx.createMediaStreamSource(stream);
+            source.connect(analyser);
+            analyser.connect(distortion);
+            distortion.connect(biquadFilter);
+            biquadFilter.connect(convolver);
+            convolver.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+          },
+
+          // Error callback
+          function(err) {
+             console.log('The following gUM error occured: ' + err);
+          }
+       );
+    } else {
+      console.log('getUserMedia not supported on your browser!');
+    }
+  }
 }
 
 function stopRecording(externalBlob, fileName = 'Untitled') {
   mediaRecorder.stop();
+  audioCtx.suspend();
 }
 
 function pauseRecording(){
   mediaRecorder.pause();
+  audioCtx.suspend();
 }
 
 function saveRecording(externalBlob, fileName = 'Untitled') {

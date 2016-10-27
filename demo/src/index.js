@@ -3,8 +3,8 @@ import {render}                 from 'react-dom'
 import { FloatingActionButton,
         MuiThemeProvider }      from 'material-ui';
 import injectTapEventPlugin    from 'react-tap-event-plugin';
-import MicrophoneOff            from 'material-ui/svg-icons/av/mic';
-import MicrophoneOn             from 'material-ui/svg-icons/av/stop';
+import MicrophoneOn            from 'material-ui/svg-icons/av/mic';
+import MicrophoneOff             from 'material-ui/svg-icons/av/stop';
 
 import { ReactMic, startRecording, stopRecording } from '../../src';
 require ('./styles.scss');
@@ -19,7 +19,12 @@ let Demo = React.createClass({
           strokeColor="#000000" />
         <FloatingActionButton
           secondary={true}
-          onTouchTap={toggleMicrophone}>
+          onTouchTap={startRecorder}>
+          <MicrophoneOn />
+        </FloatingActionButton>
+        <FloatingActionButton
+          secondary={true}
+          onTouchTap={stopRecorder}>
           <MicrophoneOff />
         </FloatingActionButton>
       </div>
@@ -27,8 +32,12 @@ let Demo = React.createClass({
   }
 });
 
-function toggleMicrophone(){
+function startRecorder(){
   startRecording();
+}
+
+function stopRecorder(){
+  stopRecording();
 }
 
 render(<Demo/>, document.querySelector('#demo'))
