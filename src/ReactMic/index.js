@@ -103,9 +103,13 @@ function startRecording() {
 
 }
 
-function stopRecording() {
+function stopRecording(externalBlob, fileName = 'Untitled') {
   mediaRecorder.stop();
-  mediaRecorder.save();
+  if(externalBlob) {
+    mediaRecorder.save(externalBlob, fileName);
+  } else {
+    mediaRecorder.save();
+  }
 }
 
 function startRecorder() {
@@ -115,7 +119,7 @@ function startRecorder() {
     navigator.getUserMedia(mediaConstraints, (stream) => {
       mediaRecorder = new MediaStreamRecorder(stream);
       mediaRecorder.mimeType = 'audio/webm';
-      mediaRecorder.start(6000);
+      mediaRecorder.start(1000);
 
     }, () => {
       alert('Media error!');
