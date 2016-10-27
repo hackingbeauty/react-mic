@@ -66,7 +66,8 @@ export default {
   ReactMic       : ReactMic,
   startRecording : startRecording,
   stopRecording  : stopRecording,
-  pauseRecording : pauseRecording
+  pauseRecording : pauseRecording,
+  saveRecording  : saveRecording
 }
 
 function startRecording() {
