@@ -65,7 +65,8 @@ class ReactMic extends Component {
 export default {
   ReactMic       : ReactMic,
   startRecording : startRecording,
-  stopRecording  : stopRecording
+  stopRecording  : stopRecording,
+  pauseRecording : pauseRecording
 }
 
 function startRecording() {
@@ -105,6 +106,13 @@ function startRecording() {
 
 function stopRecording(externalBlob, fileName = 'Untitled') {
   mediaRecorder.stop();
+}
+
+function pauseRecording(){
+  mediaRecorder.pause();
+}
+
+function saveRecording(externalBlob, fileName = 'Untitled') {
   if(externalBlob) {
     mediaRecorder.save(externalBlob, fileName);
   } else {
