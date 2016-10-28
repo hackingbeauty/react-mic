@@ -20,6 +20,7 @@ let stream;
 let visualizerCanvas;
 let visualizerCanvasCtx;
 let mediaRecorder;
+let blobURL;
 
 const WIDTH="640";
 const HEIGHT ="100";
@@ -120,7 +121,7 @@ function pauseRecording(){
 
 function saveRecording(externalBlob, fileName = 'Untitled') {
   if(externalBlob) {
-    mediaRecorder.save(externalBlob, fileName);
+    mediaRecorder.save(blobURL, fileName);
   } else {
     mediaRecorder.save();
   }
@@ -133,6 +134,11 @@ function startRecorder() {
     navigator.getUserMedia(mediaConstraints, (stream) => {
       mediaRecorder = new MediaStreamRecorder(stream);
       mediaRecorder.mimeType = 'audio/webm';
+
+      mediaRecorder.ondataavailable = function (blob) {
+        blobURL = URL.createObjectURL(blob);
+      };
+
       mediaRecorder.start(1000);
 
     }, () => {
