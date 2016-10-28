@@ -119,8 +119,8 @@ function pauseRecording(){
   audioCtx.suspend();
 }
 
-function saveRecording(externalBlob, fileName = 'Untitled') {
-  if(externalBlob) {
+function saveRecording(fileName = 'Untitled') {
+  if(blobURL && fileName) {
     mediaRecorder.save(blobURL, fileName);
   } else {
     mediaRecorder.save();
