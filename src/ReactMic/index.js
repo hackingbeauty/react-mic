@@ -77,7 +77,6 @@ function startRecording() {
   if(audioCtx.state === 'suspended') {
     audioCtx.resume();
   } else {
-    startRecorder();
 
     if (navigator.getUserMedia) {
      console.log('getUserMedia supported.');
@@ -96,6 +95,8 @@ function startRecording() {
             biquadFilter.connect(convolver);
             convolver.connect(gainNode);
             gainNode.connect(audioCtx.destination);
+            startMSRRecorder(stream);
+
           },
 
           // Error callback
@@ -127,26 +128,17 @@ function saveRecording(fileName = 'Untitled') {
   }
 }
 
-function startRecorder() {
+function startMSRRecorder(stream) {
+  console.log(' - INSIDE STARTMSRRECORDER -', stream);
   const self = this;
+  mediaRecorder = new MediaStreamRecorder(stream);
+  mediaRecorder.mimeType = 'audio/webm';
 
-  if (navigator.getUserMedia) {
-    navigator.getUserMedia(mediaConstraints, (stream) => {
-      mediaRecorder = new MediaStreamRecorder(stream);
-      mediaRecorder.mimeType = 'audio/webm';
+  mediaRecorder.ondataavailable = function (blob) {
+    console.log('ondataavailbe is running')
+  };
 
-      mediaRecorder.ondataavailable = function (blob) {
-        blobURL = URL.createObjectURL(blob);
-      };
-
-      mediaRecorder.start(1000);
-
-    }, () => {
-      alert('Media error!');
-    });
-  } else {
-    alert('Media capture not supported in your browser. Please get the latest version of Chrome');
-  }
+  mediaRecorder.start(1000);
 }
 
 function visualize(props) {
