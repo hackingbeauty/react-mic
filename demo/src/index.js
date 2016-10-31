@@ -6,7 +6,7 @@ import injectTapEventPlugin    from 'react-tap-event-plugin';
 import MicrophoneOn            from 'material-ui/svg-icons/av/mic';
 import MicrophoneOff             from 'material-ui/svg-icons/av/stop';
 
-import { ReactMic, startRecording, stopRecording } from '../../src';
+import { ReactMic, startRecording, stopRecording, saveRecording } from '../../src';
 require ('./styles.scss');
 injectTapEventPlugin();
 
@@ -26,6 +26,12 @@ let Demo = React.createClass({
           secondary={true}
           onTouchTap={stopRecorder}>
           <MicrophoneOff />
+        </FloatingActionButton>
+
+        <FloatingActionButton
+          secondary={true}
+          onTouchTap={saveRecording}>
+          Save
         </FloatingActionButton>
       </div>
     </MuiThemeProvider>
