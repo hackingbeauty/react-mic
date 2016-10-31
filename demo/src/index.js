@@ -27,10 +27,9 @@ let Demo = React.createClass({
           onTouchTap={stopRecorder}>
           <MicrophoneOff />
         </FloatingActionButton>
-
         <FloatingActionButton
           secondary={true}
-          onTouchTap={saveRecording}>
+          onTouchTap={saveRecorder}>
           Save
         </FloatingActionButton>
       </div>
@@ -44,6 +43,12 @@ function startRecorder(){
 
 function stopRecorder(){
   stopRecording();
+}
+
+function saveRecorder() {
+  const savedRecordingBlob = saveRecording();
+  console.log('the saved recording is: ', savedRecordingBlob);
+  return savedRecordingBlob;
 }
 
 render(<Demo/>, document.querySelector('#demo'))

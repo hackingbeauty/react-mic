@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MediaStreamRecorder  from 'msr';
 
 const mediaConstraints = {
   audio: true
@@ -21,6 +20,7 @@ let visualizerCanvas;
 let visualizerCanvasCtx;
 let mediaRecorder;
 let blobURL;
+let recordedBlobs;
 
 const WIDTH="640";
 const HEIGHT ="100";
@@ -76,43 +76,46 @@ function startRecording() {
 
   if(audioCtx.state === 'suspended') {
     audioCtx.resume();
+  }
+
+  if (navigator.getUserMedia) {
+   console.log('getUserMedia supported.');
+   navigator.getUserMedia (
+      // constraints - only audio needed for this app
+        {
+           audio: true
+        },
+
+        // Success callback
+        function(stream) {
+          source = audioCtx.createMediaStreamSource(stream);
+          source.connect(analyser);
+          analyser.connect(distortion);
+          distortion.connect(biquadFilter);
+          biquadFilter.connect(convolver);
+          convolver.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+          // startMSRRecorder(stream);
+          const mediaURL = window.URL.createObjectURL(stream);
+          startRecorder(mediaURL,stream);
+        },
+
+        // Error callback
+        function(err) {
+           console.log('The following gUM error occured: ' + err);
+        }
+     );
   } else {
-
-    if (navigator.getUserMedia) {
-     console.log('getUserMedia supported.');
-     navigator.getUserMedia (
-        // constraints - only audio needed for this app
-          {
-             audio: true
-          },
-
-          // Success callback
-          function(stream) {
-            source = audioCtx.createMediaStreamSource(stream);
-            source.connect(analyser);
-            analyser.connect(distortion);
-            distortion.connect(biquadFilter);
-            biquadFilter.connect(convolver);
-            convolver.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            startMSRRecorder(stream);
-
-          },
-
-          // Error callback
-          function(err) {
-             console.log('The following gUM error occured: ' + err);
-          }
-       );
-    } else {
-      console.log('getUserMedia not supported on your browser!');
-    }
+    console.log('getUserMedia not supported on your browser!');
   }
 }
 
 function stopRecording(externalBlob, fileName = 'Untitled') {
-  mediaRecorder.stop();
-  audioCtx.suspend();
+  if(mediaRecorder.state !== 'inactive') {
+    mediaRecorder.stop();
+    recordedBlobs = [];
+    audioCtx.suspend();
+  }
 }
 
 function pauseRecording(){
@@ -120,25 +123,28 @@ function pauseRecording(){
   audioCtx.suspend();
 }
 
-function saveRecording(fileName = 'Untitled') {
-  if(blobURL && fileName) {
-    mediaRecorder.save(blobURL, fileName);
-  } else {
-    mediaRecorder.save();
+function startRecorder(mediaURL,stream) {
+  let options = {mimeType: 'audio/webm'};
+  recordedBlobs = [];
+  mediaRecorder = new MediaRecorder(stream, options);
+  mediaRecorder.ondataavailable = handleDataAvailable;
+  mediaRecorder.start(10);
+}
+
+function saveRecording() {
+  if(mediaRecorder.state !== 'inactive') {
+    const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+    stopRecording();
+    recordedBlobs = [];
+    return window.URL.createObjectURL(superBuffer);
   }
 }
 
-function startMSRRecorder(stream) {
-  console.log(' - INSIDE STARTMSRRECORDER -', stream);
-  const self = this;
-  mediaRecorder = new MediaStreamRecorder(stream);
-  mediaRecorder.mimeType = 'audio/webm';
+function handleDataAvailable() {
+  if (event.data && event.data.size > 0) {
+    recordedBlobs.push(event.data);
+  }
 
-  mediaRecorder.ondataavailable = function (blob) {
-    console.log('ondataavailbe is running')
-  };
-
-  mediaRecorder.start(1000);
 }
 
 function visualize(props) {
