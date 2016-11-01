@@ -21,6 +21,7 @@ let visualizerCanvasCtx;
 let mediaRecorder;
 let blobURL;
 let recordedBlobs = [];
+let blobObject;
 
 const WIDTH="640";
 const HEIGHT ="100";
@@ -68,7 +69,8 @@ export default {
   startRecording : startRecording,
   stopRecording  : stopRecording,
   pauseRecording : pauseRecording,
-  saveRecording  : saveRecording
+  saveRecording  : saveRecording,
+  getBlobURL     : getBlobURL
 }
 
 function startRecording() {
@@ -114,6 +116,7 @@ function stopRecording() {
   if(mediaRecorder.state !== 'inactive') {
     mediaRecorder.stop();
     audioCtx.suspend();
+    visualizerCanvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
     recordedBlobs = [];
     blobURL = '';
   }
@@ -136,12 +139,16 @@ function saveRecording() {
   if(blobURL) {
     theBlobURL = blobURL;
   }else  {
-    const superBuffer = new Blob(recordedBlobs, {type: 'audio/webm'});
-    theBlobURL = window.URL.createObjectURL(superBuffer);
+    blobObject = new Blob(recordedBlobs, {type: 'audio/webm'});
+    theBlobURL = window.URL.createObjectURL(blobObject);
     blobURL = theBlobURL;
   }
   stopRecording();
-  return theBlobURL;
+  return blobObject;
+}
+
+function getBlobURL() {
+  return blobURL;
 }
 
 function handleDataAvailable() {

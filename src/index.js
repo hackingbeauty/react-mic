@@ -2,10 +2,12 @@ import { ReactMic,
          startRecording,
          stopRecording,
          pauseRecording,
-         saveRecording } from './ReactMic';
+         saveRecording,
+         getBlobURL } from './ReactMic';
 
 export { ReactMic,
          startRecording,
          stopRecording,
          pauseRecording,
-         saveRecording };
+         saveRecording,
+         getBlobURL };
