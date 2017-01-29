@@ -19,7 +19,9 @@
     "test:coverage": "nwb test --coverage",
     "test:watch": "nwb test --server"
   },
-  "dependencies": {},
+  "dependencies": {
+    "material-ui": "^0.16.7"
+  },
   "peerDependencies": {
     "react": "15.x"
   },
@@ -27,9 +29,9 @@
     "material-ui": "^0.16.0",
     "nwb": "0.12.x",
     "nwb-sass": "^0.6.0",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-tap-event-plugin": "^1.0.0"
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-tap-event-plugin": "^2.0.1"
   },
   "author": "",
   "homepage": "",
