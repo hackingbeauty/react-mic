@@ -22,6 +22,7 @@ let mediaRecorder;
 let blobURL;
 let recordedBlobs = [];
 let blobObject;
+let startTime;
 
 const WIDTH="640";
 const HEIGHT ="100";
@@ -111,7 +112,7 @@ function startRecording() {
 }
 
 function stopRecording() {
-  if(mediaRecorder.state !== 'inactive') {
+  if(mediaRecorder && mediaRecorder.state !== 'inactive') {
     mediaRecorder.stop();
     audioCtx.suspend();
     visualizerCanvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -129,6 +130,7 @@ function startRecorder(mediaURL,stream) {
   let options = {mimeType: 'audio/webm'};
   mediaRecorder = new MediaRecorder(stream, options);
   mediaRecorder.ondataavailable = handleDataAvailable;
+  startTime = Date.now();
   mediaRecorder.start(10);
 }
 
@@ -136,9 +138,14 @@ function saveRecording() {
   let theBlobURL;
   if(blobURL) {
     theBlobURL = blobURL;
-  }else  {
-    blobObject = new Blob(recordedBlobs, {type: 'audio/webm'});
-    theBlobURL = window.URL.createObjectURL(blobObject);
+  } else {
+    const blob = new Blob(recordedBlobs, {type: 'audio/webm'});
+    theBlobURL = window.URL.createObjectURL(blob);
+    blobObject = {
+      blob      : blob,
+      startTime : startTime,
+      blobURL   : theBlobURL
+    }
     blobURL = theBlobURL;
   }
   stopRecording();
