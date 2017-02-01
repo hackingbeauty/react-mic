@@ -144,6 +144,7 @@ function saveRecording() {
     blobObject = {
       blob      : blob,
       startTime : startTime,
+      stopTime  : Date.now(),
       blobURL   : theBlobURL
     }
     blobURL = theBlobURL;
