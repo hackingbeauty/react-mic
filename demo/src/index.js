@@ -6,7 +6,7 @@ import injectTapEventPlugin    from 'react-tap-event-plugin';
 import MicrophoneOn            from 'material-ui/svg-icons/av/mic';
 import MicrophoneOff             from 'material-ui/svg-icons/av/stop';
 
-import { ReactMic, startRecording, stopRecording, saveRecording, getBlobURL } from '../../src/ReactMic';
+import { ReactMic, startRecording, saveRecording, stopRecording } from '../../src';
 require ('./styles.scss');
 injectTapEventPlugin();
 
@@ -16,7 +16,6 @@ export default class Demo extends Component {
     this.startRecorder = this.startRecorder.bind(this);
     this.stopRecorder = this.stopRecorder.bind(this);
     this.saveRecorder = this.saveRecorder.bind(this);
-    this.playAudio = this.playAudio.bind(this);
     this.state = {
       blobURL : ''
     }
@@ -43,10 +42,6 @@ export default class Demo extends Component {
     console.log('getBlobURL yields ',blobURL);
   }
 
-  playAudio() {
-    this.refs.audioSource.play();
-  }
-
   render() {
     return(
       <MuiThemeProvider>
@@ -69,20 +64,10 @@ export default class Demo extends Component {
             onTouchTap={this.saveRecorder}>
             Save
           </FloatingActionButton>
-          <FloatingActionButton
-            secondary={true}
-            onTouchTap={this.getBlob}>
-            Get Blob URL
-          </FloatingActionButton>
-          <FloatingActionButton
-            secondary={true}
-            onTouchTap={this.playAudio}>
-            Play Audio
-          </FloatingActionButton>
           <div>
-          <audio ref="audioSource" controls="controls" src={this.state.blobURL}>
-          </audio>
-        </div>
+            <audio ref="audioSource" controls="controls" src={this.state.blobURL}>
+            </audio>
+          </div>
         </div>
     </MuiThemeProvider>
     );
