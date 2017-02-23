@@ -6,11 +6,11 @@ import injectTapEventPlugin    from 'react-tap-event-plugin';
 import MicrophoneOn            from 'material-ui/svg-icons/av/mic';
 import MicrophoneOff             from 'material-ui/svg-icons/av/stop';
 
-import { ReactMic, startRecording, stopRecording, saveRecording, getBlobURL } from '../../src';
+import { ReactMic, startRecording, stopRecording, saveRecording, getBlobURL } from '../../src/ReactMic';
 require ('./styles.scss');
 injectTapEventPlugin();
 
-class Demo extends Component {
+export default class Demo extends Component {
   constructor(props){
     super(props);
     this.startRecorder = this.startRecorder.bind(this);

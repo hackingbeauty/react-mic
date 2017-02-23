@@ -11,3 +11,4 @@ export { ReactMic,
          pauseRecording,
          saveRecording,
          getBlobURL };
+

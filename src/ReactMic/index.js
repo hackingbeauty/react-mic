@@ -1,3 +1,6 @@
+// cool blog article on how to do this: http://www.smartjava.org/content/exploring-html5-web-audio-visualizing-sound
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
+
 import React, { Component } from 'react'
 
 const mediaConstraints = {
@@ -13,7 +16,6 @@ navigator.getUserMedia = (navigator.getUserMedia ||
 // window. is needed otherwise Safari explodes
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const voiceSelect = document.getElementById("voice");
 let source;
 let stream;
 let visualizerCanvas;
@@ -33,11 +35,13 @@ const analyser = audioCtx.createAnalyser();
 analyser.minDecibels = -90;
 analyser.maxDecibels = -10;
 analyser.smoothingTimeConstant = 0.85;
+analyser.fftSize = 2048;
 
-const distortion = audioCtx.createWaveShaper();
-const gainNode = audioCtx.createGain();
-const biquadFilter = audioCtx.createBiquadFilter();
-const convolver = audioCtx.createConvolver();
+
+// const distortion = audioCtx.createWaveShaper();
+// const gainNode = audioCtx.createGain();
+// const biquadFilter = audioCtx.createBiquadFilter();
+// const convolver = audioCtx.createConvolver();
 
 // distortion curve for the waveshaper, thanks to Kevin Ennis
 // http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
@@ -75,6 +79,10 @@ export default {
 function startRecording() {
   const self = this;
 
+  if(mediaRecorder && mediaRecorder.state === 'recording') {
+    return;
+  }
+
   if(audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
@@ -91,11 +99,11 @@ function startRecording() {
         function(stream) {
           source = audioCtx.createMediaStreamSource(stream);
           source.connect(analyser);
-          analyser.connect(distortion);
-          distortion.connect(biquadFilter);
-          biquadFilter.connect(convolver);
-          convolver.connect(gainNode);
-          gainNode.connect(audioCtx.destination);
+          // analyser.connect(distortion);
+          // distortion.connect(biquadFilter);
+          // biquadFilter.connect(convolver);
+          // convolver.connect(gainNode);
+          // gainNode.connect(audioCtx.destination);
           // startMSRRecorder(stream);
           const mediaURL = window.URL.createObjectURL(stream);
           startRecorder(mediaURL,stream);
@@ -113,11 +121,17 @@ function startRecording() {
 
 function stopRecording() {
   if(mediaRecorder && mediaRecorder.state !== 'inactive') {
-    mediaRecorder.stop();
+
+    mediaRecorder.pause();
+    analyser.minDecibels = -90;
+    analyser.maxDecibels = -10;
+    analyser.smoothingTimeConstant = 0.85;
+    analyser.fftSize = 2048;
+
     audioCtx.suspend();
-    visualizerCanvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-    recordedBlobs = [];
-    blobURL = '';
+
+    recordedBlobs.length = 0;
+    blobURL = undefined;
   }
 }
 
@@ -128,14 +142,23 @@ function pauseRecording(){
 
 function startRecorder(mediaURL,stream) {
   let options = {mimeType: 'audio/webm'};
-  mediaRecorder = new MediaRecorder(stream, options);
-  mediaRecorder.ondataavailable = handleDataAvailable;
+
+  debugger;
+
+  if(mediaRecorder) {
+    mediaRecorder.resume();
+  } else {
+    mediaRecorder = new MediaRecorder(stream, options);
+    mediaRecorder.ondataavailable = handleDataAvailable;
+    mediaRecorder.start(10);
+  }
+
   startTime = Date.now();
-  mediaRecorder.start(10);
 }
 
 function saveRecording() {
   let theBlobURL;
+
   if(blobURL) {
     theBlobURL = blobURL;
   } else {
@@ -167,7 +190,6 @@ function handleDataAvailable() {
 function visualize(props) {
   const self = this;
 
-  analyser.fftSize = 2048;
   var bufferLength = analyser.fftSize;
 
   var dataArray = new Uint8Array(bufferLength);
@@ -183,7 +205,7 @@ function visualize(props) {
     visualizerCanvasCtx.fillStyle = props.backgroundColor;
     visualizerCanvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
-    visualizerCanvasCtx.lineWidth = 2;
+    visualizerCanvasCtx.lineWidth = 3;
     visualizerCanvasCtx.strokeStyle = props.strokeColor;
 
     visualizerCanvasCtx.beginPath();
@@ -210,20 +232,6 @@ function visualize(props) {
 
   draw();
 }
-
-function makeDistortionCurve(amount) {
-  var k = typeof amount === 'number' ? amount : 50,
-    n_samples = 44100,
-    curve = new Float32Array(n_samples),
-    deg = Math.PI / 180,
-    i = 0,
-    x;
-  for ( ; i < n_samples; ++i ) {
-    x = i * 2 / n_samples - 1;
-    curve[i] = ( 3 + k ) * x * 20 * deg / ( Math.PI + k * Math.abs(x) );
-  }
-  return curve;
-};
 
 ReactMic.propTypes = {
   backgroundColor : React.PropTypes.string,
