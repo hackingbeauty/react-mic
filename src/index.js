@@ -56,7 +56,6 @@ export class ReactMic extends Component {
 
     visualizerCanvas = this.refs.visualizer;
     visualizerCanvasCtx = this.refs.visualizer.getContext("2d");
-
     visualize(this.props);
   }
 
@@ -91,12 +90,6 @@ export function startRecording() {
         function(stream) {
           source = audioCtx.createMediaStreamSource(stream);
           source.connect(analyser);
-          // analyser.connect(distortion);
-          // distortion.connect(biquadFilter);
-          // biquadFilter.connect(convolver);
-          // convolver.connect(gainNode);
-          // gainNode.connect(audioCtx.destination);
-          // startMSRRecorder(stream);
           const mediaURL = window.URL.createObjectURL(stream);
           startRecorder(mediaURL,stream);
         },
@@ -111,10 +104,10 @@ export function startRecording() {
   }
 }
 
-function stopRecording() {
+export function stopRecording() {
   if(mediaRecorder && mediaRecorder.state !== 'inactive') {
 
-    mediaRecorder.pause();
+    mediaRecorder.stop();
     analyser.minDecibels = -90;
     analyser.maxDecibels = -10;
     analyser.smoothingTimeConstant = 0.85;
@@ -124,18 +117,14 @@ function stopRecording() {
 
     recordedBlobs.length = 0;
     blobURL = undefined;
+    source = undefined;
+    mediaRecorder = undefined;
   }
 }
 
-function pauseRecording(){
-  mediaRecorder.pause();
-  audioCtx.suspend();
-}
 
 function startRecorder(mediaURL,stream) {
   let options = {mimeType: 'audio/webm'};
-
-  // debugger;
 
   if(mediaRecorder) {
     mediaRecorder.resume();
@@ -224,8 +213,6 @@ function visualize(props) {
 
   draw();
 }
-
-
 
 ReactMic.propTypes = {
   backgroundColor : React.PropTypes.string,

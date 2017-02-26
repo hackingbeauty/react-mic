@@ -6,30 +6,27 @@ import injectTapEventPlugin    from 'react-tap-event-plugin';
 import MicrophoneOn            from 'material-ui/svg-icons/av/mic';
 import MicrophoneOff             from 'material-ui/svg-icons/av/stop';
 
-import { ReactMic, startRecording, saveRecording, stopRecording } from '../../src';
+import { ReactMic, startRecording, stopRecording, saveRecording } from '../../src';
 require ('./styles.scss');
 injectTapEventPlugin();
 
 export default class Demo extends Component {
   constructor(props){
     super(props);
-    this.startRecorder = this.startRecorder.bind(this);
-    this.stopRecorder = this.stopRecorder.bind(this);
-    this.saveRecorder = this.saveRecorder.bind(this);
     this.state = {
-      blobURL : ''
+      blobURL: ''
     }
   }
 
-  startRecorder(){
+  startRecorder= () => {
     startRecording();
   }
 
-  stopRecorder(){
+  stopRecorder= () => {
     stopRecording();
   }
 
-  saveRecorder() {
+  saveRecorder= () => {
     const savedRecordingBlob = saveRecording();
     console.log('the saved recording is (it is a blob): ', savedRecordingBlob);
     this.setState({
