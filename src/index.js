@@ -5,12 +5,8 @@
 // http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
 
 import React, { Component } from 'react'
-import MediaRecorder from './libs/MediaRecorder';
+import MicrophoneRecorder from './libs/MicrophoneRecorder';
 import AudioContext from './libs/AudioContext';
-
-const mediaConstraints = {
-  audio: true
-};
 
 navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
@@ -38,7 +34,8 @@ export class ReactMic extends Component {
     super(props);
     this.state = {
       audioCtx: null,
-      analyser: null
+      analyser: null,
+      mediaRecorder: null
     }
   }
 
@@ -113,7 +110,7 @@ export class ReactMic extends Component {
   startRecording= () => {
     const self = this;
 
-    const { audioCtx, analyser } = this.state;
+    const { audioCtx, analyser, mediaRecorder } = this.state;
 
     if(mediaRecorder && mediaRecorder.state === 'recording') {
       return;
@@ -139,7 +136,7 @@ export class ReactMic extends Component {
             source.connect(analyser);
 
             const mediaURL = window.URL.createObjectURL(stream);
-            self.startRecorder(mediaURL,stream);
+            self.startRecorder(mediaURL, stream);
           },
 
           // Error callback
@@ -172,15 +169,17 @@ export class ReactMic extends Component {
     }
   }
 
-  startRecorder = (mediaURL,stream) => {
-    let options = {mimeType: 'audio/webm'};
+  startRecorder = (mediaURL, stream) => {
+    const { mediaRecorder } = this.state;
+
+    let options = { mimeType: 'audio/webm' };
 
     if(mediaRecorder) {
       mediaRecorder.resume();
     } else {
-      mediaRecorder = new MediaRecorder(stream, options);
+      const mediaRecorderObj = new MicrophoneRecorder();
+      const mediaRecorder = mediaRecorderObj.create(stream, options)
       mediaRecorder.ondataavailable = this.handleDataAvailable;
-
       mediaRecorder.start(10);
     }
 

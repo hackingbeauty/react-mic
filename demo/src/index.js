@@ -39,11 +39,6 @@ export default class Demo extends Component {
     })
   }
 
-  getBlob() {
-    let blobURL = getBlobURL();
-    console.log('getBlobURL yields ',blobURL);
-  }
-
   render() {
     return(
       <MuiThemeProvider>
