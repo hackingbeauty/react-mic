@@ -1,16 +1,29 @@
+let analyser;
+let audioCtx;
 let mediaRecorder;
 let recordedBlobs = [];
 let source;
+let startTime;
+let blobURL;
 
 navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
                           navigator.mozGetUserMedia ||
                           navigator.msGetUserMedia);
 
-export default class MicrophoneRecorder {
+export class MicrophoneRecorder {
+  constructor() {
+    return this;
+  }
 
-  startRecording=(audioCtx, analyser) => {
+  startRecording=(actx, anal) => {
     const self = this;
+
+    audioCtx = actx;
+    analyser = anal;
+
+    startTime = Date.now();
+
     if(mediaRecorder && mediaRecorder.state === 'recording') {
       return;
     }
@@ -52,9 +65,14 @@ export default class MicrophoneRecorder {
     }
   }
 
-  stopRecording(analyser, audioCtx) {
+  stopRecording() {
+   stopRecording();
+  }
 
-    if(mediaRecorder && mediaRecorder.state !== 'inactive') {
+}
+
+function stopRecording() {
+ if(mediaRecorder && mediaRecorder.state !== 'inactive') {
 
       mediaRecorder.stop();
       analyser.minDecibels = -90;
@@ -69,5 +87,24 @@ export default class MicrophoneRecorder {
       source = undefined;
       mediaRecorder = undefined;
     }
-  }
 }
+
+export function saveRecording() {
+    let theBlobURL, blobObject;
+
+    if(blobURL) {
+      theBlobURL = blobURL;
+    } else {
+      const blob = new Blob(recordedBlobs, {type: 'audio/webm'});
+      theBlobURL = window.URL.createObjectURL(blob);
+      blobObject = {
+        blob      : blob,
+        startTime : startTime,
+        stopTime  : Date.now(),
+        blobURL   : theBlobURL
+      }
+      blobURL = theBlobURL;
+    }
+    stopRecording();
+    return blobObject;
+  }
