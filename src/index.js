@@ -8,15 +8,7 @@ import React, { Component } from 'react'
 import MicrophoneRecorder from './libs/MicrophoneRecorder';
 import AudioContext from './libs/AudioContext';
 
-navigator.getUserMedia = (navigator.getUserMedia ||
-                          navigator.webkitGetUserMedia ||
-                          navigator.mozGetUserMedia ||
-                          navigator.msGetUserMedia);
 
-// set up forked web audio context, for multiple browsers
-// window. is needed otherwise Safari explodes
-
-let source;
 let stream;
 let visualizerCanvas;
 let visualizerCanvasCtx;
@@ -35,7 +27,9 @@ export class ReactMic extends Component {
     this.state = {
       audioCtx: null,
       analyser: null,
-      mediaRecorder: null
+      mediaRecorder: null,
+      visualizerCanvas: null,
+      visualizerCanvasCtx: null
     }
   }
 
@@ -50,17 +44,20 @@ export class ReactMic extends Component {
     analyser.smoothingTimeConstant = 0.85;
     analyser.fftSize = 2048;
 
+    const visualizerCanvas = this.refs.visualizer;
+    const visualizerCanvasCtx = this.refs.visualizer.getContext("2d");
+
     this.setState({
       audioCtx: audioCtx,
-      analyser: analyser
+      analyser: analyser,
+      visualizerCanvas: visualizerCanvas,
+      visualizerCanvasCtx: visualizerCanvasCtx
     });
 
-    visualizerCanvas = this.refs.visualizer;
-    visualizerCanvasCtx = this.refs.visualizer.getContext("2d");
-    this.visualize(analyser, visualizerCanvasCtx);
+    this.visualize(analyser, visualizerCanvas, visualizerCanvasCtx);
   }
 
-  visualize= (analyser, visualizerCanvasCtx) => {
+  visualize= (analyser, visualizerCanvas, visualizerCanvasCtx) => {
     const self = this;
     const { backgroundColor, strokeColor } = this.props;
 
@@ -107,98 +104,42 @@ export class ReactMic extends Component {
     draw();
   }
 
-  startRecording= () => {
-    const self = this;
+  // startRecording= () => {
+  //   const { mediaRecorder, audioCtx } = this.state;
 
-    const { audioCtx, analyser, mediaRecorder } = this.state;
+  //   mediaRecorder.startRecording();
 
-    if(mediaRecorder && mediaRecorder.state === 'recording') {
-      return;
-    }
+  //   if(audioCtx.state === 'suspended') {
+  //     audioCtx.resume();
+  //   }
 
-    if(audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-
-    if (navigator.getUserMedia) {
-     console.log('getUserMedia supported.');
-     navigator.getUserMedia (
-        // constraints - only audio needed for this app
-          {
-             audio: true
-          },
-
-          // Success callback
-          function(stream) {
-            //set up the different audio nodes we will use for the app
-
-            source = audioCtx.createMediaStreamSource(stream);
-            source.connect(analyser);
-
-            const mediaURL = window.URL.createObjectURL(stream);
-            self.startRecorder(mediaURL, stream);
-          },
-
-          // Error callback
-          function(err) {
-             console.log('The following gUM error occured: ' + err);
-          }
-       );
-    } else {
-      console.log('getUserMedia not supported on your browser!');
-    }
-  }
-
-  stopRecording=() => {
-    const { analyser, audioCtx } = this.state;
-
-    if(mediaRecorder && mediaRecorder.state !== 'inactive') {
-
-      mediaRecorder.stop();
-      analyser.minDecibels = -90;
-      analyser.maxDecibels = -10;
-      analyser.smoothingTimeConstant = 0.85;
-      analyser.fftSize = 2048;
-
-      audioCtx.suspend();
-
-      recordedBlobs.length = 0;
-      blobURL = undefined;
-      source = undefined;
-      mediaRecorder = undefined;
-    }
-  }
+  // }
 
   startRecorder = (mediaURL, stream) => {
-    const { mediaRecorder } = this.state;
+    const { mediaRecorder, audioCtx, analyser } = this.state;
 
     let options = { mimeType: 'audio/webm' };
 
     if(mediaRecorder) {
       mediaRecorder.resume();
     } else {
-      const mediaRecorderObj = new MicrophoneRecorder();
-      const mediaRecorder = mediaRecorderObj.create(stream, options)
-      mediaRecorder.ondataavailable = this.handleDataAvailable;
-      mediaRecorder.start(10);
+      const mediaRecorder = new MicrophoneRecorder();
+      mediaRecorder.startRecording(audioCtx, analyser);
     }
 
     startTime = Date.now();
   }
 
-  handleDataAvailable= () => {
-    if (event.data && event.data.size > 0) {
-      recordedBlobs.push(event.data);
-    }
-  }
-
   render() {
     const { record } = this.props;
+    const { analyser, audioCtx, mediaRecorder } = this.state;
 
     if(record) {
-      this.startRecording();
+      this.startRecorder();
     } else {
-      this.stopRecording();
+      if (mediaRecorder) {
+        mediaRecorder.stopRecording(analyser, audioCtx);
+      }
     }
 
     return (
@@ -237,6 +178,6 @@ export function saveRecording() {
     }
     blobURL = theBlobURL;
   }
-  stopRecording();
+  this.stopRecording();
   return blobObject;
 }
