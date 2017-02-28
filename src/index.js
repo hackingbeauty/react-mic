@@ -2,6 +2,8 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
 
 import React, { Component } from 'react'
+import MediaRecorder from './libs/MediaRecorder';
+import AudioContext from './libs/AudioContext';
 
 const mediaConstraints = {
   audio: true
@@ -15,7 +17,6 @@ navigator.getUserMedia = (navigator.getUserMedia ||
 // set up forked web audio context, for multiple browsers
 // window. is needed otherwise Safari explodes
 
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 let source;
 let stream;
 let visualizerCanvas;
@@ -29,13 +30,7 @@ let startTime;
 const WIDTH="640";
 const HEIGHT ="100";
 
-//set up the different audio nodes we will use for the app
 
-const analyser = audioCtx.createAnalyser();
-analyser.minDecibels = -90;
-analyser.maxDecibels = -10;
-analyser.smoothingTimeConstant = 0.85;
-analyser.fftSize = 2048;
 
 
 // const distortion = audioCtx.createWaveShaper();
@@ -49,14 +44,78 @@ analyser.fftSize = 2048;
 export class ReactMic extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      audioCtx: null,
+      analyser: null
+    }
   }
 
   componentDidMount() {
     const self = this;
+    const audioCtxObj = new AudioContext();
+    const audioCtx = audioCtxObj.create();
+    const analyser = audioCtx.createAnalyser();
+
+    analyser.minDecibels = -90;
+    analyser.maxDecibels = -10;
+    analyser.smoothingTimeConstant = 0.85;
+    analyser.fftSize = 2048;
+
+    this.setState({
+      audioCtx: audioCtx,
+      analyser: analyser
+    });
 
     visualizerCanvas = this.refs.visualizer;
     visualizerCanvasCtx = this.refs.visualizer.getContext("2d");
-    visualize(this.props);
+    this.visualize(analyser, visualizerCanvasCtx);
+  }
+
+  visualize= (analyser, visualizerCanvasCtx) => {
+    const self = this;
+    const { backgroundColor, strokeColor } = this.props;
+
+    var bufferLength = analyser.fftSize;
+
+    var dataArray = new Uint8Array(bufferLength);
+
+    visualizerCanvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+
+    function draw() {
+
+      const drawVisual = requestAnimationFrame(draw);
+
+      analyser.getByteTimeDomainData(dataArray);
+
+      visualizerCanvasCtx.fillStyle = backgroundColor;
+      visualizerCanvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      visualizerCanvasCtx.lineWidth = 3;
+      visualizerCanvasCtx.strokeStyle = strokeColor;
+
+      visualizerCanvasCtx.beginPath();
+
+      var sliceWidth = WIDTH * 1.0 / bufferLength;
+      var x = 0;
+
+      for(var i = 0; i < bufferLength; i++) {
+        var v = dataArray[i] / 128.0;
+        var y = v * HEIGHT/2;
+
+        if(i === 0) {
+          visualizerCanvasCtx.moveTo(x, y);
+        } else {
+          visualizerCanvasCtx.lineTo(x, y);
+        }
+
+        x += sliceWidth;
+      }
+
+      visualizerCanvasCtx.lineTo(visualizerCanvas.width, visualizerCanvas.height/2);
+      visualizerCanvasCtx.stroke();
+    };
+
+    draw();
   }
 
   render() {
@@ -69,6 +128,8 @@ export class ReactMic extends Component {
 
 export function startRecording() {
   const self = this;
+
+  const { audioCtx, analyser } = this.state;
 
   if(mediaRecorder && mediaRecorder.state === 'recording') {
     return;
@@ -88,8 +149,11 @@ export function startRecording() {
 
         // Success callback
         function(stream) {
+          //set up the different audio nodes we will use for the app
+
           source = audioCtx.createMediaStreamSource(stream);
           source.connect(analyser);
+
           const mediaURL = window.URL.createObjectURL(stream);
           startRecorder(mediaURL,stream);
         },
@@ -168,51 +232,6 @@ function handleDataAvailable() {
 
 }
 
-function visualize(props) {
-  const self = this;
-
-  var bufferLength = analyser.fftSize;
-
-  var dataArray = new Uint8Array(bufferLength);
-
-  visualizerCanvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-
-  function draw() {
-
-    const drawVisual = requestAnimationFrame(draw);
-
-    analyser.getByteTimeDomainData(dataArray);
-
-    visualizerCanvasCtx.fillStyle = props.backgroundColor;
-    visualizerCanvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-
-    visualizerCanvasCtx.lineWidth = 3;
-    visualizerCanvasCtx.strokeStyle = props.strokeColor;
-
-    visualizerCanvasCtx.beginPath();
-
-    var sliceWidth = WIDTH * 1.0 / bufferLength;
-    var x = 0;
-
-    for(var i = 0; i < bufferLength; i++) {
-      var v = dataArray[i] / 128.0;
-      var y = v * HEIGHT/2;
-
-      if(i === 0) {
-        visualizerCanvasCtx.moveTo(x, y);
-      } else {
-        visualizerCanvasCtx.lineTo(x, y);
-      }
-
-      x += sliceWidth;
-    }
-
-    visualizerCanvasCtx.lineTo(visualizerCanvas.width, visualizerCanvas.height/2);
-    visualizerCanvasCtx.stroke();
-  };
-
-  draw();
-}
 
 ReactMic.propTypes = {
   backgroundColor : React.PropTypes.string,
