@@ -1,6 +1,9 @@
 // cool blog article on how to do this: http://www.smartjava.org/content/exploring-html5-web-audio-visualizing-sound
 // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API
 
+// distortion curve for the waveshaper, thanks to Kevin Ennis
+// http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
+
 import React, { Component } from 'react'
 import MediaRecorder from './libs/MediaRecorder';
 import AudioContext from './libs/AudioContext';
@@ -29,17 +32,6 @@ let startTime;
 
 const WIDTH="640";
 const HEIGHT ="100";
-
-
-
-
-// const distortion = audioCtx.createWaveShaper();
-// const gainNode = audioCtx.createGain();
-// const biquadFilter = audioCtx.createBiquadFilter();
-// const convolver = audioCtx.createConvolver();
-
-// distortion curve for the waveshaper, thanks to Kevin Ennis
-// http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
 
 export class ReactMic extends Component {
   constructor(props) {
@@ -118,87 +110,116 @@ export class ReactMic extends Component {
     draw();
   }
 
+  startRecording= () => {
+    const self = this;
+
+    const { audioCtx, analyser } = this.state;
+
+    if(mediaRecorder && mediaRecorder.state === 'recording') {
+      return;
+    }
+
+    if(audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    if (navigator.getUserMedia) {
+     console.log('getUserMedia supported.');
+     navigator.getUserMedia (
+        // constraints - only audio needed for this app
+          {
+             audio: true
+          },
+
+          // Success callback
+          function(stream) {
+            //set up the different audio nodes we will use for the app
+
+            source = audioCtx.createMediaStreamSource(stream);
+            source.connect(analyser);
+
+            const mediaURL = window.URL.createObjectURL(stream);
+            self.startRecorder(mediaURL,stream);
+          },
+
+          // Error callback
+          function(err) {
+             console.log('The following gUM error occured: ' + err);
+          }
+       );
+    } else {
+      console.log('getUserMedia not supported on your browser!');
+    }
+  }
+
+  stopRecording=() => {
+    const { analyser, audioCtx } = this.state;
+
+    if(mediaRecorder && mediaRecorder.state !== 'inactive') {
+
+      mediaRecorder.stop();
+      analyser.minDecibels = -90;
+      analyser.maxDecibels = -10;
+      analyser.smoothingTimeConstant = 0.85;
+      analyser.fftSize = 2048;
+
+      audioCtx.suspend();
+
+      recordedBlobs.length = 0;
+      blobURL = undefined;
+      source = undefined;
+      mediaRecorder = undefined;
+    }
+  }
+
+  startRecorder = (mediaURL,stream) => {
+    let options = {mimeType: 'audio/webm'};
+
+    if(mediaRecorder) {
+      mediaRecorder.resume();
+    } else {
+      mediaRecorder = new MediaRecorder(stream, options);
+      mediaRecorder.ondataavailable = this.handleDataAvailable;
+
+      mediaRecorder.start(10);
+    }
+
+    startTime = Date.now();
+  }
+
+  handleDataAvailable= () => {
+    if (event.data && event.data.size > 0) {
+      recordedBlobs.push(event.data);
+    }
+  }
+
   render() {
+    const { record } = this.props;
+
+    if(record) {
+      this.startRecording();
+    } else {
+      this.stopRecording();
+    }
+
     return (
       <canvas ref="visualizer" className={this.props.className}></canvas>
     );
   }
 }
 
+ReactMic.propTypes = {
+  backgroundColor : React.PropTypes.string,
+  strokeColor     : React.PropTypes.string,
+  className       : React.PropTypes.string,
+  height          : React.PropTypes.number,
+  record          : React.PropTypes.bool.isRequired
+};
 
-export function startRecording() {
-  const self = this;
-
-  const { audioCtx, analyser } = this.state;
-
-  if(mediaRecorder && mediaRecorder.state === 'recording') {
-    return;
-  }
-
-  if(audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
-
-  if (navigator.getUserMedia) {
-   console.log('getUserMedia supported.');
-   navigator.getUserMedia (
-      // constraints - only audio needed for this app
-        {
-           audio: true
-        },
-
-        // Success callback
-        function(stream) {
-          //set up the different audio nodes we will use for the app
-
-          source = audioCtx.createMediaStreamSource(stream);
-          source.connect(analyser);
-
-          const mediaURL = window.URL.createObjectURL(stream);
-          startRecorder(mediaURL,stream);
-        },
-
-        // Error callback
-        function(err) {
-           console.log('The following gUM error occured: ' + err);
-        }
-     );
-  } else {
-    console.log('getUserMedia not supported on your browser!');
-  }
-}
-
-export function stopRecording() {
-  if(mediaRecorder && mediaRecorder.state !== 'inactive') {
-
-    mediaRecorder.stop();
-    analyser.minDecibels = -90;
-    analyser.maxDecibels = -10;
-    analyser.smoothingTimeConstant = 0.85;
-    analyser.fftSize = 2048;
-
-    audioCtx.suspend();
-
-    recordedBlobs.length = 0;
-    blobURL = undefined;
-    source = undefined;
-    mediaRecorder = undefined;
-  }
-}
-
-
-function startRecorder(mediaURL,stream) {
-  let options = {mimeType: 'audio/webm'};
-
-  if(mediaRecorder) {
-    mediaRecorder.resume();
-  } else {
-    mediaRecorder = new MediaRecorder(stream, options);
-    mediaRecorder.ondataavailable = handleDataAvailable;
-    mediaRecorder.start(10);
-  }
-
-  startTime = Date.now();
+ReactMic.defaultProps = {
+  backgroundColor : '#4bb8d1',
+  strokeColor     : '#000000',
+  className       : 'visualizer'
 }
 
 export function saveRecording() {
@@ -219,29 +240,4 @@ export function saveRecording() {
   }
   stopRecording();
   return blobObject;
-}
-
-function getBlobURL() {
-  return blobURL;
-}
-
-function handleDataAvailable() {
-  if (event.data && event.data.size > 0) {
-    recordedBlobs.push(event.data);
-  }
-
-}
-
-
-ReactMic.propTypes = {
-  backgroundColor : React.PropTypes.string,
-  strokeColor     : React.PropTypes.string,
-  className       : React.PropTypes.string,
-  height          : React.PropTypes.number
-};
-
-ReactMic.defaultProps = {
-  backgroundColor : '#4bb8d1',
-  strokeColor     : '#000000',
-  className       : 'visualizer'
 }

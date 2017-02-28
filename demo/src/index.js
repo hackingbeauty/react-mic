@@ -6,7 +6,7 @@ import injectTapEventPlugin    from 'react-tap-event-plugin';
 import MicrophoneOn            from 'material-ui/svg-icons/av/mic';
 import MicrophoneOff             from 'material-ui/svg-icons/av/stop';
 
-import { ReactMic, startRecording, stopRecording, saveRecording } from '../../src';
+import { ReactMic,  saveRecording } from '../../src';
 require ('./styles.scss');
 injectTapEventPlugin();
 
@@ -14,16 +14,21 @@ export default class Demo extends Component {
   constructor(props){
     super(props);
     this.state = {
-      blobURL: ''
+      blobURL: '',
+      record: false
     }
   }
 
   startRecorder= () => {
-    startRecording();
+    this.setState({
+      record: true
+    });
   }
 
   stopRecorder= () => {
-    stopRecording();
+    this.setState({
+      record: false
+    });
   }
 
   saveRecorder= () => {
@@ -44,6 +49,7 @@ export default class Demo extends Component {
       <MuiThemeProvider>
         <div>
           <ReactMic
+            record={this.state.record}
             backgroundColor="#FF4081"
             strokeColor="#000000" />
           <FloatingActionButton
