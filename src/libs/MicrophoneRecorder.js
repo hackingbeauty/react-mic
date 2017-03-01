@@ -23,6 +23,10 @@ export class MicrophoneRecorder {
     analyser = anal;
     startTime = Date.now();
 
+    if(audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
     if(mediaRecorder && mediaRecorder.state === 'recording') {
       return;
     }
