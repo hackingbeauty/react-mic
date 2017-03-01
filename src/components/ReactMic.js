@@ -113,7 +113,7 @@ export default class ReactMic extends Component {
       }
     } else {
       if (microphoneRecorder) {
-        microphoneRecorder.stopRecording(analyser, audioCtx);
+        microphoneRecorder.stopRecording();
       }
     }
 
@@ -134,5 +134,6 @@ ReactMic.propTypes = {
 ReactMic.defaultProps = {
   backgroundColor : '#4bb8d1',
   strokeColor     : '#000000',
-  className       : 'visualizer'
+  className       : 'visualizer',
+  record          : false
 }

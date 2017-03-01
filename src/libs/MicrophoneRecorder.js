@@ -21,7 +21,6 @@ export class MicrophoneRecorder {
 
     audioCtx = actx;
     analyser = anal;
-
     startTime = Date.now();
 
     if(mediaRecorder && mediaRecorder.state === 'recording') {
@@ -30,11 +29,9 @@ export class MicrophoneRecorder {
 
     if (navigator.getUserMedia) {
      console.log('getUserMedia supported.');
+
      navigator.getUserMedia (
-        // constraints - only audio needed for this app
-          {
-             audio: true
-          },
+          { audio: true  }, // constraints - only audio needed for this app
 
           // Success callback
           function(stream) {

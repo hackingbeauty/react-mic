@@ -29,8 +29,9 @@ export default class Demo extends Component {
     const savedRecordingBlob = saveRecording();
     console.log('the saved recording is (it is a blob): ', savedRecordingBlob);
     this.setState({
-      blobURL: savedRecordingBlob
-    })
+      blobURL: savedRecordingBlob,
+      record: false
+    });
   }
 
   render() {
