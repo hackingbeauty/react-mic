@@ -72,11 +72,6 @@ function stopRecording() {
  if(mediaRecorder && mediaRecorder.state !== 'inactive') {
 
       mediaRecorder.stop();
-      analyser.minDecibels = -90;
-      analyser.maxDecibels = -10;
-      analyser.smoothingTimeConstant = 0.85;
-      analyser.fftSize = 2048;
-
       audioCtx.suspend();
 
       recordedBlobs.length = 0;

@@ -8,15 +8,6 @@ import React, { Component } from 'react'
 import { MicrophoneRecorder } from '../libs/MicrophoneRecorder';
 import AudioContext from '../libs/AudioContext';
 
-let stream;
-let visualizerCanvas;
-let visualizerCanvasCtx;
-let microphoneRecorder;
-let blobURL;
-let recordedBlobs = [];
-let blobObject;
-let startTime;
-
 const WIDTH="640";
 const HEIGHT ="100";
 
