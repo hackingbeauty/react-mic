@@ -2,9 +2,7 @@ let analyser;
 let audioCtx;
 let mediaRecorder;
 let recordedBlobs = [];
-let source;
 let startTime;
-let blobURL;
 
 navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
@@ -27,7 +25,8 @@ export class MicrophoneRecorder {
       audioCtx.resume();
     }
 
-    if(mediaRecorder && mediaRecorder.state === 'recording') {
+    if(mediaRecorder && mediaRecorder.state === 'paused') {
+      mediaRecorder.resume();
       return;
     }
 
@@ -39,13 +38,10 @@ export class MicrophoneRecorder {
 
           // Success callback
           function(stream) {
-            mediaRecorder = new MediaRecorder(stream);
-            //set up the different audio nodes we will use for the app
-            source = audioCtx.createMediaStreamSource(stream);
+            const source = audioCtx.createMediaStreamSource(stream);
             source.connect(analyser);
 
-            const mediaURL = window.URL.createObjectURL(stream);
-
+            mediaRecorder = new MediaRecorder(stream);
             mediaRecorder.ondataavailable = self.handleDataAvailable;
             mediaRecorder.start(10);
           },
@@ -60,8 +56,9 @@ export class MicrophoneRecorder {
     }
   }
 
-  handleDataAvailable= () => {
+  handleDataAvailable= (event) => {
     if (event.data && event.data.size > 0) {
+      console.log('the data is: ', event.data);
       recordedBlobs.push(event.data);
     }
   }
@@ -73,34 +70,24 @@ export class MicrophoneRecorder {
 }
 
 function stopRecording() {
- if(mediaRecorder && mediaRecorder.state !== 'inactive') {
-
-      mediaRecorder.stop();
-      audioCtx.suspend();
-
-      recordedBlobs.length = 0;
-      blobURL = undefined;
-      source = undefined;
-      mediaRecorder = undefined;
-    }
+  if(mediaRecorder && mediaRecorder.state !== 'inactive') {
+    mediaRecorder.pause();
+    audioCtx.suspend();
+    recordedBlobs = [];
+    // mediaRecorder = undefined;
+  }
 }
 
 export function saveRecording() {
-    let theBlobURL, blobObject;
-
-    if(blobURL) {
-      theBlobURL = blobURL;
-    } else {
-      const blob = new Blob(recordedBlobs, {type: 'audio/webm'});
-      theBlobURL = window.URL.createObjectURL(blob);
-      blobObject = {
-        blob      : blob,
-        startTime : startTime,
-        stopTime  : Date.now(),
-        blobURL   : theBlobURL
-      }
-      blobURL = theBlobURL;
+    const blob = new Blob(recordedBlobs, {type: 'audio/webm'});
+    const theBlobURL = window.URL.createObjectURL(blob);
+    const blobObject = {
+      blob      : blob,
+      startTime : startTime,
+      stopTime  : Date.now(),
+      blobURL   : theBlobURL
     }
+
     stopRecording();
     return blobObject;
   }
