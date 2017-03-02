@@ -98,6 +98,8 @@ export default class ReactMic extends Component {
     const { record } = this.props;
     const { analyser, audioCtx, microphoneRecorder } = this.state;
 
+    
+
     if(record) {
       if(microphoneRecorder) {
         microphoneRecorder.startRecording(audioCtx, analyser);

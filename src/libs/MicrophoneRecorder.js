@@ -3,6 +3,9 @@ let audioCtx;
 let mediaRecorder;
 let recordedBlobs = [];
 let startTime;
+let stream;
+
+const constraints = { audio: true, video: false }; // constraints - only audio needed
 
 navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
@@ -11,6 +14,18 @@ navigator.getUserMedia = (navigator.getUserMedia ||
 
 export class MicrophoneRecorder {
   constructor() {
+    const self = this;
+
+    if (navigator.mediaDevices) {
+     console.log('getUserMedia supported.');
+
+      navigator.mediaDevices.getUserMedia(constraints).then((str) => {
+        stream = str;
+        mediaRecorder = new MediaRecorder(str);
+        mediaRecorder.onstop = this.onStop;
+        mediaRecorder.ondataavailable = this.handleDataAvailable;
+      });
+    }
     return this;
   }
 
@@ -25,69 +40,55 @@ export class MicrophoneRecorder {
       audioCtx.resume();
     }
 
-    if(mediaRecorder && mediaRecorder.state === 'paused') {
-      mediaRecorder.resume();
-      return;
-    }
+    // if(mediaRecorder && mediaRecorder.state === 'paused') {
+    //   mediaRecorder.resume();
+    //   return;
+    // }
 
-    if (navigator.getUserMedia) {
-     console.log('getUserMedia supported.');
+    const source = audioCtx.createMediaStreamSource(stream);
+    source.connect(analyser);
 
-     navigator.getUserMedia (
-          { audio: true  }, // constraints - only audio needed for this app
-
-          // Success callback
-          function(stream) {
-            const source = audioCtx.createMediaStreamSource(stream);
-            source.connect(analyser);
-
-            mediaRecorder = new MediaRecorder(stream);
-            mediaRecorder.ondataavailable = self.handleDataAvailable;
-            mediaRecorder.start(10);
-          },
-
-          // Error callback
-          function(err) {
-             console.log('The following gUM error occured: ' + err);
-          }
-       );
-    } else {
-      console.log('getUserMedia not supported on your browser!');
-    }
+    mediaRecorder.start(10);
   }
 
   handleDataAvailable= (event) => {
-    if (event.data && event.data.size > 0) {
-      console.log('the data is: ', event.data);
-      recordedBlobs.push(event.data);
-    }
+    recordedBlobs.push(event.data);
+  }
+
+  onStop() {
+    console.log('======= stopping this! =======');
+    var blob = new Blob(recordedBlobs, { 'type' : 'audio/ogg; codecs=opus' });
+    var audioURL = window.URL.createObjectURL(blob);
+    console.log(audioURL);
+
+
+    var audio = document.createElement('audio');
+    audio.setAttribute('controls', '');
+    audio.controls = true;
+    audio.src = audioURL;
+    document.body.appendChild(audio);
+
+    recordedBlobs = [];
   }
 
   stopRecording() {
-   stopRecording();
+    if(mediaRecorder && mediaRecorder.state !== 'inactive') {
+      mediaRecorder.stop();
+      audioCtx.suspend();
+      recordedBlobs = [];
+    }
   }
 
-}
-
-function stopRecording() {
-  if(mediaRecorder && mediaRecorder.state !== 'inactive') {
-    mediaRecorder.pause();
-    audioCtx.suspend();
-    recordedBlobs = [];
-    // mediaRecorder = undefined;
-  }
 }
 
 export function saveRecording() {
-    const blob = new Blob(recordedBlobs, {type: 'audio/webm'});
-    const theBlobURL = window.URL.createObjectURL(blob);
-    const blobObject = {
-      blob      : blob,
-      startTime : startTime,
-      stopTime  : Date.now(),
-      blobURL   : theBlobURL
-    }
-
-    stopRecording();
-    return blobObject;
+    // console.log('recordedBlobs', recordedBlobs);
+    // const blob = new Blob(recordedBlobs, { 'type' : 'audio/ogg; codecs=opus' });
+    // const blobObject = {
+    //   blob      : blob,
+    //   startTime : startTime,
+    //   stopTime  : Date.now(),
+    //   blobURL   : window.URL.createObjectURL(blob)
+    // }
+    // return blobObject;
   }

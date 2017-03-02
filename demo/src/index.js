@@ -27,7 +27,6 @@ export default class Demo extends Component {
 
   saveRecorder= () => {
     const savedRecordingBlob = saveRecording();
-    console.log('the saved recording is (it is a blob): ', savedRecordingBlob);
     this.setState({
       blobURL: savedRecordingBlob,
       record: false
@@ -52,7 +51,7 @@ export default class Demo extends Component {
             onTouchTap={this.saveRecorder}>
             Save
           </FloatingActionButton>
-          <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
+          {/* <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio> */}
         </div>
     </MuiThemeProvider>
     );
