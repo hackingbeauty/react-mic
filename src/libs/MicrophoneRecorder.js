@@ -1,7 +1,7 @@
 let analyser;
 let audioCtx;
 let mediaRecorder;
-let recordedBlobs = [];
+let chunks = [];
 let startTime;
 let stream;
 
@@ -23,7 +23,9 @@ export class MicrophoneRecorder {
         stream = str;
         mediaRecorder = new MediaRecorder(str);
         mediaRecorder.onstop = this.onStop;
-        mediaRecorder.ondataavailable = this.handleDataAvailable;
+        mediaRecorder.ondataavailable = (event) => {
+          chunks.push(event.data);
+        }
       });
     }
     return this;
@@ -40,10 +42,10 @@ export class MicrophoneRecorder {
       audioCtx.resume();
     }
 
-    // if(mediaRecorder && mediaRecorder.state === 'paused') {
-    //   mediaRecorder.resume();
-    //   return;
-    // }
+    if(mediaRecorder && mediaRecorder.state === 'paused') {
+      mediaRecorder.resume();
+      return;
+    }
 
     const source = audioCtx.createMediaStreamSource(stream);
     source.connect(analyser);
@@ -51,13 +53,17 @@ export class MicrophoneRecorder {
     mediaRecorder.start(10);
   }
 
-  handleDataAvailable= (event) => {
-    recordedBlobs.push(event.data);
+  stopRecording() {
+    if(mediaRecorder && mediaRecorder.state !== 'inactive') {
+      mediaRecorder.stop();
+      audioCtx.suspend();
+    }
   }
 
   onStop() {
     console.log('======= stopping this! =======');
-    var blob = new Blob(recordedBlobs, { 'type' : 'audio/ogg; codecs=opus' });
+    var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+    chunks = [];
     var audioURL = window.URL.createObjectURL(blob);
     console.log(audioURL);
 
@@ -68,15 +74,7 @@ export class MicrophoneRecorder {
     audio.src = audioURL;
     document.body.appendChild(audio);
 
-    recordedBlobs = [];
-  }
-
-  stopRecording() {
-    if(mediaRecorder && mediaRecorder.state !== 'inactive') {
-      mediaRecorder.stop();
-      audioCtx.suspend();
-      recordedBlobs = [];
-    }
+    console.log('yahooooo')
   }
 
 }
