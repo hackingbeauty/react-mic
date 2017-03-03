@@ -25,6 +25,7 @@ export default class ReactMic extends Component {
 
   componentDidMount() {
     const self = this;
+    const { onStop } = this.props;
     const audioCtxObj = new AudioContext();
     const audioCtx = audioCtxObj.create();
     const analyser = audioCtx.createAnalyser();
@@ -36,10 +37,11 @@ export default class ReactMic extends Component {
     analyser.smoothingTimeConstant = 0.85;
     analyser.fftSize = 2048;
 
+
     this.setState({
       audioCtx: audioCtx,
       analyser: analyser,
-      microphoneRecorder: new MicrophoneRecorder(),
+      microphoneRecorder: new MicrophoneRecorder(onStop),
       visualizerCanvas: visualizerCanvas,
       visualizerCanvasCtx: visualizerCanvasCtx
     });
@@ -95,10 +97,8 @@ export default class ReactMic extends Component {
   }
 
   render() {
-    const { record } = this.props;
+    const { record, onStop } = this.props;
     const { analyser, audioCtx, microphoneRecorder } = this.state;
-
-    
 
     if(record) {
       if(microphoneRecorder) {
@@ -106,7 +106,7 @@ export default class ReactMic extends Component {
       }
     } else {
       if (microphoneRecorder) {
-        microphoneRecorder.stopRecording();
+        microphoneRecorder.stopRecording(onStop);
       }
     }
 
@@ -121,7 +121,8 @@ ReactMic.propTypes = {
   strokeColor     : React.PropTypes.string,
   className       : React.PropTypes.string,
   height          : React.PropTypes.number,
-  record          : React.PropTypes.bool.isRequired
+  record          : React.PropTypes.bool.isRequired,
+  onStop          : React.PropTypes.func
 };
 
 ReactMic.defaultProps = {

@@ -10,12 +10,14 @@ import { ReactMic, saveRecording } from '../../src';
 require ('./styles.scss');
 injectTapEventPlugin();
 
+let blobURL;
+
 export default class Demo extends Component {
   constructor(props){
     super(props);
     this.state = {
-      blobURL: '',
-      record: false
+      record: false,
+      blobObject: null
     }
   }
 
@@ -26,11 +28,15 @@ export default class Demo extends Component {
   }
 
   saveRecorder= () => {
-    const savedRecordingBlob = saveRecording();
     this.setState({
-      blobURL: savedRecordingBlob,
       record: false
     });
+  }
+
+  onStop= (blobObject) => {
+    this.setState({
+      blobURL : blobObject.blobURL
+    })
   }
 
   render() {
@@ -40,6 +46,7 @@ export default class Demo extends Component {
           <ReactMic
             record={this.state.record}
             backgroundColor="#FF4081"
+            onStop={this.onStop}
             strokeColor="#000000" />
           <FloatingActionButton
             secondary={true}
@@ -51,7 +58,7 @@ export default class Demo extends Component {
             onTouchTap={this.saveRecorder}>
             Save
           </FloatingActionButton>
-          {/* <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio> */}
+          <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
         </div>
     </MuiThemeProvider>
     );

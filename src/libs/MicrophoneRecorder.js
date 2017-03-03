@@ -4,6 +4,8 @@ let mediaRecorder;
 let chunks = [];
 let startTime;
 let stream;
+let blobObject;
+let onStopCallback;
 
 const constraints = { audio: true, video: false }; // constraints - only audio needed
 
@@ -13,7 +15,7 @@ navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.msGetUserMedia);
 
 export class MicrophoneRecorder {
-  constructor() {
+  constructor(callback) {
     const self = this;
 
     if (navigator.mediaDevices) {
@@ -23,6 +25,7 @@ export class MicrophoneRecorder {
         stream = str;
         mediaRecorder = new MediaRecorder(str);
         mediaRecorder.onstop = this.onStop;
+        onStopCallback = callback;
         mediaRecorder.ondataavailable = (event) => {
           chunks.push(event.data);
         }
@@ -60,33 +63,19 @@ export class MicrophoneRecorder {
     }
   }
 
-  onStop() {
-    console.log('======= stopping this! =======');
-    var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+  onStop(evt) {
+    const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
     chunks = [];
-    var audioURL = window.URL.createObjectURL(blob);
-    console.log(audioURL);
 
+    const blobObject =  {
+      blob      : blob,
+      startTime : startTime,
+      stopTime  : Date.now(),
+      blobURL   : window.URL.createObjectURL(blob)
+    }
 
-    var audio = document.createElement('audio');
-    audio.setAttribute('controls', '');
-    audio.controls = true;
-    audio.src = audioURL;
-    document.body.appendChild(audio);
+    onStopCallback(blobObject);
 
-    console.log('yahooooo')
   }
 
 }
-
-export function saveRecording() {
-    // console.log('recordedBlobs', recordedBlobs);
-    // const blob = new Blob(recordedBlobs, { 'type' : 'audio/ogg; codecs=opus' });
-    // const blobObject = {
-    //   blob      : blob,
-    //   startTime : startTime,
-    //   stopTime  : Date.now(),
-    //   blobURL   : window.URL.createObjectURL(blob)
-    // }
-    // return blobObject;
-  }
