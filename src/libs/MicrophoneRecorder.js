@@ -1,3 +1,5 @@
+import AudioContext from './AudioContext';
+
 let analyser;
 let audioCtx;
 let mediaRecorder;
@@ -34,11 +36,13 @@ export class MicrophoneRecorder {
     return this;
   }
 
-  startRecording=(actx, anal) => {
+  startRecording=() => {
     const self = this;
 
-    audioCtx = actx;
-    analyser = anal;
+    audioCtx = AudioContext.getAudioContext();
+    analyser = AudioContext.getAnalyser();
+
+
     startTime = Date.now();
 
     if(audioCtx.state === 'suspended') {
@@ -50,10 +54,11 @@ export class MicrophoneRecorder {
       return;
     }
 
-    const source = audioCtx.createMediaStreamSource(stream);
-    source.connect(analyser);
-
-    mediaRecorder.start(10);
+    if(mediaRecorder && mediaRecorder.state === 'inactive') {
+      mediaRecorder.start(10);
+      const source = audioCtx.createMediaStreamSource(stream);
+      source.connect(analyser);
+    }
   }
 
   stopRecording() {

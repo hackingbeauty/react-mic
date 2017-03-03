@@ -26,9 +26,7 @@ export default class ReactMic extends Component {
   componentDidMount() {
     const self = this;
     const { onStop } = this.props;
-    const audioCtxObj = new AudioContext();
-    const audioCtx = audioCtxObj.create();
-    const analyser = audioCtx.createAnalyser();
+    const analyser = AudioContext.getAnalyser();
     const visualizerCanvas = this.refs.visualizer;
     const visualizerCanvasCtx = this.refs.visualizer.getContext("2d");
 
@@ -39,7 +37,6 @@ export default class ReactMic extends Component {
 
 
     this.setState({
-      audioCtx: audioCtx,
       analyser: analyser,
       microphoneRecorder: new MicrophoneRecorder(onStop),
       visualizerCanvas: visualizerCanvas,
@@ -102,7 +99,7 @@ export default class ReactMic extends Component {
 
     if(record) {
       if(microphoneRecorder) {
-        microphoneRecorder.startRecording(audioCtx, analyser);
+        microphoneRecorder.startRecording();
       }
     } else {
       if (microphoneRecorder) {

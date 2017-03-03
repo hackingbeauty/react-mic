@@ -1,8 +1,14 @@
-export default class AudioContext  {
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const analyser = audioCtx.createAnalyser();
 
-  create() {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+export default AudioContext  = {
+
+  getAudioContext() {
     return audioCtx;
+  },
+
+  getAnalyser() {
+    return analyser;
   }
 
 }
