@@ -1,18 +1,80 @@
 # react-mic
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+Record a user's voice and display as an osscilation.
 
-Recording audio from a microphone from via the MediaRecorder API and display a volume meter.
+## Demo
 
-Demo coming soon, hold on!
+Check out the [demo](http://hackingbeauty.com/react-mic)
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+## Installation
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+`npm install --save react-mic`
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+## Features
+
+- Record audio from microphone
+- Display sound wave as voice is being recorded
+- Save audio as BLOB
+
+## Usage
+
+```js
+
+<ReactMic
+  record={boolean}         // defaults -> false.  Set to true to begin recording
+  className={string}       // provide css class name is required
+  onStop={function}        // callback to execute when audio stops recording
+  strokeColor={string}     // sound wave color
+  backgroundColor={string} // backgrounc color
+/>
+
+```
+
+## Example
+
+```js
+import ReactMic from 'react-mic';
+
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      record: false
+    }
+  }
+
+  startRecording= () => {
+    this.setState({
+      record: true
+    });
+  }
+
+  stopRecording= () => {
+    this.setState({
+      record: false
+    });
+  }
+
+  onStop(recordedBlob) {
+    console.log('recordedBlob is: ', recordedBlob');
+  }
+
+  render() {
+    return (
+      <ReactMic
+        record={this.state.record}
+        className="sound-wave"
+        onStop={this.onStop}
+        strokeColor="#000000"
+        backgroundColor="#FF4081"
+      />
+      <button onTouchTap={this.startRecording} type="button">Start</button>
+      <button onTouchTap={this.stopRecording} type="button">Stop</button>
+    );
+  }
+}
+```
+
+## License
+
+MIT
