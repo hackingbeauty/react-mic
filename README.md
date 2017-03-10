@@ -56,7 +56,7 @@ class Example extends React.Component {
   }
 
   onStop(recordedBlob) {
-    console.log('recordedBlob is: ', recordedBlob');
+    console.log('recordedBlob is: ', recordedBlob);
   }
 
   render() {
@@ -66,8 +66,7 @@ class Example extends React.Component {
         className="sound-wave"
         onStop={this.onStop}
         strokeColor="#000000"
-        backgroundColor="#FF4081"
-      />
+        backgroundColor="#FF4081" />
       <button onTouchTap={this.startRecording} type="button">Start</button>
       <button onTouchTap={this.stopRecording} type="button">Stop</button>
     );
