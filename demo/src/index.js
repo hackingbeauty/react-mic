@@ -17,19 +17,22 @@ export default class Demo extends Component {
     super(props);
     this.state = {
       record: false,
-      blobObject: null
+      blobObject: null,
+      isRecording: false
     }
   }
 
-  startRecorder= () => {
+  startRecording= () => {
     this.setState({
-      record: true
+      record: true,
+      isRecording: true
     });
   }
 
-  saveRecorder= () => {
+  stopRecording= () => {
     this.setState({
-      record: false
+      record: false,
+      isRecording: false
     });
   }
 
@@ -40,25 +43,36 @@ export default class Demo extends Component {
   }
 
   render() {
+    const { isRecording } = this.state;
+
     return(
       <MuiThemeProvider>
         <div>
+          <h1>ReactMic</h1>
           <ReactMic
             record={this.state.record}
             backgroundColor="#FF4081"
             onStop={this.onStop}
             strokeColor="#000000" />
-          <FloatingActionButton
-            secondary={true}
-            onTouchTap={this.startRecorder}>
-            <MicrophoneOn />
-          </FloatingActionButton>
-          <FloatingActionButton
-            secondary={true}
-            onTouchTap={this.saveRecorder}>
-            Save
-          </FloatingActionButton>
-          <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
+            <div>
+              <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
+            </div>
+            <br />
+            <br />
+            <FloatingActionButton
+              className="btn"
+              secondary={true}
+              disabled={isRecording}
+              onTouchTap={this.startRecording}>
+              <MicrophoneOn />
+            </FloatingActionButton>
+            <FloatingActionButton
+              className="btn"
+              secondary={true}
+              disabled={!isRecording}
+              onTouchTap={this.stopRecording}>
+              <MicrophoneOff />
+            </FloatingActionButton>
         </div>
     </MuiThemeProvider>
     );
