@@ -1,6 +1,6 @@
 {
   "name": "react-mic",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Record audio from your microphone and display as a sound oscillation",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -12,12 +12,11 @@
     "umd"
   ],
   "keywords": [
+    "react",
     "react-component",
     "microphone",
-    "sound wave",
-    "record audio",
-    "web audio",
-    "MediaRecorder"
+    "MediaRecorder",
+    "volume meter"
   ],
   "scripts": {
     "build": "nwb build-react-component",
@@ -44,12 +43,5 @@
   "author": "",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
-  "keywords": [
-    "react",
-    "react-component",
-    "microphone",
-    "MediaRecorder",
-    "volume meter"
-  ]
+  "repository": ""
 }
