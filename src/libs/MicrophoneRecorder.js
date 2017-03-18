@@ -69,7 +69,7 @@ export class MicrophoneRecorder {
   }
 
   onStop(evt) {
-    const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+    const blob = new Blob(chunks, { 'type' : 'audio/mp3' });
     chunks = [];
 
     const blobObject =  {
