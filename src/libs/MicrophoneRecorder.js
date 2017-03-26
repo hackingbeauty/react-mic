@@ -32,6 +32,8 @@ export class MicrophoneRecorder {
           chunks.push(event.data);
         }
       });
+    } else {
+      alert('Unfortunately, your browser sucks.  Apple refuses to support the latest Web features in Safari.  Please tell them to upgrade the Safari Web browser.')
     }
     return this;
   }
