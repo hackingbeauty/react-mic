@@ -22,10 +22,10 @@ Check out the [demo](https://hackingbeauty.github.io/react-mic/)
 
 <ReactMic
   record={boolean}         // defaults -> false.  Set to true to begin recording
-  className={string}       // provide css class name is required
+  className={string}       // provide css class name
   onStop={function}        // callback to execute when audio stops recording
   strokeColor={string}     // sound wave color
-  backgroundColor={string} // backgrounc color
+  backgroundColor={string} // background color
 />
 
 ```
