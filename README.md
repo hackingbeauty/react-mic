@@ -4,7 +4,7 @@ Record a user's voice and display as an osscilation.
 
 ## Demo
 
-Check out the [demo](http://hackingbeauty.com/react-mic)
+Check out the [demo](https://hackingbeauty.github.io/react-mic/)
 
 ## Installation
 
