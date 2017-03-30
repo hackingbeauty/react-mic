@@ -1,6 +1,6 @@
 {
   "name": "react-mic",
-  "version": "3.0.9",
+  "version": "3.1.0",
   "description": "Record audio from your microphone and display as a sound oscillation",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -30,13 +30,12 @@
     "react": "15.x"
   },
   "devDependencies": {
-    "material-ui": "^0.16.0",
+    "material-ui": "^0.16.7",
     "nwb": "^0.15.6",
     "nwb-sass": "^0.6.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-tap-event-plugin": "^2.0.1",
-    "material-ui": "^0.16.7"
+    "react-tap-event-plugin": "^2.0.1"
   },
   "author": "Mark Muskardin",
   "homepage": "https://hackingbeauty.github.io/react-mic",
