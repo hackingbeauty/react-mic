@@ -26,9 +26,6 @@
     "test:coverage": "nwb test --coverage",
     "test:watch": "nwb test --server"
   },
-  "dependencies": {
-    "material-ui": "^0.16.7"
-  },
   "peerDependencies": {
     "react": "15.x"
   },
@@ -38,7 +35,8 @@
     "nwb-sass": "^0.6.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "material-ui": "^0.16.7"
   },
   "author": "Mark Muskardin",
   "homepage": "https://hackingbeauty.github.io/react-mic",
