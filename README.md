@@ -6,6 +6,8 @@ Record a user's voice and display as an osscilation.
 
 Check out the [demo](https://hackingbeauty.github.io/react-mic/)
 
+You can also see this component in action at [voicerecordpro.com](https://www.voicerecordpro.com)
+
 ## Installation
 
 `npm install --save react-mic`
