@@ -64,14 +64,14 @@ export default class Demo extends Component {
             className="btn"
             secondary={true}
             disabled={isRecording}
-            onTouchTap={this.startRecording}>
+            onClick={this.startRecording}>
             <MicrophoneOn />
           </FloatingActionButton>
           <FloatingActionButton
             className="btn"
             secondary={true}
             disabled={!isRecording}
-            onTouchTap={this.stopRecording}>
+            onClick={this.stopRecording}>
             <MicrophoneOff />
           </FloatingActionButton>
         </div>
