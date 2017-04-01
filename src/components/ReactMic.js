@@ -35,7 +35,6 @@ export default class ReactMic extends Component {
     analyser.smoothingTimeConstant = 0.85;
     analyser.fftSize = 2048;
 
-
     this.setState({
       analyser: analyser,
       microphoneRecorder: new MicrophoneRecorder(onStop),
