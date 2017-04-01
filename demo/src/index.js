@@ -49,30 +49,31 @@ export default class Demo extends Component {
       <MuiThemeProvider>
         <div>
           <h1>ReactMic</h1>
+          <p><a href="https://github.com/hackingbeauty/react-mic">Github repo</a></p>
           <ReactMic
             record={this.state.record}
             backgroundColor="#FF4081"
             onStop={this.onStop}
             strokeColor="#000000" />
-            <div>
-              <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
-            </div>
-            <br />
-            <br />
-            <FloatingActionButton
-              className="btn"
-              secondary={true}
-              disabled={isRecording}
-              onTouchTap={this.startRecording}>
-              <MicrophoneOn />
-            </FloatingActionButton>
-            <FloatingActionButton
-              className="btn"
-              secondary={true}
-              disabled={!isRecording}
-              onTouchTap={this.stopRecording}>
-              <MicrophoneOff />
-            </FloatingActionButton>
+          <div>
+            <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
+          </div>
+          <br />
+          <br />
+          <FloatingActionButton
+            className="btn"
+            secondary={true}
+            disabled={isRecording}
+            onTouchTap={this.startRecording}>
+            <MicrophoneOn />
+          </FloatingActionButton>
+          <FloatingActionButton
+            className="btn"
+            secondary={true}
+            disabled={!isRecording}
+            onTouchTap={this.stopRecording}>
+            <MicrophoneOff />
+          </FloatingActionButton>
         </div>
     </MuiThemeProvider>
     );
