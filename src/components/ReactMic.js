@@ -33,14 +33,13 @@ export default class ReactMic extends Component {
     analyser.fftSize = 2048;
 
     this.setState({
-      analyser: analyser,
-      microphoneRecorder: new MicrophoneRecorder(onStop),
-      visualizerCanvas: visualizerCanvas,
-      visualizerCanvasCtx: visualizerCanvasCtx
+      analyser            : analyser,
+      microphoneRecorder  : new MicrophoneRecorder(onStop),
+      visualizerCanvas    : visualizerCanvas,
+      visualizerCanvasCtx : visualizerCanvasCtx
     }, () => {
       this.visualize();
     });
-
 
   }
 
