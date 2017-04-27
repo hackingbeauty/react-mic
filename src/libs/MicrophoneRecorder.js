@@ -18,8 +18,6 @@ navigator.getUserMedia = (navigator.getUserMedia ||
 
 export class MicrophoneRecorder {
   constructor(callback) {
-    const self = this;
-
     if (navigator.mediaDevices) {
      console.log('getUserMedia supported.');
 
@@ -39,11 +37,8 @@ export class MicrophoneRecorder {
   }
 
   startRecording=() => {
-    const self = this;
-
     audioCtx = AudioContext.getAudioContext();
     analyser = AudioContext.getAnalyser();
-
 
     startTime = Date.now();
 

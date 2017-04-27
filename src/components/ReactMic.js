@@ -12,11 +12,11 @@ export default class ReactMic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      audioCtx: null,
-      analyser: null,
-      microphoneRecorder: null,
-      visualizerCanvas: null,
-      visualizerCanvasCtx: null
+      audioCtx            : null,
+      analyser            : null,
+      microphoneRecorder  : null,
+      visualizerCanvas    : null,
+      visualizerCanvasCtx : null
     }
   }
 
@@ -55,11 +55,11 @@ export default class ReactMic extends Component {
 
     function draw() {
       const drawVisual = requestAnimationFrame(draw);
+      visualizerCanvasCtx.beginPath();
 
       analyser.getByteTimeDomainData(dataArray);
 
       visualizerCanvasCtx.fillRect(0, 0, width, height);
-      visualizerCanvasCtx.beginPath();
 
       var sliceWidth = width * 1.0 / bufferLength;
       var x = 0;
@@ -77,8 +77,9 @@ export default class ReactMic extends Component {
         x += sliceWidth;
       }
 
-      visualizerCanvasCtx.lineTo(visualizerCanvas.width, visualizerCanvas.height/2);
+      // visualizerCanvasCtx.lineTo(visualizerCanvas.width, visualizerCanvas.height/2);
       visualizerCanvasCtx.stroke();
+      visualizerCanvasCtx.closePath();
     };
 
     draw();
@@ -87,9 +88,6 @@ export default class ReactMic extends Component {
   clear() {
     const { visualizerCanvasCtx, width, height } = this.state;
     visualizerCanvasCtx.clearRect(0, 0, width, height);
-    visualizerCanvasCtx.moveTo(0, 0);
-    visualizerCanvasCtx.lineTo(0, 0);
-    visualizerCanvasCtx.closePath();
   }
 
   render() {
