@@ -110,7 +110,10 @@ MIT
 ## Course
 
 Are you looking to build a professional app for the Web using React & Redux?
-Check out my course ["How to Write a Single Page Application"](http://www.singlepageapplication.com)www.singlepageapplication.com
+
+Check out my course ["How to Write a Single Page Application".](http://www.singlepageapplication.com)
+
+www.singlepageapplication.com
 
 
 
