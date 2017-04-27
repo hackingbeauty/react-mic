@@ -37,13 +37,16 @@ export default class ReactMic extends Component {
       microphoneRecorder: new MicrophoneRecorder(onStop),
       visualizerCanvas: visualizerCanvas,
       visualizerCanvasCtx: visualizerCanvasCtx
+    }, () => {
+      this.visualize();
     });
 
-    this.visualize(analyser, visualizerCanvas, visualizerCanvasCtx);
+
   }
 
-  visualize= (analyser, visualizerCanvas, visualizerCanvasCtx) => {
+  visualize= () => {
     const { backgroundColor, strokeColor, width, height } = this.props;
+    const { visualizerCanvas, visualizerCanvasCtx, analyser } = this.state;
 
     const bufferLength = analyser.fftSize;
     const dataArray = new Uint8Array(bufferLength);
@@ -52,7 +55,6 @@ export default class ReactMic extends Component {
     visualizerCanvasCtx.lineWidth = 3;
 
     function draw() {
-
       const drawVisual = requestAnimationFrame(draw);
 
       analyser.getByteTimeDomainData(dataArray);
@@ -78,7 +80,6 @@ export default class ReactMic extends Component {
 
       visualizerCanvasCtx.lineTo(visualizerCanvas.width, visualizerCanvas.height/2);
       visualizerCanvasCtx.stroke();
-      visualizerCanvasCtx.closePath();
     };
 
     draw();
