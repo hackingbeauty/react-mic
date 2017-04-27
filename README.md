@@ -71,8 +71,8 @@ export class Example extends React.Component {
         onStop={this.onStop}
         strokeColor="#000000"
         backgroundColor="#FF4081" />
-      <button onClick={this.startRecording} type="button">Start</button>
-      <button onClick={this.stopRecording} type="button">Stop</button>
+      <button onTouchTap={this.startRecording} type="button">Start</button>
+      <button onTouchTap={this.stopRecording} type="button">Stop</button>
       </div>
     );
   }
