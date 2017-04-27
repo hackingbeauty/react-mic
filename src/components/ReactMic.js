@@ -8,9 +8,6 @@ import React, { Component } from 'react'
 import { MicrophoneRecorder } from '../libs/MicrophoneRecorder';
 import AudioContext from '../libs/AudioContext';
 
-const WIDTH="640";
-const HEIGHT ="100";
-
 export default class ReactMic extends Component {
   constructor(props) {
     super(props);
@@ -24,11 +21,11 @@ export default class ReactMic extends Component {
   }
 
   componentDidMount() {
-    const self = this;
     const { onStop } = this.props;
+    const { visualizer } = this.refs;
     const analyser = AudioContext.getAnalyser();
-    const visualizerCanvas = this.refs.visualizer;
-    const visualizerCanvasCtx = this.refs.visualizer.getContext("2d");
+    const visualizerCanvas = visualizer;
+    const visualizerCanvasCtx = visualizer.getContext("2d");
 
     analyser.minDecibels = -90;
     analyser.maxDecibels = -10;
@@ -46,14 +43,13 @@ export default class ReactMic extends Component {
   }
 
   visualize= (analyser, visualizerCanvas, visualizerCanvasCtx) => {
-    const self = this;
-    const { backgroundColor, strokeColor } = this.props;
+    const { backgroundColor, strokeColor, width, height } = this.props;
 
-    var bufferLength = analyser.fftSize;
-
-    var dataArray = new Uint8Array(bufferLength);
-
-    visualizerCanvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
+    const bufferLength = analyser.fftSize;
+    const dataArray = new Uint8Array(bufferLength);
+    visualizerCanvasCtx.fillStyle = backgroundColor;
+    visualizerCanvasCtx.strokeStyle = strokeColor;
+    visualizerCanvasCtx.lineWidth = 3;
 
     function draw() {
 
@@ -61,20 +57,15 @@ export default class ReactMic extends Component {
 
       analyser.getByteTimeDomainData(dataArray);
 
-      visualizerCanvasCtx.fillStyle = backgroundColor;
-      visualizerCanvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-
-      visualizerCanvasCtx.lineWidth = 3;
-      visualizerCanvasCtx.strokeStyle = strokeColor;
-
+      visualizerCanvasCtx.fillRect(0, 0, width, height);
       visualizerCanvasCtx.beginPath();
 
-      var sliceWidth = WIDTH * 1.0 / bufferLength;
+      var sliceWidth = width * 1.0 / bufferLength;
       var x = 0;
 
       for(var i = 0; i < bufferLength; i++) {
         var v = dataArray[i] / 128.0;
-        var y = v * HEIGHT/2;
+        var y = v * height/2;
 
         if(i === 0) {
           visualizerCanvasCtx.moveTo(x, y);
@@ -87,14 +78,23 @@ export default class ReactMic extends Component {
 
       visualizerCanvasCtx.lineTo(visualizerCanvas.width, visualizerCanvas.height/2);
       visualizerCanvasCtx.stroke();
+      visualizerCanvasCtx.closePath();
     };
 
     draw();
   }
 
+  clear() {
+    const { visualizerCanvasCtx, width, height } = this.state;
+    visualizerCanvasCtx.clearRect(0, 0, width, height);
+    visualizerCanvasCtx.moveTo(0, 0);
+    visualizerCanvasCtx.lineTo(0, 0);
+    visualizerCanvasCtx.closePath();
+  }
+
   render() {
-    const { record, onStop } = this.props;
-    const { analyser, audioCtx, microphoneRecorder } = this.state;
+    const { record, onStop, width, height } = this.props;
+    const { analyser, audioCtx, microphoneRecorder, visualizerCanvasCtx } = this.state;
 
     if(record) {
       if(microphoneRecorder) {
@@ -103,6 +103,7 @@ export default class ReactMic extends Component {
     } else {
       if (microphoneRecorder) {
         microphoneRecorder.stopRecording(onStop);
+        this.clear();
       }
     }
 
@@ -125,5 +126,7 @@ ReactMic.defaultProps = {
   backgroundColor : '#4bb8d1',
   strokeColor     : '#000000',
   className       : 'visualizer',
-  record          : false
+  record          : false,
+  width           : 640,
+  height          : 100
 }
