@@ -35,24 +35,23 @@ You can also see this component in action at [voicerecordpro.com](https://www.vo
 ## Example
 
 ```js
-import { ReactMic } from 'react-mic';
+import ReactMic from 'react-mic';
 
-export class Example extends React.Component {
+class Example extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       record: false
-    };
-    this.onClick = this.startRecording.bind(this);
-    this.onClick = this.stopRecording.bind(this);
+    }
   }
-  startRecording = () => {
+
+  startRecording= () => {
     this.setState({
       record: true
     });
   }
 
-  stopRecording = () => {
+  stopRecording= () => {
     this.setState({
       record: false
     });
@@ -64,7 +63,6 @@ export class Example extends React.Component {
 
   render() {
     return (
-      <div>
       <ReactMic
         record={this.state.record}
         className="sound-wave"
@@ -73,34 +71,9 @@ export class Example extends React.Component {
         backgroundColor="#FF4081" />
       <button onTouchTap={this.startRecording} type="button">Start</button>
       <button onTouchTap={this.stopRecording} type="button">Stop</button>
-      </div>
     );
   }
 }
-```
-# Having issues with the lambda function?
-Try installing babel-preset-stage-1
-
-Include stage-1 in your webpack.config under presets.
-
-e.g.
-
-```js
-    module: {
-        loaders: [{
-            test: /\.css$/,
-            loader: "style!css"
-        }, {
-            test: /\.js$/,
-            // exclude: /(node_modules)/,
-            loader: 'babel-loader',
-            query: {
-                presets: ['es2015', 'react', 'stage-1']
-            }
-        }]
-
-    }
-};
 ```
 
 ## License
