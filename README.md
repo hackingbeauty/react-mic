@@ -86,6 +86,12 @@ Include stage-1 in your webpack.config under presets.
 e.g.
 
 ```js
+module.exports = {
+    entry: "./scripts/Main.js",
+    output: {
+        path: __dirname,
+        filename: "./static/script.js"
+    },
     module: {
         loaders: [{
             test: /\.css$/,
