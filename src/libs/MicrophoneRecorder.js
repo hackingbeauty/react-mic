@@ -31,7 +31,7 @@ export class MicrophoneRecorder {
         }
       });
     } else {
-      alert('Unfortunately, your browser sucks.  Apple refuses to support the latest Web features in Safari.  Please tell them to upgrade the Safari Web browser.')
+      alert('Your browser does not support audio recording');
     }
     return this;
   }
