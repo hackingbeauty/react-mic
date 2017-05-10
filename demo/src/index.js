@@ -48,8 +48,8 @@ export default class Demo extends Component {
     return(
       <MuiThemeProvider>
         <div>
-          <h1>ReactMic</h1>
-          <p><a href="https://github.com/hackingbeauty/react-mic">Github repo</a></p>
+          <h1>React-Mic</h1>
+          <p><a href="https://github.com/hackingbeauty/react-mic">Documentation</a></p>
           <ReactMic
             record={this.state.record}
             backgroundColor="#FF4081"
@@ -74,6 +74,11 @@ export default class Demo extends Component {
             onClick={this.stopRecording}>
             <MicrophoneOff />
           </FloatingActionButton>
+          <br />
+          <br />
+          <br />
+          <br />
+          <p>As featured in the course <a href="http://singlepageapplication.com">How to Write a Single Page Application.</a></p>
         </div>
     </MuiThemeProvider>
     );
