@@ -26,8 +26,7 @@ export default class Demo extends Component {
   }
 
   componentDidMount() {
-    debugger;
-    ReactGA.pageview(window.location.hash);
+    ReactGA.pageview(window.location.pathname);
   }
 
   startRecording= () => {
