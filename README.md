@@ -2,6 +2,8 @@
 
 Record a user's voice and display as an osscilation.
 
+Featured in the course ["How to Write a Single Page Application".](http://www.singlepageapplication.com)
+
 ## Demo
 
 Check out the [demo](https://hackingbeauty.github.io/react-mic/)
@@ -112,14 +114,6 @@ module.exports = {
 ## License
 
 MIT
-
-## Course
-
-Are you looking to build a professional app for the Web using React & Redux?
-
-Check out my course ["How to Write a Single Page Application".](http://www.singlepageapplication.com)
-
-www.singlepageapplication.com
 
 
 
