@@ -1,16 +1,19 @@
-import React, {Component}      from 'react'
-import { render }              from 'react-dom'
+import React, {Component}          from 'react';
+import { render }                  from 'react-dom';
 import { FloatingActionButton,
-        MuiThemeProvider }     from 'material-ui';
-import injectTapEventPlugin    from 'react-tap-event-plugin';
-import MicrophoneOn            from 'material-ui/svg-icons/av/mic';
-import MicrophoneOff           from 'material-ui/svg-icons/av/stop';
+        MuiThemeProvider }         from 'material-ui';
+import injectTapEventPlugin        from 'react-tap-event-plugin';
+import MicrophoneOn                from 'material-ui/svg-icons/av/mic';
+import MicrophoneOff               from 'material-ui/svg-icons/av/stop';
 
 import { ReactMic, saveRecording } from '../../src';
+import ReactGA                     from 'react-ga';
+
 require ('./styles.scss');
+
 injectTapEventPlugin();
 
-let blobURL;
+ReactGA.initialize('UA-98862819-1');
 
 export default class Demo extends Component {
   constructor(props){
@@ -20,6 +23,11 @@ export default class Demo extends Component {
       blobObject: null,
       isRecording: false
     }
+  }
+
+  componentDidMount() {
+    debugger;
+    ReactGA.pageview(window.location.hash);
   }
 
   startRecording= () => {
@@ -78,7 +86,7 @@ export default class Demo extends Component {
           <br />
           <br />
           <br />
-          <p>As featured in the course <a href="http://singlepageapplication.com">How to Write a Single Page Application.</a></p>
+          <p>As featured in the course <br /><a href="http://singlepageapplication.com">How to Write a Single Page Application.</a></p>
         </div>
     </MuiThemeProvider>
     );
