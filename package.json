@@ -24,12 +24,14 @@
     "start": "nwb serve-react-demo",
     "test": "nwb test",
     "test:coverage": "nwb test --coverage",
-    "test:watch": "nwb test --server"
+    "test:watch": "nwb test --server",
+    "deploy": "nwb build-react-component && gh-pages -d demo/dist"
   },
   "peerDependencies": {
     "react": "15.x"
   },
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "material-ui": "^0.16.7",
     "nwb": "^0.15.6",
     "nwb-sass": "^0.6.0",
