@@ -86,7 +86,7 @@ export default class Demo extends Component {
           <br />
           <br />
           <br />
-          <p>As featured in the course <br /><a href="http://singlepageapplication.com">How to Write a Single Page Application.</a></p>
+          <p>As featured in the course <br /><a href="http://singlepageapplication.com">How to Write a Single Page Application</a></p>
         </div>
     </MuiThemeProvider>
     );
