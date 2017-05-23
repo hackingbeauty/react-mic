@@ -121,7 +121,7 @@ ReactMic.propTypes = {
 };
 
 ReactMic.defaultProps = {
-  backgroundColor : '#4bb8d1',
+  backgroundColor : 'rgba(255, 255, 255, 0.5)',
   strokeColor     : '#000000',
   className       : 'visualizer',
   record          : false,

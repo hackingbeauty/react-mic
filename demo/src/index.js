@@ -59,7 +59,7 @@ export default class Demo extends Component {
           <p><a href="https://github.com/hackingbeauty/react-mic">Documentation</a></p>
           <ReactMic
             record={this.state.record}
-            backgroundColor="#FF4081"
+            // backgroundColor="#FF4081"
             onStop={this.onStop}
             strokeColor="#000000" />
           <div>
