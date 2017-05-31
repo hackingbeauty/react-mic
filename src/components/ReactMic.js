@@ -105,9 +105,7 @@ export default class ReactMic extends Component {
       }
     }
 
-    return (
-      <canvas ref="visualizer" className={this.props.className}></canvas>
-    );
+    return (<canvas ref="visualizer" height={height} width={width} className={this.props.className}></canvas>);
   }
 }
 

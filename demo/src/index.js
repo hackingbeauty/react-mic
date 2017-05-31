@@ -58,6 +58,7 @@ export default class Demo extends Component {
           <h1>React-Mic</h1>
           <p><a href="https://github.com/hackingbeauty/react-mic">Documentation</a></p>
           <ReactMic
+            className="oscilloscope"
             record={this.state.record}
             backgroundColor="#FF4081"
             onStop={this.onStop}
