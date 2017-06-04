@@ -8,9 +8,9 @@ Works via the HTML5 MediaRecorder API ([currently only available in Chrome & Fir
 
 ## Demo
 
-Check out the [demo](https://hackingbeauty.github.io/react-mic/)
+Check out the [demo](https://hackingbeauty.github.io/react-mic/).
 
-You can also see this component in action at [voicerecordpro.com](https://www.voicerecordpro.com)
+You can also see this component in action at [voicerecordpro.com](https://www.voicerecordpro.com).
 
 ## Installation
 
