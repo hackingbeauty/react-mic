@@ -61,6 +61,7 @@ export default class Demo extends Component {
             className="oscilloscope"
             record={this.state.record}
             backgroundColor="#FF4081"
+            visualSetting="frequencyBars"
             onStop={this.onStop}
             strokeColor="#000000" />
           <div>

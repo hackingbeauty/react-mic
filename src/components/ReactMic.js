@@ -7,6 +7,7 @@
 import React, { Component } from 'react'
 import { MicrophoneRecorder } from '../libs/MicrophoneRecorder';
 import AudioContext from '../libs/AudioContext';
+let drawVisual;
 
 export default class ReactMic extends Component {
   constructor(props) {
@@ -15,8 +16,8 @@ export default class ReactMic extends Component {
       audioCtx            : null,
       analyser            : null,
       microphoneRecorder  : null,
-      visualizerCanvas    : null,
-      visualizerCanvasCtx : null
+      canvas              : null,
+      canvasCtx           : null
     }
   }
 
@@ -24,19 +25,14 @@ export default class ReactMic extends Component {
     const { onStop } = this.props;
     const { visualizer } = this.refs;
     const analyser = AudioContext.getAnalyser();
-    const visualizerCanvas = visualizer;
-    const visualizerCanvasCtx = visualizer.getContext("2d");
-
-    analyser.minDecibels = -90;
-    analyser.maxDecibels = -10;
-    analyser.smoothingTimeConstant = 0.85;
-    analyser.fftSize = 2048;
+    const canvas = visualizer;
+    const canvasCtx = canvas.getContext("2d");
 
     this.setState({
       analyser            : analyser,
       microphoneRecorder  : new MicrophoneRecorder(onStop),
-      visualizerCanvas    : visualizerCanvas,
-      visualizerCanvasCtx : visualizerCanvasCtx
+      canvas              : canvas,
+      canvasCtx           : canvasCtx
     }, () => {
       this.visualize();
     });
@@ -44,55 +40,112 @@ export default class ReactMic extends Component {
   }
 
   visualize= () => {
-    const { backgroundColor, strokeColor, width, height } = this.props;
-    const { visualizerCanvas, visualizerCanvasCtx, analyser } = this.state;
+    const self = this;
+    const { backgroundColor, strokeColor, width, height, visualSetting } = this.props;
+    const { canvas, canvasCtx, analyser } = this.state;
 
-    const bufferLength = analyser.fftSize;
-    const dataArray = new Uint8Array(bufferLength);
-    visualizerCanvasCtx.fillStyle = backgroundColor;
-    visualizerCanvasCtx.strokeStyle = strokeColor;
-    visualizerCanvasCtx.lineWidth = 3;
 
-    function draw() {
-      const drawVisual = requestAnimationFrame(draw);
-      visualizerCanvasCtx.beginPath();
+    if(visualSetting === 'sinewave') {
+      analyser.fftSize = 2048;
 
-      analyser.getByteTimeDomainData(dataArray);
+      var bufferLength = analyser.fftSize;
+      var dataArray = new Uint8Array(bufferLength);
 
-      visualizerCanvasCtx.fillRect(0, 0, width, height);
+      canvasCtx.clearRect(0, 0, width, height);
 
-      var sliceWidth = width * 1.0 / bufferLength;
-      var x = 0;
+      function draw() {
 
-      for(var i = 0; i < bufferLength; i++) {
-        var v = dataArray[i] / 128.0;
-        var y = v * height/2;
+        drawVisual = requestAnimationFrame(draw);
 
-        if(i === 0) {
-          visualizerCanvasCtx.moveTo(x, y);
-        } else {
-          visualizerCanvasCtx.lineTo(x, y);
+        analyser.getByteTimeDomainData(dataArray);
+
+        canvasCtx.fillStyle = backgroundColor;
+        canvasCtx.fillRect(0, 0, width, height);
+
+        canvasCtx.lineWidth = 2;
+        canvasCtx.strokeStyle = strokeColor;
+
+        canvasCtx.beginPath();
+
+        var sliceWidth = width * 1.0 / bufferLength;
+        var x = 0;
+
+        for(var i = 0; i < bufferLength; i++) {
+          var v = dataArray[i] / 128.0;
+          var y = v * height/2;
+
+          if(i === 0) {
+            canvasCtx.moveTo(x, y);
+          } else {
+            canvasCtx.lineTo(x, y);
+          }
+
+          x += sliceWidth;
         }
 
-        x += sliceWidth;
-      }
+        canvasCtx.lineTo(canvas.width, canvas.height/2);
+        canvasCtx.stroke();
+      };
 
-      // visualizerCanvasCtx.lineTo(visualizerCanvas.width, visualizerCanvas.height/2);
-      visualizerCanvasCtx.stroke();
-      visualizerCanvasCtx.closePath();
-    };
+      draw();
 
-    draw();
+    } else if(visualSetting === 'frequencyBars') {
+      analyser.fftSize = 256;
+      var bufferLength = analyser.frequencyBinCount;
+      console.log(bufferLength);
+      var dataArray = new Uint8Array(bufferLength);
+
+      canvasCtx.clearRect(0, 0, width, height);
+
+      function draw() {
+        drawVisual = requestAnimationFrame(draw);
+
+        analyser.getByteFrequencyData(dataArray);
+
+        canvasCtx.fillStyle = backgroundColor;
+        canvasCtx.fillRect(0, 0, width, height);
+
+        var barWidth = (width / bufferLength) * 2.5;
+        var barHeight;
+        var x = 0;
+
+        for(var i = 0; i < bufferLength; i++) {
+          barHeight = dataArray[i];
+
+          const rgb = self.hexToRgb(strokeColor);
+
+          // canvasCtx.fillStyle = `rgb(${barHeight+100},${rgb.g},${rgb.b})`;
+          canvasCtx.fillStyle = strokeColor;
+          canvasCtx.fillRect(x,height-barHeight/2,barWidth,barHeight/2);
+
+          x += barWidth + 1;
+        }
+      };
+
+      draw();
+
+    }
+
+  }
+
+  hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
   }
 
   clear() {
-    const { visualizerCanvasCtx, width, height } = this.state;
-    visualizerCanvasCtx.clearRect(0, 0, width, height);
+    const { canvasCtx, width, height } = this.state;
+    canvasCtx.clearRect(0, 0, width, height);
   }
+
 
   render() {
     const { record, onStop, width, height } = this.props;
-    const { analyser, audioCtx, microphoneRecorder, visualizerCanvasCtx } = this.state;
+    const { analyser, audioCtx, microphoneRecorder, canvasCtx } = this.state;
 
     if(record) {
       if(microphoneRecorder) {
@@ -109,6 +162,7 @@ export default class ReactMic extends Component {
   }
 }
 
+
 ReactMic.propTypes = {
   backgroundColor : React.PropTypes.string,
   strokeColor     : React.PropTypes.string,
@@ -124,5 +178,6 @@ ReactMic.defaultProps = {
   className       : 'visualizer',
   record          : false,
   width           : 640,
-  height          : 100
+  height          : 100,
+  visualSetting   : 'sinewave'
 }
