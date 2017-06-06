@@ -5,8 +5,8 @@ const Visualizer = {
   visualizeSineWave(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
     analyser.fftSize = 2048;
 
-    var bufferLength = analyser.fftSize;
-    var dataArray = new Uint8Array(bufferLength);
+    const bufferLength = analyser.fftSize;
+    const dataArray = new Uint8Array(bufferLength);
 
     canvasCtx.clearRect(0, 0, width, height);
 
@@ -24,12 +24,12 @@ const Visualizer = {
 
       canvasCtx.beginPath();
 
-      var sliceWidth = width * 1.0 / bufferLength;
-      var x = 0;
+      const sliceWidth = width * 1.0 / bufferLength;
+      let x = 0;
 
-      for(var i = 0; i < bufferLength; i++) {
-        var v = dataArray[i] / 128.0;
-        var y = v * height/2;
+      for(let i = 0; i < bufferLength; i++) {
+        const v = dataArray[i] / 128.0;
+        const y = v * height/2;
 
         if(i === 0) {
           canvasCtx.moveTo(x, y);
@@ -50,9 +50,9 @@ const Visualizer = {
   visualizeFrequencyBars(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
     const self = this;
     analyser.fftSize = 256;
-    var bufferLength = analyser.frequencyBinCount;
+    const bufferLength = analyser.frequencyBinCount;
     console.log(bufferLength);
-    var dataArray = new Uint8Array(bufferLength);
+    const dataArray = new Uint8Array(bufferLength);
 
     canvasCtx.clearRect(0, 0, width, height);
 
@@ -64,11 +64,11 @@ const Visualizer = {
       canvasCtx.fillStyle = backgroundColor;
       canvasCtx.fillRect(0, 0, width, height);
 
-      var barWidth = (width / bufferLength) * 2.5;
-      var barHeight;
-      var x = 0;
+      const barWidth = (width / bufferLength) * 2.5;
+      let barHeight;
+      let x = 0;
 
-      for(var i = 0; i < bufferLength; i++) {
+      for(let i = 0; i < bufferLength; i++) {
         barHeight = dataArray[i];
 
         const rgb = self.hexToRgb(strokeColor);
@@ -85,7 +85,7 @@ const Visualizer = {
   },
 
   hexToRgb(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
         r: parseInt(result[1], 16),
         g: parseInt(result[2], 16),
