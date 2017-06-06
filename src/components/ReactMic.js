@@ -13,7 +13,6 @@ export default class ReactMic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      audioCtx            : null,
       analyser            : null,
       microphoneRecorder  : null,
       canvas              : null,
@@ -22,20 +21,34 @@ export default class ReactMic extends Component {
   }
 
   componentDidMount() {
-    const { onStop } = this.props;
+    const { onStop, audioSource } = this.props;
     const { visualizer } = this.refs;
-    const analyser = AudioContext.getAnalyser();
+
     const canvas = visualizer;
     const canvasCtx = canvas.getContext("2d");
 
-    this.setState({
-      analyser            : analyser,
-      microphoneRecorder  : new MicrophoneRecorder(onStop),
-      canvas              : canvas,
-      canvasCtx           : canvasCtx
-    }, () => {
-      this.visualize();
-    });
+    if(audioSource) {
+      const analyser = AudioContext.getAnalyser();
+
+      this.setState({
+        analyser            : analyser,
+        canvas              : canvas,
+        canvasCtx           : canvasCtx
+      }, () => {
+        this.visualize();
+      });
+    } else {
+      const analyser = AudioContext.getAnalyser();
+
+      this.setState({
+        analyser            : analyser,
+        microphoneRecorder  : new MicrophoneRecorder(onStop),
+        canvas              : canvas,
+        canvasCtx           : canvasCtx
+      }, () => {
+        this.visualize();
+      });
+    }
 
   }
 
@@ -144,17 +157,21 @@ export default class ReactMic extends Component {
 
 
   render() {
-    const { record, onStop, width, height } = this.props;
-    const { analyser, audioCtx, microphoneRecorder, canvasCtx } = this.state;
+    const { record, onStop, width, height, audioData } = this.props;
+    const { analyser,  microphoneRecorder, canvasCtx } = this.state;
 
-    if(record) {
-      if(microphoneRecorder) {
-        microphoneRecorder.startRecording();
-      }
+    if(audioData) {
+
     } else {
-      if (microphoneRecorder) {
-        microphoneRecorder.stopRecording(onStop);
-        this.clear();
+      if(record) {
+        if(microphoneRecorder) {
+          microphoneRecorder.startRecording();
+        }
+      } else {
+        if (microphoneRecorder) {
+          microphoneRecorder.stopRecording(onStop);
+          this.clear();
+        }
       }
     }
 

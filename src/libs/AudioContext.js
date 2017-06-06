@@ -9,6 +9,12 @@ const AudioContext  = {
 
   getAnalyser() {
     return analyser;
+  },
+
+  decodeAudioData() {
+    audioCtx.decodeAudioData(audioData).then(function(decodedData) {
+      // use the decoded data here
+    });
   }
 
 }
