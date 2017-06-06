@@ -23,15 +23,15 @@ export default class ReactMic extends Component {
   }
 
   componentDidMount() {
-    const { onStop, audioSource } = this.props;
+    const { onStop, audioElem } = this.props;
     const { visualizer } = this.refs;
     const canvas = visualizer;
     const canvasCtx = canvas.getContext("2d");
 
-    if(audioSource) {
+    if(audioElem) {
       const analyser = AudioContext.getAnalyser();
 
-      AudioPlayer.play(audioSource);
+      AudioPlayer.create(audioElem);
 
       this.setState({
         analyser            : analyser,
