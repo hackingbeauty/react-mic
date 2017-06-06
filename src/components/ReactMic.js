@@ -7,6 +7,7 @@
 import React, { Component }   from 'react'
 import { MicrophoneRecorder } from '../libs/MicrophoneRecorder';
 import AudioContext           from '../libs/AudioContext';
+import AudioPlayer            from '../libs/AudioPlayer';
 import Visualizer             from '../libs/Visualizer';
 
 
@@ -29,6 +30,8 @@ export default class ReactMic extends Component {
 
     if(audioSource) {
       const analyser = AudioContext.getAnalyser();
+
+      AudioPlayer.play(audioSource);
 
       this.setState({
         analyser            : analyser,
@@ -90,7 +93,6 @@ export default class ReactMic extends Component {
     return (<canvas ref="visualizer" height={height} width={width} className={this.props.className}></canvas>);
   }
 }
-
 
 ReactMic.propTypes = {
   backgroundColor : React.PropTypes.string,

@@ -7,6 +7,7 @@ import MicrophoneOn                from 'material-ui/svg-icons/av/mic';
 import MicrophoneOff               from 'material-ui/svg-icons/av/stop';
 
 import { ReactMic, saveRecording } from '../../src';
+import sampleAudio                 from './sample_audio.webm';
 import ReactGA                     from 'react-ga';
 
 require ('./styles.scss');
@@ -61,7 +62,7 @@ export default class Demo extends Component {
             className="oscilloscope"
             record={this.state.record}
             backgroundColor="#FF4081"
-            visualSetting="frequencyBars"
+            visualSetting="sinewave"
             onStop={this.onStop}
             strokeColor="#000000" />
           <div>
@@ -83,7 +84,6 @@ export default class Demo extends Component {
             onClick={this.stopRecording}>
             <MicrophoneOff />
           </FloatingActionButton>
-          <br />
           <br />
           <br />
           <br />
