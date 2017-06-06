@@ -27,6 +27,10 @@ export default class ReactMic extends Component {
     const { visualizer } = this.refs;
     const canvas = visualizer;
     const canvasCtx = canvas.getContext("2d");
+    const options = {
+          audioBitsPerSecond : this.props.audioBitsPerSecond,
+          mimeType : this.props.mimeType
+      }
 
     if(audioElem) {
       const analyser = AudioContext.getAnalyser();
@@ -45,7 +49,7 @@ export default class ReactMic extends Component {
 
       this.setState({
         analyser            : analyser,
-        microphoneRecorder  : new MicrophoneRecorder(onStop),
+        microphoneRecorder  : new MicrophoneRecorder(onStop, options),
         canvas              : canvas,
         canvasCtx           : canvasCtx
       }, () => {
@@ -98,6 +102,8 @@ ReactMic.propTypes = {
   backgroundColor : React.PropTypes.string,
   strokeColor     : React.PropTypes.string,
   className       : React.PropTypes.string,
+  audioBitsPerSecond: React.PropTypes.number,
+  mimeType        : React.PropTypes.string,
   height          : React.PropTypes.number,
   record          : React.PropTypes.bool.isRequired,
   onStop          : React.PropTypes.func
@@ -107,6 +113,8 @@ ReactMic.defaultProps = {
   backgroundColor : 'rgba(255, 255, 255, 0.5)',
   strokeColor     : '#000000',
   className       : 'visualizer',
+  audioBitsPerSecond: 16000,
+  mimeType        : 'audio/webm;codecs=opus',
   record          : false,
   width           : 640,
   height          : 100,

@@ -1,0 +1,29 @@
+machine:
+  node:
+    version: 6.10.3
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
+dependencies:
+  override:
+    - nvm install 6.10.3
+    - npm install -g npm
+    - npm install -g yarn
+    - yarn install
+
+compile:
+  override:
+    - yarn build
+
+test:
+  override:
+    #Until this is fixed and phantomjs has AudioContext... https://github.com/ariya/phantomjs/issues/12409
+    #- yarn test
+    - echo "Skipping tests due to lack of support for AudioContext in PhantomJS"
+
+deployment:
+  production:
+    branch: master
+  override:
+    - yarn pack
+    - cp *.tgz $CIRCLE_ARTIFACTS

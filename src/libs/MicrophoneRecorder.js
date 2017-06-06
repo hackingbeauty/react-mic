@@ -6,6 +6,7 @@ let mediaRecorder;
 let chunks = [];
 let startTime;
 let stream;
+let options;
 let blobObject;
 let onStopCallback;
 
@@ -17,45 +18,57 @@ navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.msGetUserMedia);
 
 export class MicrophoneRecorder {
-  constructor(callback) {
-    if (navigator.mediaDevices) {
-     console.log('getUserMedia supported.');
-
-      navigator.mediaDevices.getUserMedia(constraints).then((str) => {
-        stream = str;
-        mediaRecorder = new MediaRecorder(str);
-        mediaRecorder.onstop = this.onStop;
-        onStopCallback = callback;
-        mediaRecorder.ondataavailable = (event) => {
-          chunks.push(event.data);
-        }
-      });
-    } else {
-      alert('Your browser does not support audio recording');
-    }
-    return this;
+  constructor(callback, options) {
+    onStopCallback = callback;
+    this.options = options;
   }
 
   startRecording=() => {
-    audioCtx = AudioContext.getAudioContext();
-    analyser = AudioContext.getAnalyser();
 
-    startTime = Date.now();
+    if(mediaRecorder) {
+      startTime = Date.now();
 
-    if(audioCtx.state === 'suspended') {
-      audioCtx.resume();
+      if(audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      if(mediaRecorder && mediaRecorder.state === 'paused') {
+        mediaRecorder.resume();
+        return;
+      }
+
+      if(mediaRecorder && mediaRecorder.state === 'inactive') {
+        mediaRecorder.start(10);
+        const source = audioCtx.createMediaStreamSource(stream);
+        source.connect(analyser);
+      }
+    } else {
+      if (navigator.mediaDevices) {
+        console.log('getUserMedia supported.');
+
+        navigator.mediaDevices.getUserMedia(constraints).then((str) => {
+          stream = str;
+
+          mediaRecorder = new MediaRecorder(str, this.options);
+          mediaRecorder.onstop = this.onStop;
+          mediaRecorder.ondataavailable = (event) => {
+            chunks.push(event.data);
+          }
+
+          audioCtx = AudioContext.getAudioContext();
+          analyser = AudioContext.getAnalyser();
+
+          mediaRecorder.start(10);
+
+          const source = audioCtx.createMediaStreamSource(stream);
+          source.connect(analyser);
+
+        });
+      } else {
+        alert('Your browser does not support audio recording');
+      }
     }
 
-    if(mediaRecorder && mediaRecorder.state === 'paused') {
-      mediaRecorder.resume();
-      return;
-    }
-
-    if(mediaRecorder && mediaRecorder.state === 'inactive') {
-      mediaRecorder.start(10);
-      const source = audioCtx.createMediaStreamSource(stream);
-      source.connect(analyser);
-    }
   }
 
   stopRecording() {
@@ -73,6 +86,7 @@ export class MicrophoneRecorder {
       blob      : blob,
       startTime : startTime,
       stopTime  : Date.now(),
+      options: this.options,
       blobURL   : window.URL.createObjectURL(blob)
     }
 
