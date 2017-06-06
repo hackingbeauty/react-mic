@@ -23,7 +23,6 @@ export default class ReactMic extends Component {
   componentDidMount() {
     const { onStop, audioSource } = this.props;
     const { visualizer } = this.refs;
-
     const canvas = visualizer;
     const canvasCtx = canvas.getContext("2d");
 
@@ -56,7 +55,6 @@ export default class ReactMic extends Component {
     const self = this;
     const { backgroundColor, strokeColor, width, height, visualSetting } = this.props;
     const { canvas, canvasCtx, analyser } = this.state;
-
 
     if(visualSetting === 'sinewave') {
       analyser.fftSize = 2048;
@@ -157,21 +155,17 @@ export default class ReactMic extends Component {
 
 
   render() {
-    const { record, onStop, width, height, audioData } = this.props;
+    const { record, onStop, width, height } = this.props;
     const { analyser,  microphoneRecorder, canvasCtx } = this.state;
 
-    if(audioData) {
-
+    if(record) {
+      if(microphoneRecorder) {
+        microphoneRecorder.startRecording();
+      }
     } else {
-      if(record) {
-        if(microphoneRecorder) {
-          microphoneRecorder.startRecording();
-        }
-      } else {
-        if (microphoneRecorder) {
-          microphoneRecorder.stopRecording(onStop);
-          this.clear();
-        }
+      if (microphoneRecorder) {
+        microphoneRecorder.stopRecording(onStop);
+        this.clear();
       }
     }
 
