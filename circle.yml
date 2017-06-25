@@ -7,7 +7,7 @@ machine:
 dependencies:
   override:
     #Cleaning caches and old yarn to prevent NOENT issues such as https://github.com/svg/svgo/issues/622
-    - rm -rf ./node_modules ./.yarnclean ./.yarn
+    - rm -rf ./node_modules ./.yarnclean ~/.yarn
     - nvm install 6.10.3
     - npm install -g npm
     - npm install -g yarn
