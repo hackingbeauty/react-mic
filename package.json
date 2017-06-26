@@ -3,8 +3,8 @@
   "version": "7.0.2",
   "description": "Record audio from your microphone and display as a sound oscillation",
   "main": "lib/index.js",
-  "jsnext:main": "es/index.js",
-  "module": "index.js",
+  "jsnext:main": "src/index.js",
+  "module": "src/index.js",
   "files": [
     "css",
     "es",
