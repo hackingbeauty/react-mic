@@ -1,6 +1,6 @@
 {
   "name": "react-mic",
-  "version": "7.0.2",
+  "version": "7.1.0",
   "description": "Record audio from your microphone and display as a sound oscillation",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -32,11 +32,11 @@
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
-    "material-ui": "^0.16.7",
-    "nwb": "^0.15.6",
-    "nwb-sass": "^0.6.0",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "material-ui": "^0.18.3",
+    "nwb": "^0.17.0",
+    "nwb-sass": "^0.8.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-tap-event-plugin": "^2.0.1"
   },
   "author": "Mark Muskardin",

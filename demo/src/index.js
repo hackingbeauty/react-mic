@@ -63,6 +63,8 @@ export default class Demo extends Component {
             record={this.state.record}
             backgroundColor="#FF4081"
             visualSetting="sinewave"
+            audioBitsPerSecond= {128000}
+            mimeType="audio/webm;codecs=opus"
             onStop={this.onStop}
             strokeColor="#000000" />
           <div>
