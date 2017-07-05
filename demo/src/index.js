@@ -66,6 +66,7 @@ export default class Demo extends Component {
             audioBitsPerSecond= {128000}
             mimeType="audio/webm;codecs=opus"
             onStop={this.onStop}
+            onStart={this.onStart}
             strokeColor="#000000" />
           <div>
             <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
