@@ -44,6 +44,7 @@
   "license": "MIT",
   "repository": "https://github.com/hackingbeauty/react-mic",
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react-ga": "^2.2.0"
   }
 }

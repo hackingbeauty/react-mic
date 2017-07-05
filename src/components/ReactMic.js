@@ -5,6 +5,7 @@
 // http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
 
 import React, { Component }   from 'react'
+import PropTypes              from 'prop-types';
 import { MicrophoneRecorder } from '../libs/MicrophoneRecorder';
 import AudioContext           from '../libs/AudioContext';
 import AudioPlayer            from '../libs/AudioPlayer';
