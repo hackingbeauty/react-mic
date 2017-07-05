@@ -6,6 +6,7 @@ let mediaRecorder;
 let chunks = [];
 let startTime;
 let stream;
+let mediaOptions;
 let blobObject;
 let onStopCallback;
 
@@ -17,8 +18,9 @@ navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.msGetUserMedia);
 
 export class MicrophoneRecorder {
-  constructor(callback) {
+  constructor(callback, options) {
     onStopCallback = callback;
+    mediaOptions = options;
   }
 
   startRecording=() => {
@@ -48,7 +50,7 @@ export class MicrophoneRecorder {
         navigator.mediaDevices.getUserMedia(constraints).then((str) => {
           stream = str;
 
-          mediaRecorder = new MediaRecorder(str);
+          mediaRecorder = new MediaRecorder(str, mediaOptions);
           mediaRecorder.onstop = this.onStop;
           mediaRecorder.ondataavailable = (event) => {
             chunks.push(event.data);
@@ -85,6 +87,7 @@ export class MicrophoneRecorder {
       blob      : blob,
       startTime : startTime,
       stopTime  : Date.now(),
+      options   : mediaOptions,
       blobURL   : window.URL.createObjectURL(blob)
     }
 
