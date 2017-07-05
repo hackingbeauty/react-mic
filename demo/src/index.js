@@ -44,6 +44,10 @@ export default class Demo extends Component {
     });
   }
 
+  onStart=() => {
+    console.log('You can tap into the onStart callback');
+  }
+
   onStop= (blobObject) => {
     this.setState({
       blobURL : blobObject.blobURL
