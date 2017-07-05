@@ -23,8 +23,9 @@ export class MicrophoneRecorder {
 
   startRecording=() => {
 
+    startTime = Date.now();
+
     if(mediaRecorder) {
-      startTime = Date.now();
 
       if(audioCtx.state === 'suspended') {
         audioCtx.resume();
