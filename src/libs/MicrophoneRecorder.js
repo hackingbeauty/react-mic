@@ -53,7 +53,7 @@ export class MicrophoneRecorder {
           stream = str;
 
           mediaRecorder = new MediaRecorder(str, mediaOptions);
-          onStartCallback();
+          if(onStartCallback) { onStartCallback() };
           mediaRecorder.onstop = this.onStop;
           mediaRecorder.ondataavailable = (event) => {
             chunks.push(event.data);
@@ -94,7 +94,7 @@ export class MicrophoneRecorder {
       blobURL   : window.URL.createObjectURL(blob)
     }
 
-    onStopCallback(blobObject);
+    if(onStopCallback) { onStopCallback(blobObject) };
 
   }
 
