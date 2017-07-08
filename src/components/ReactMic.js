@@ -24,14 +24,14 @@ export default class ReactMic extends Component {
   }
 
   componentDidMount() {
-    const { onStop, onStart, audioElem } = this.props;
+    const { onStop, onStart, audioElem, audioBitsPerSecond, mimeType } = this.props;
     const { visualizer } = this.refs;
     const canvas = visualizer;
     const canvasCtx = canvas.getContext("2d");
     const options = {
-          audioBitsPerSecond : this.props.audioBitsPerSecond,
-          mimeType : this.props.mimeType
-      }
+      audioBitsPerSecond : audioBitsPerSecond,
+      mimeType           : mimeType
+    }
 
     if(audioElem) {
       const analyser = AudioContext.getAnalyser();
@@ -111,13 +111,13 @@ ReactMic.propTypes = {
 };
 
 ReactMic.defaultProps = {
-  backgroundColor : 'rgba(255, 255, 255, 0.5)',
-  strokeColor     : '#000000',
-  className       : 'visualizer',
+  backgroundColor   : 'rgba(255, 255, 255, 0.5)',
+  strokeColor       : '#000000',
+  className         : 'visualizer',
   audioBitsPerSecond: 128000,
-  mimeType        : 'audio/webm;codecs=opus',
-  record          : false,
-  width           : 640,
-  height          : 100,
-  visualSetting   : 'sinewave'
+  mimeType          : 'audio/webm;codecs=opus',
+  record            : false,
+  width             : 640,
+  height            : 100,
+  visualSetting     : 'sinewave'
 }

@@ -83,7 +83,7 @@ export class MicrophoneRecorder {
   }
 
   onStop(evt) {
-    const blob = new Blob(chunks, { 'type' : 'audio/webm' });
+    const blob = new Blob(chunks, { 'type' : mediaOptions.mimeType });
     chunks = [];
 
     const blobObject =  {
