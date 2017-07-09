@@ -5,7 +5,7 @@
 // http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
 
 import React, { Component }   from 'react'
-import PropTypes              from 'prop-types';
+import { string, number, bool, func } from 'prop-types';
 import { MicrophoneRecorder } from '../libs/MicrophoneRecorder';
 import AudioContext           from '../libs/AudioContext';
 import AudioPlayer            from '../libs/AudioPlayer';
@@ -100,14 +100,14 @@ export default class ReactMic extends Component {
 }
 
 ReactMic.propTypes = {
-  backgroundColor : React.PropTypes.string,
-  strokeColor     : React.PropTypes.string,
-  className       : React.PropTypes.string,
-  audioBitsPerSecond: React.PropTypes.number,
-  mimeType        : React.PropTypes.string,
-  height          : React.PropTypes.number,
-  record          : React.PropTypes.bool.isRequired,
-  onStop          : React.PropTypes.func
+  backgroundColor : string,
+  strokeColor     : string,
+  className       : string,
+  audioBitsPerSecond: number,
+  mimeType        : string,
+  height          : number,
+  record          : bool.isRequired,
+  onStop          : func
 };
 
 ReactMic.defaultProps = {
