@@ -44,6 +44,7 @@ export class MicrophoneRecorder {
         mediaRecorder.start(10);
         const source = audioCtx.createMediaStreamSource(stream);
         source.connect(analyser);
+        if(onStartCallback) { onStartCallback() };
       }
     } else {
       if (navigator.mediaDevices) {
