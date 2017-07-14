@@ -51,7 +51,7 @@ export default class Demo extends Component {
   onStop= (blobObject) => {
     this.setState({
       blobURL : blobObject.blobURL
-    })
+    });
   }
 
   render() {

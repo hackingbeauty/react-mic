@@ -31,6 +31,8 @@ export class MicrophoneRecorder {
 
     if(mediaRecorder) {
 
+      if(onStartCallback) { onStartCallback() };
+
       if(audioCtx && audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
