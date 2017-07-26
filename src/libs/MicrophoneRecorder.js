@@ -52,9 +52,9 @@ export class MicrophoneRecorder {
 
         navigator.mediaDevices.getUserMedia(constraints).then((str) => {
           stream = str;
+          if(onStartCallback) { onStartCallback() };
 
           mediaRecorder = new MediaRecorder(str, mediaOptions);
-          if(onStartCallback) { onStartCallback() };
           mediaRecorder.onstop = this.onStop;
           mediaRecorder.ondataavailable = (event) => {
             chunks.push(event.data);
