@@ -68,7 +68,6 @@ export default class Demo extends Component {
             backgroundColor="#FF4081"
             visualSetting="sinewave"
             audioBitsPerSecond= {128000}
-            mimeType="audio/webm;codecs=opus"
             onStop={this.onStop}
             onStart={this.onStart}
             strokeColor="#000000" />
