@@ -96,7 +96,9 @@ export default class Demo extends Component {
           <p>As featured in the course <br /><a href="http://singlepageapplication.com">How to Write a Single Page Application</a></p>
           <br />
           <br />
-          <p>Check out how I use it in my app <a href="http://voicerecordpro.com" target="_blank">Voice Record Pro (record your voice and publish it)</a></p>
+          <p>Check out how I use it in my app
+          <br />
+            <a href="http://voicerecordpro.com" target="_blank">Voice Record Pro</a> (record your voice and publish it)</p>
         </div>
     </MuiThemeProvider>
     );
