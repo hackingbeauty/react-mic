@@ -84,6 +84,52 @@ const Visualizer = {
     draw();
   },
 
+  visualizeFrequencyCircles(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
+    const self = this;
+    analyser.fftSize = 32;
+    const bufferLength = analyser.frequencyBinCount;
+    console.log(bufferLength);
+    const dataArray = new Uint8Array(bufferLength);
+
+    canvasCtx.clearRect(0, 0, width, height);
+
+    function draw() {
+      drawVisual = requestAnimationFrame(draw);
+
+      analyser.getByteFrequencyData(dataArray);
+
+      const reductionAmount = 3;
+      const reducedDataArray = new Uint8Array(bufferLength / reductionAmount);
+      for (let i = 0; i < bufferLength; i += reductionAmount) {
+        let sum = 0;
+        for (let j = 0; j < reductionAmount; j++) {
+          sum += dataArray[i + j];
+        }
+
+        reducedDataArray[i/reductionAmount] = sum / reductionAmount;
+      }
+
+      canvasCtx.beginPath();
+      canvasCtx.arc(width / 2, height / 2, Math.min(height, width) / 2, 0, 2 * Math.PI);
+      canvasCtx.fillStyle = backgroundColor;
+      canvasCtx.fill();
+
+
+      const stepSize = (Math.min(height, width) / 2.0) / (reducedDataArray.length);
+
+      canvasCtx.strokeStyle = strokeColor;
+      for (let i = 0; i < reducedDataArray.length; i++) {
+        canvasCtx.beginPath();
+        const normalized = reducedDataArray[i] / 128;
+        const r = (stepSize * i) + (stepSize * normalized);
+        canvasCtx.arc(width / 2, height / 2, r, 0, 2 * Math.PI);
+        canvasCtx.stroke();
+      }
+    };
+
+    draw();
+  },
+
   hexToRgb(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
