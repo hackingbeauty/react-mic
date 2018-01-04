@@ -109,6 +109,7 @@ const Visualizer = {
         reducedDataArray[i/reductionAmount] = sum / reductionAmount;
       }
 
+      canvasCtx.clearRect(0, 0, width, height);
       canvasCtx.beginPath();
       canvasCtx.arc(width / 2, height / 2, Math.min(height, width) / 2, 0, 2 * Math.PI);
       canvasCtx.fillStyle = backgroundColor;
