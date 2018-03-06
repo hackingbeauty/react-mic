@@ -29,6 +29,7 @@ You can also see this component in action at [voicerecordpro.com](https://www.vo
 <ReactMic
   record={boolean}         // defaults -> false.  Set to true to begin recording
   className={string}       // provide css class name
+  onData={function}        // callback to execute when chunk of audio data is available
   onStop={function}        // callback to execute when audio stops recording
   strokeColor={string}     // sound wave color
   backgroundColor={string} // background color
@@ -60,6 +61,10 @@ export class Example extends React.Component {
     this.setState({
       record: false
     });
+  }
+
+  onData(recordedBlob) {
+    console.log('chunk of real-time data is: ', recordedBlob);
   }
 
   onStop(recordedBlob) {
