@@ -36,8 +36,7 @@
     "nwb": "^0.15.6",
     "nwb-sass": "^0.6.0",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-tap-event-plugin": "^3.0.2"
+    "react-dom": "^16.0.0"
   },
   "author": "Mark Muskardin",
   "homepage": "https://hackingbeauty.github.io/react-mic",

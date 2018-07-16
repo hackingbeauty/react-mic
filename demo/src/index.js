@@ -2,7 +2,6 @@ import React, {Component}          from 'react';
 import { render }                  from 'react-dom';
 import { FloatingActionButton,
         MuiThemeProvider }         from 'material-ui';
-import injectTapEventPlugin        from 'react-tap-event-plugin';
 import MicrophoneOn                from 'material-ui/svg-icons/av/mic';
 import MicrophoneOff               from 'material-ui/svg-icons/av/stop';
 
@@ -12,7 +11,6 @@ import ReactGA                     from 'react-ga';
 
 require ('./styles.scss');
 
-injectTapEventPlugin();
 
 ReactGA.initialize('UA-98862819-1');
 
