@@ -30,14 +30,12 @@ export default class Demo extends Component {
 
   startRecording= () => {
     this.setState({
-      record: true,
       isRecording: true
     });
   }
 
   stopRecording= () => {
     this.setState({
-      record: false,
       isRecording: false
     });
   }
