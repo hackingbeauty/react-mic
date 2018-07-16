@@ -18,7 +18,6 @@ export default class Demo extends Component {
   constructor(props){
     super(props);
     this.state = {
-      record: false,
       blobObject: null,
       isRecording: false
     }
@@ -60,7 +59,7 @@ export default class Demo extends Component {
           <p><a href="https://github.com/hackingbeauty/react-mic">Documentation</a></p>
           <ReactMic
             className="oscilloscope"
-            record={this.state.record}
+            record={isRecording}
             backgroundColor="#FF4081"
             visualSetting="sinewave"
             audioBitsPerSecond= {128000}
