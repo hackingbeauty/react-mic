@@ -92,6 +92,8 @@ export class MicrophoneRecorder {
         track.stop()
       })
 
+      mediaRecorder = null
+
       audioCtx.suspend();
     }
   }
