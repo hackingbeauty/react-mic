@@ -50,32 +50,33 @@ export class MicrophoneRecorder {
       if (navigator.mediaDevices) {
         console.log('getUserMedia supported.');
 
-        navigator.mediaDevices.getUserMedia(constraints).then((str) => {
-          stream = str;
+        navigator.mediaDevices.getUserMedia(constraints)
+          .then((str) => {
+            stream = str;
 
-          if(MediaRecorder.isTypeSupported(mediaOptions.mimeType)) {
-            mediaRecorder = new MediaRecorder(str, mediaOptions);
-          } else {
-            mediaRecorder = new MediaRecorder(str);
-          }
+            if(MediaRecorder.isTypeSupported(mediaOptions.mimeType)) {
+              mediaRecorder = new MediaRecorder(str, mediaOptions);
+            } else {
+              mediaRecorder = new MediaRecorder(str);
+            }
 
-          if(onStartCallback) { onStartCallback() };
+            if(onStartCallback) { onStartCallback() };
 
-          mediaRecorder.onstop = this.onStop;
-          mediaRecorder.ondataavailable = (event) => {
-            chunks.push(event.data);
-          }
+            mediaRecorder.onstop = this.onStop;
+            mediaRecorder.ondataavailable = (event) => {
+              chunks.push(event.data);
+            }
 
-          audioCtx = AudioContext.getAudioContext();
-          analyser = AudioContext.getAnalyser();
+            audioCtx = AudioContext.getAudioContext();
+            analyser = AudioContext.getAnalyser();
 
-          audioCtx.resume();
-          mediaRecorder.start(10);
+            audioCtx.resume();
+            mediaRecorder.start(10);
 
-          const source = audioCtx.createMediaStreamSource(stream);
-          source.connect(analyser);
+            const source = audioCtx.createMediaStreamSource(stream);
+            source.connect(analyser);
+          });
 
-        });
       } else {
         alert('Your browser does not support audio recording');
       }
@@ -86,6 +87,11 @@ export class MicrophoneRecorder {
   stopRecording() {
     if(mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
+
+      stream.getAudioTracks().forEach((track) => {
+        track.stop()
+      })
+
       audioCtx.suspend();
     }
   }
