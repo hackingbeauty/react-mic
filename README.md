@@ -2,7 +2,7 @@
 
 Record a user's voice and display as an osscilation.
 
-Featured in the course ["How to Write a Single Page Application"](http://www.singlepageapplication.com).
+Featured in the course ["How To Develop A Professional React App"](http://www.professionalreactapp.com).
 
 Works via the HTML5 MediaRecorder API ([currently only available in Chrome & Firefox](https://caniuse.com/#search=MediaRecorder)).
 
