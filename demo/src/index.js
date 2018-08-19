@@ -39,6 +39,9 @@ export default class Demo extends Component {
     });
   }
 
+  onSave=(blobObject) => {
+  }
+
   onStart=() => {
     console.log('You can tap into the onStart callback');
   }
@@ -65,6 +68,7 @@ export default class Demo extends Component {
             audioBitsPerSecond= {128000}
             onStop={this.onStop}
             onStart={this.onStart}
+            onSave={this.onSave}
             strokeColor="#000000" />
           <div>
             <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
