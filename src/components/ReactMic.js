@@ -28,6 +28,7 @@ export default class ReactMic extends Component {
       onSave,
       onStop,
       onStart,
+      onData,
       audioElem,
       audioBitsPerSecond,
       mimeType
@@ -57,7 +58,13 @@ export default class ReactMic extends Component {
 
       this.setState({
         analyser            : analyser,
-        microphoneRecorder  : new MicrophoneRecorder(onStart, onStop, onSave, options),
+        microphoneRecorder  : new MicrophoneRecorder(
+                                onStart,
+                                onStop,
+                                onSave,
+                                onData,
+                                options
+                              ),
         canvas              : canvas,
         canvasCtx           : canvasCtx
       }, () => {
@@ -114,7 +121,8 @@ ReactMic.propTypes = {
   mimeType        : string,
   height          : number,
   record          : bool.isRequired,
-  onStop          : func
+  onStop          : func,
+  onData          : func
 };
 
 ReactMic.defaultProps = {

@@ -52,6 +52,10 @@ export default class Demo extends Component {
     });
   }
 
+  onData(recordedBlob){
+    console.log('chunk of real-time data is: ', recordedBlob);
+  }
+
   render() {
     const { isRecording } = this.state;
 
@@ -69,6 +73,7 @@ export default class Demo extends Component {
             onStop={this.onStop}
             onStart={this.onStart}
             onSave={this.onSave}
+            onData={this.onData}
             strokeColor="#000000" />
           <div>
             <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>

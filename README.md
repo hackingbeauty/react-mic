@@ -28,6 +28,7 @@ Check out the [demo](https://www.voicerecordpro.com/#/record).
   record={boolean}         // defaults -> false.  Set to true to begin recording
   className={string}       // provide css class name
   onStop={function}        // callback to execute when audio stops recording
+  onData={function}        // callback to execute when chunk of audio data is available
   strokeColor={string}     // sound wave color
   backgroundColor={string} // background color
 />
@@ -60,6 +61,10 @@ export class Example extends React.Component {
     });
   }
 
+  onData(recordedBlob) {
+    console.log('chunk of real-time data is: ', recordedBlob);
+  }
+
   onStop(recordedBlob) {
     console.log('recordedBlob is: ', recordedBlob);
   }
@@ -71,6 +76,7 @@ export class Example extends React.Component {
           record={this.state.record}
           className="sound-wave"
           onStop={this.onStop}
+          onData={this.onData}
           strokeColor="#000000"
           backgroundColor="#FF4081" />
         <button onTouchTap={this.startRecording} type="button">Start</button>
