@@ -90,7 +90,8 @@ export default class ReactMic extends Component {
   }
 
   clear() {
-    const { canvasCtx, width, height } = this.state;
+    const { width, height } = this.props;
+    const { canvasCtx  } = this.state
     canvasCtx.clearRect(0, 0, width, height);
   }
 
