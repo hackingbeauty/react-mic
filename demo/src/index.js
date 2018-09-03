@@ -97,7 +97,7 @@ export default class Demo extends Component {
           <br />
           <br />
           <br />
-          <p>As featured in the course <br /><a href="http://singlepageapplication.com">How to Write a Single Page Application</a></p>
+          <p>As featured in the course <br /><a href="http://professionalreactapp.com">How To Develop A Professional React App</a></p>
           <br />
           <br />
           <p>Check out how I use it in my app
