@@ -10,9 +10,11 @@ Featured in the course ["How To Develop A Professional React App"](http://www.pr
 
 Works via the HTML5 MediaRecorder API ([currently only available in Chrome & Firefox](https://caniuse.com/#search=MediaRecorder)).
 
-## Demo
+## Demos
 
-Check out the [demo](https://www.voicerecordpro.com/#/record).
+Check out the simple [demo](https://www.voicerecordpro.com/#/record).
+
+Check out the component in action within a professional Web app [demo](https://www.voicerecordpro.com/#/record).
 
 ## Installation
 
