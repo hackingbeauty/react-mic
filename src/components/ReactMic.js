@@ -31,6 +31,10 @@ export default class ReactMic extends Component {
       onData,
       audioElem,
       audioBitsPerSecond,
+      echoCancellation,
+      autoGainControl,
+      noiseSuppression,
+      highpassFilter,
       mimeType
     } = this.props;
     const { visualizer } = this.refs;
@@ -39,6 +43,13 @@ export default class ReactMic extends Component {
     const options = {
       audioBitsPerSecond : audioBitsPerSecond,
       mimeType           : mimeType
+    }
+
+    const soundOptions = {
+      echoCancellation,
+      autoGainControl,
+      noiseSuppression,
+      highpassFilter
     }
 
     if(audioElem) {
@@ -63,7 +74,8 @@ export default class ReactMic extends Component {
                                 onStop,
                                 onSave,
                                 onData,
-                                options
+                                options,
+                                soundOptions
                               ),
         canvas              : canvas,
         canvasCtx           : canvasCtx
@@ -135,5 +147,9 @@ ReactMic.defaultProps = {
   record            : false,
   width             : 640,
   height            : 100,
-  visualSetting     : 'sinewave'
+  visualSetting     : 'sinewave',
+  echoCancellation  : false,
+  autoGainControl   : false,
+  noiseSuppression  : false,
+  highpassFilter    : false
 }

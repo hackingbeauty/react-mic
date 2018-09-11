@@ -7,13 +7,29 @@ let chunks = [];
 let startTime;
 let stream;
 let mediaOptions;
+let soundFiltersOptions;
 let blobObject;
 let onStartCallback;
 let onStopCallback;
 let onSaveCallback;
 let onDataCallback;
 
-const constraints = { audio: true, video: false }; // constraints - only audio needed
+const constraints = ({
+  echoCancellation,
+  autoGainControl,
+  noiseSuppression,
+  highpassFilter
+}) => { 
+  audio: {
+    mandatory: {
+      googEchoCancellation: echoCancellation,
+      googAutoGainControl: autoGainControl,
+      googNoiseSuppression: noiseSuppression,
+      googHighpassFilter: highpassFilter
+    },
+  }, 
+  video: false 
+}; // constraints - only audio needed
 
 navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
@@ -21,12 +37,13 @@ navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.msGetUserMedia);
 
 export class MicrophoneRecorder {
-  constructor(onStart, onStop, onSave, onData, options) {
+  constructor(onStart, onStop, onSave, onData, options, soundOptions) {
     onStartCallback= onStart;
     onStopCallback= onStop;
     onSaveCallback = onSave;
     onDataCallback = onData;
-    mediaOptions= options;
+    mediaOptions = options;
+    soundFiltersOptions = soundOptions;
   }
 
   startRecording=() => {
@@ -54,7 +71,7 @@ export class MicrophoneRecorder {
       if (navigator.mediaDevices) {
         console.log('getUserMedia supported.');
 
-        navigator.mediaDevices.getUserMedia(constraints)
+        navigator.mediaDevices.getUserMedia(constraints(soundFiltersOptions))
           .then((str) => {
             stream = str;
 

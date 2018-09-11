@@ -92,6 +92,21 @@ export class Example extends React.Component {
   }
 }
 ```
+
+# Additional properties are available for chrome
+
+```js
+
+        <ReactMic
+            echoCancellation={true}   // default is false
+            autoGainControl={true}    // default is false
+            noiseSuppression={true}   // default is false
+            highpassFilter={true}     // default is false
+          />
+
+```
+
+
 # Having issues with the lambda function?
 Try installing babel-preset-stage-1
 
