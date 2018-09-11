@@ -5,12 +5,14 @@ let leftchannel = [];
 let rightchannel = [];
 let sampleRate
 let startTime
+let mediaOptions
 
 export default class AudioRecorder {
   constructor(stream) {
     this.stream = stream
     this.audioCtx = AudioContext.getAudioContext();
     this.analyser = AudioContext.getAnalyser();
+    mediaOptions = mediaOptions
   }
 
   start() {

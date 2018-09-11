@@ -41,7 +41,7 @@ export class MicrophoneRecorder {
 
           if(onStartCallback) { onStartCallback() };
 
-          recorder = new AudioRecorder(str)
+          recorder = new AudioRecorder(str, mediaOptions)
           recorder.start()
 
         });
