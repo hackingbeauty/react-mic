@@ -125,6 +125,8 @@ export default class AudioRecorder {
 
     // our final binary blob that we can hand off
     var blob = new Blob ( [ view ], { type : 'audio/wav' } );
+
+    
     return blob
   }
 

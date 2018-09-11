@@ -47,6 +47,7 @@ export default class Demo extends Component {
   }
 
   onStop= (blobObject) => {
+    console.log('YOU STOPPED ME')
     this.setState({
       blobURL : blobObject.blobURL
     });
@@ -57,7 +58,9 @@ export default class Demo extends Component {
   }
 
   render() {
-    const { isRecording } = this.state;
+    const { blobURL, isRecording } = this.state;
+
+    console.log('the final blobURL is: ', blobURL)
 
     return(
       <MuiThemeProvider>
@@ -76,7 +79,7 @@ export default class Demo extends Component {
             onData={this.onData}
             strokeColor="#000000" />
           <div>
-            <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
+            <audio ref="audioSource" controls="controls" src={blobURL}></audio>
           </div>
           <br />
           <br />

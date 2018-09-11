@@ -55,26 +55,13 @@ export class MicrophoneRecorder {
     if(recorder) {
       const blobObject = recorder.exportWav()
 
-      console.log('THE BLOBOBJECT IS: ', blobObject)
-
       recorder.stop();
+      recorder = null
 
       if(onStopCallback) { onStopCallback(blobObject) };
       if(onSaveCallback) { onSaveCallback(blobObject) };
     }
   }
 
-  onStop(evt) {
-    // const blobObject =  {
-    //   blob      : blob,
-    //   startTime : startTime,
-    //   stopTime  : Date.now(),
-    //   options   : mediaOptions,
-    //   blobURL   : window.URL.createObjectURL(blob)
-    // }
-
-    // if(onStopCallback) { onStopCallback(blobObject) };
-    // if(onSaveCallback) { onSaveCallback(blobObject) };
-  }
 
 }
