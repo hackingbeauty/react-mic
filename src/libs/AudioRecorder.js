@@ -4,6 +4,7 @@ let recordingLength= 0 // why can you not put this in constructor?
 let leftchannel = [];
 let rightchannel = [];
 let sampleRate
+let startTime
 
 export default class AudioRecorder {
   constructor(stream) {
@@ -38,6 +39,7 @@ export default class AudioRecorder {
     volume.connect(recorder)
     audioInput.connect(analyser);
     recorder.connect(analyser);
+    startTime = Date.now();
   }
 
   stop() {
@@ -128,9 +130,9 @@ export default class AudioRecorder {
 
     const blobObject =  {
       blob      : blob,
-      // startTime : startTime,
-      // stopTime  : Date.now(),
-      // options   : mediaOptions,
+      startTime : startTime,
+      stopTime  : Date.now(),
+      options   : mediaOptions,
       blobURL   : window.URL.createObjectURL(blob)
     }
 
