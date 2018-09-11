@@ -22,7 +22,9 @@ export default class AudioRecorder {
     const audioInput = audioCtx.createMediaStreamSource(this.stream);
 
 
-    // audioCtx.resume()
+    if(audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
 
 
     audioInput.connect(volume)
