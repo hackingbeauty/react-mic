@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add node-sass
+  /usr/local/bin/node /usr/local/bin/yarn install
 
 PATH: 
   /Users/markmuskardin/.rvm/gems/ruby-2.0.0-p648/bin:/Users/markmuskardin/.rvm/gems/ruby-2.0.0-p648@global/bin:/Users/markmuskardin/.rvm/rubies/ruby-2.0.0-p648/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/markmuskardin/.rvm/bin
@@ -16,7 +16,7 @@ Platform:
 npm manifest: 
   {
     "name": "react-mic",
-    "version": "12.2.1",
+    "version": "12.2.2",
     "description": "Record audio from your microphone and display as a sound oscillation",
     "main": "lib/index.js",
     "jsnext:main": "es/index.js",
@@ -6411,16 +6411,16 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
 
 Trace: 
-  Error: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass: Command failed.
+  Error: /Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass: Command failed.
   Exit code: 1
   Command: sh
   Arguments: -c node scripts/build.js
-  Directory: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass
+  Directory: /Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass
   Output:
-  Building: /usr/local/bin/node /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/bin/node-gyp.js rebuild --verbose --libsass_ext= --libsass_cflags= --libsass_ldflags= --libsass_library=
+  Building: /usr/local/bin/node /Users/markmuskardin/code/javascript/react-mic/node_modules/node-gyp/bin/node-gyp.js rebuild --verbose --libsass_ext= --libsass_cflags= --libsass_ldflags= --libsass_library=
   gyp info it worked if it ends with ok
   gyp verb cli [ '/usr/local/bin/node',
-  gyp verb cli   '/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/bin/node-gyp.js',
+  gyp verb cli   '/Users/markmuskardin/code/javascript/react-mic/node_modules/node-gyp/bin/node-gyp.js',
   gyp verb cli   'rebuild',
   gyp verb cli   '--verbose',
   gyp verb cli   '--libsass_ext=',
@@ -6466,30 +6466,30 @@ Trace:
   gyp verb needs "installVersion" 9
   gyp verb install version is good
   gyp verb get node dir target node version installed: 10.8.0
-  gyp verb build dir attempting to create "build" dir: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/build
-  gyp verb build dir "build" dir needed to be created? /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/build
+  gyp verb build dir attempting to create "build" dir: /Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass/build
+  gyp verb build dir "build" dir needed to be created? /Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass/build
   gyp verb build/config.gypi creating config file
-  gyp verb build/config.gypi writing out config file: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/build/config.gypi
-  gyp verb config.gypi checking for gypi file: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/config.gypi
-  gyp verb common.gypi checking for gypi file: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/common.gypi
+  gyp verb build/config.gypi writing out config file: /Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass/build/config.gypi
+  gyp verb config.gypi checking for gypi file: /Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass/config.gypi
+  gyp verb common.gypi checking for gypi file: /Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass/common.gypi
   gyp verb gyp gyp format was not specified; forcing "make"
   gyp info spawn /usr/bin/python
-  gyp info spawn args [ '/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/gyp/gyp_main.py',
+  gyp info spawn args [ '/Users/markmuskardin/code/javascript/react-mic/node_modules/node-gyp/gyp/gyp_main.py',
   gyp info spawn args   'binding.gyp',
   gyp info spawn args   '-f',
   gyp info spawn args   'make',
   gyp info spawn args   '-I',
-  gyp info spawn args   '/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/build/config.gypi',
+  gyp info spawn args   '/Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass/build/config.gypi',
   gyp info spawn args   '-I',
-  gyp info spawn args   '/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/addon.gypi',
+  gyp info spawn args   '/Users/markmuskardin/code/javascript/react-mic/node_modules/node-gyp/addon.gypi',
   gyp info spawn args   '-I',
   gyp info spawn args   '/Users/markmuskardin/.node-gyp/10.8.0/include/node/common.gypi',
   gyp info spawn args   '-Dlibrary=shared_library',
   gyp info spawn args   '-Dvisibility=default',
   gyp info spawn args   '-Dnode_root_dir=/Users/markmuskardin/.node-gyp/10.8.0',
-  gyp info spawn args   '-Dnode_gyp_dir=/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp',
+  gyp info spawn args   '-Dnode_gyp_dir=/Users/markmuskardin/code/javascript/react-mic/node_modules/node-gyp',
   gyp info spawn args   '-Dnode_lib_file=/Users/markmuskardin/.node-gyp/10.8.0/<(target_arch)/node.lib',
-  gyp info spawn args   '-Dmodule_root_dir=/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass',
+  gyp info spawn args   '-Dmodule_root_dir=/Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass',
   gyp info spawn args   '-Dnode_engine=v8',
   gyp info spawn args   '--depth=.',
   gyp info spawn args   '--no-parallel',
@@ -6545,14 +6545,14 @@ Trace:
     c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/util.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/util.o ../src/libsass/src/util.cpp
     c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/values.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/values.o ../src/libsass/src/values.cpp
     rm -f Release/sass.a && ./gyp-mac-tool filter-libtool libtool  -static -o Release/sass.a Release/obj.target/libsass/src/libsass/src/ast.o Release/obj.target/libsass/src/libsass/src/base64vlq.o Release/obj.target/libsass/src/libsass/src/bind.o Release/obj.target/libsass/src/libsass/src/cencode.o Release/obj.target/libsass/src/libsass/src/color_maps.o Release/obj.target/libsass/src/libsass/src/constants.o Release/obj.target/libsass/src/libsass/src/context.o Release/obj.target/libsass/src/libsass/src/cssize.o Release/obj.target/libsass/src/libsass/src/emitter.o Release/obj.target/libsass/src/libsass/src/environment.o Release/obj.target/libsass/src/libsass/src/error_handling.o Release/obj.target/libsass/src/libsass/src/eval.o Release/obj.target/libsass/src/libsass/src/expand.o Release/obj.target/libsass/src/libsass/src/extend.o Release/obj.target/libsass/src/libsass/src/file.o Release/obj.target/libsass/src/libsass/src/functions.o Release/obj.target/libsass/src/libsass/src/inspect.o Release/obj.target/libsass/src/libsass/src/json.o Release/obj.target/libsass/src/libsass/src/lexer.o Release/obj.target/libsass/src/libsass/src/listize.o Release/obj.target/libsass/src/libsass/src/memory_manager.o Release/obj.target/libsass/src/libsass/src/node.o Release/obj.target/libsass/src/libsass/src/output.o Release/obj.target/libsass/src/libsass/src/parser.o Release/obj.target/libsass/src/libsass/src/plugins.o Release/obj.target/libsass/src/libsass/src/position.o Release/obj.target/libsass/src/libsass/src/prelexer.o Release/obj.target/libsass/src/libsass/src/remove_placeholders.o Release/obj.target/libsass/src/libsass/src/sass.o Release/obj.target/libsass/src/libsass/src/sass2scss.o Release/obj.target/libsass/src/libsass/src/sass_context.o Release/obj.target/libsass/src/libsass/src/sass_functions.o Release/obj.target/libsass/src/libsass/src/sass_util.o Release/obj.target/libsass/src/libsass/src/sass_values.o Release/obj.target/libsass/src/libsass/src/source_map.o Release/obj.target/libsass/src/libsass/src/to_c.o Release/obj.target/libsass/src/libsass/src/to_value.o Release/obj.target/libsass/src/libsass/src/units.o Release/obj.target/libsass/src/libsass/src/utf8_string.o Release/obj.target/libsass/src/libsass/src/util.o Release/obj.target/libsass/src/libsass/src/values.o
-    c++ '-DNODE_GYP_MODULE_NAME=binding' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DBUILDING_NODE_EXTENSION' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../../../../nan -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=gnu++1y -stdlib=libc++ -fno-rtti -fno-exceptions -fno-threadsafe-statics -std=c++11 -MMD -MF ./Release/.deps/Release/obj.target/binding/src/binding.o.d.raw   -c -o Release/obj.target/binding/src/binding.o ../src/binding.cpp
+    c++ '-DNODE_GYP_MODULE_NAME=binding' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DBUILDING_NODE_EXTENSION' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../../nan -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=gnu++1y -stdlib=libc++ -fno-rtti -fno-exceptions -fno-threadsafe-statics -std=c++11 -MMD -MF ./Release/.deps/Release/obj.target/binding/src/binding.o.d.raw   -c -o Release/obj.target/binding/src/binding.o ../src/binding.cpp
   In file included from ../src/binding.cpp:1:
-  In file included from ../../../../nan/nan.h:192:
-  ../../../../nan/nan_maybe_43_inl.h:112:15: error: no member named 'ForceSet' in 'v8::Object'
+  In file included from ../../nan/nan.h:192:
+  ../../nan/nan_maybe_43_inl.h:112:15: error: no member named 'ForceSet' in 'v8::Object'
     return obj->ForceSet(isolate->GetCurrentContext(), key, value, attribs);
            ~~~  ^
   In file included from ../src/binding.cpp:1:
-  ../../../../nan/nan.h:834:18: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
+  ../../nan/nan.h:834:18: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
       return node::MakeCallback(
                    ^
   /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:171:1: note: 'MakeCallback' has been explicitly marked deprecated here
@@ -6562,7 +6562,7 @@ Trace:
       __attribute__((deprecated(message))) declarator
                      ^
   In file included from ../src/binding.cpp:1:
-  ../../../../nan/nan.h:849:18: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
+  ../../nan/nan.h:849:18: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
       return node::MakeCallback(
                    ^
   /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:164:1: note: 'MakeCallback' has been explicitly marked deprecated here
@@ -6572,7 +6572,7 @@ Trace:
       __attribute__((deprecated(message))) declarator
                      ^
   In file included from ../src/binding.cpp:1:
-  ../../../../nan/nan.h:864:18: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
+  ../../nan/nan.h:864:18: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
       return node::MakeCallback(
                    ^
   /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:157:1: note: 'MakeCallback' has been explicitly marked deprecated here
@@ -6582,7 +6582,7 @@ Trace:
       __attribute__((deprecated(message))) declarator
                      ^
   In file included from ../src/binding.cpp:1:
-  ../../../../nan/nan.h:1473:31: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
+  ../../nan/nan.h:1473:31: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
       return scope.Escape(node::MakeCallback(
                                 ^
   /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:171:1: note: 'MakeCallback' has been explicitly marked deprecated here
@@ -6595,12 +6595,12 @@ Trace:
   make: *** [Release/obj.target/binding/src/binding.o] Error 1
   gyp ERR! build error 
   gyp ERR! stack Error: `make` failed with exit code: 2
-  gyp ERR! stack     at ChildProcess.onExit (/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/lib/build.js:258:23)
+  gyp ERR! stack     at ChildProcess.onExit (/Users/markmuskardin/code/javascript/react-mic/node_modules/node-gyp/lib/build.js:258:23)
   gyp ERR! stack     at ChildProcess.emit (events.js:182:13)
   gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:238:12)
   gyp ERR! System Darwin 17.7.0
-  gyp ERR! command "/usr/local/bin/node" "/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/bin/node-gyp.js" "rebuild" "--verbose" "--libsass_ext=" "--libsass_cflags=" "--libsass_ldflags=" "--libsass_library="
-  gyp ERR! cwd /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass
+  gyp ERR! command "/usr/local/bin/node" "/Users/markmuskardin/code/javascript/react-mic/node_modules/node-gyp/bin/node-gyp.js" "rebuild" "--verbose" "--libsass_ext=" "--libsass_cflags=" "--libsass_ldflags=" "--libsass_library="
+  gyp ERR! cwd /Users/markmuskardin/code/javascript/react-mic/node_modules/node-sass
   gyp ERR! node -v v10.8.0
   gyp ERR! node-gyp -v v3.6.2
   gyp ERR! not ok 
@@ -6610,6 +6610,4 @@ Trace:
       at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
       at ChildProcess.emit (events.js:182:13)
       at maybeClose (internal/child_process.js:962:16)
-      at Socket.stream.socket.on (internal/child_process.js:381:11)
-      at Socket.emit (events.js:182:13)
-      at Pipe._handle.close (net.js:599:12)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:249:5)

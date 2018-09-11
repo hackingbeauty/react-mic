@@ -31,10 +31,10 @@
     "react": "16.x"
   },
   "devDependencies": {
-    "gh-pages": "^1.0.0",
+    "gh-pages": "^1.2.0",
     "material-ui": "^0.19.2",
-    "nwb": "^0.15.6",
-    "nwb-sass": "^0.6.0",
+    "nwb": "^0.23.0",
+    "nwb-sass": "^0.9.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },

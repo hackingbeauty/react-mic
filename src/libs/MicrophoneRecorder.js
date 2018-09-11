@@ -1,4 +1,5 @@
 import AudioContext from './AudioContext';
+import AudioRecorder from './AudioRecorder';
 
 let analyser;
 let audioCtx;
@@ -12,6 +13,7 @@ let onStartCallback;
 let onStopCallback;
 let onSaveCallback;
 let onDataCallback;
+let recorder
 
 const constraints = { audio: true, video: false }; // constraints - only audio needed
 
@@ -30,95 +32,49 @@ export class MicrophoneRecorder {
   }
 
   startRecording=() => {
+    if (navigator.mediaDevices) {
+      console.log('getUserMedia supported.');
 
-    startTime = Date.now();
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then((str) => {
+          stream = str;
 
-    if(mediaRecorder) {
+          if(onStartCallback) { onStartCallback() };
 
-      if(audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+          recorder = new AudioRecorder(str)
+          recorder.start()
 
-      if(mediaRecorder && mediaRecorder.state === 'paused') {
-        mediaRecorder.resume();
-        return;
-      }
+        });
 
-      if(audioCtx && mediaRecorder && mediaRecorder.state === 'inactive') {
-        mediaRecorder.start(10);
-        const source = audioCtx.createMediaStreamSource(stream);
-        source.connect(analyser);
-        if(onStartCallback) { onStartCallback() };
-      }
     } else {
-      if (navigator.mediaDevices) {
-        console.log('getUserMedia supported.');
-
-        navigator.mediaDevices.getUserMedia(constraints)
-          .then((str) => {
-            stream = str;
-
-            if(MediaRecorder.isTypeSupported(mediaOptions.mimeType)) {
-              mediaRecorder = new MediaRecorder(str, mediaOptions);
-            } else {
-              mediaRecorder = new MediaRecorder(str);
-            }
-
-            if(onStartCallback) { onStartCallback() };
-
-            mediaRecorder.onstop = this.onStop;
-            mediaRecorder.ondataavailable = (event) => {
-              chunks.push(event.data);
-              if(onDataCallback) {
-                onDataCallback(event.data);
-              }
-            }
-
-            audioCtx = AudioContext.getAudioContext();
-            analyser = AudioContext.getAnalyser();
-
-            audioCtx.resume();
-            mediaRecorder.start(10);
-
-            const source = audioCtx.createMediaStreamSource(stream);
-            source.connect(analyser);
-          });
-
-      } else {
-        alert('Your browser does not support audio recording');
-      }
+      alert('Your browser does not support audio recording');
     }
-
   }
 
   stopRecording() {
-    if(mediaRecorder && mediaRecorder.state !== 'inactive') {
-      mediaRecorder.stop();
+    if(recorder) {
+      const blobObject = recorder.exportWav()
 
-      stream.getAudioTracks().forEach((track) => {
-        track.stop()
-      })
+      console.log('THE BLOBOBJECT IS: ', blobObject)
 
-      mediaRecorder = null
+      recorder.stop();
 
-      audioCtx.suspend();
+      if(onStopCallback) { onStopCallback(blobObject) };
+      if(onSaveCallback) { onSaveCallback(blobObject) };
     }
   }
 
   onStop(evt) {
-    const blob = new Blob(chunks, { 'type' : mediaOptions.mimeType });
-    chunks = [];
+    // const blobObject =  {
+    //   blob      : blob,
+    //   startTime : startTime,
+    //   stopTime  : Date.now(),
+    //   options   : mediaOptions,
+    //   blobURL   : window.URL.createObjectURL(blob)
+    // }
 
-    const blobObject =  {
-      blob      : blob,
-      startTime : startTime,
-      stopTime  : Date.now(),
-      options   : mediaOptions,
-      blobURL   : window.URL.createObjectURL(blob)
-    }
-
-    if(onStopCallback) { onStopCallback(blobObject) };
-    if(onSaveCallback) { onSaveCallback(blobObject) };
+    // if(onStopCallback) { onStopCallback(blobObject) };
+    // if(onSaveCallback) { onSaveCallback(blobObject) };
   }
 
 }
