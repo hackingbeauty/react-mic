@@ -21,6 +21,10 @@ export default class AudioRecorder {
     const volume = audioCtx.createGain()
     const audioInput = audioCtx.createMediaStreamSource(this.stream);
 
+
+    // audioCtx.resume()
+
+
     audioInput.connect(volume)
 
     const bufferSize = 2048;
