@@ -126,8 +126,15 @@ export default class AudioRecorder {
     // our final binary blob that we can hand off
     var blob = new Blob ( [ view ], { type : 'audio/wav' } );
 
-    
-    return blob
+    const blobObject =  {
+      blob      : blob,
+      // startTime : startTime,
+      // stopTime  : Date.now(),
+      // options   : mediaOptions,
+      blobURL   : window.URL.createObjectURL(blob)
+    }
+
+    return blobObject
   }
 
 }
