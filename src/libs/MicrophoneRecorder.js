@@ -1,4 +1,5 @@
 import AudioContext from './AudioContext';
+import MediaRecorder from "audio-recorder-polyfill";
 
 let analyser;
 let audioCtx;
