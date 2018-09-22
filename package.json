@@ -28,7 +28,7 @@
     "deploy": "nwb build-react-component && gh-pages -d demo/dist"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "15.x"
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
