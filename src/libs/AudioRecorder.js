@@ -1,3 +1,5 @@
+/* Reference this: https://gist.github.com/meziantou/edb7217fddfbb70e899e */
+
 import AudioContext from './AudioContext';
 
 let recordingLength= 0 // why can you not put this in constructor?
@@ -6,6 +8,8 @@ let rightchannel = [];
 let sampleRate
 let startTime
 let mediaOptions
+let recorder
+let audioInput
 
 export default class AudioRecorder {
   constructor(stream) {
@@ -17,20 +21,19 @@ export default class AudioRecorder {
 
   start() {
     const { audioCtx, analyser } = this
-    sampleRate = audioCtx.sampleRate
     const volume = audioCtx.createGain()
-    const audioInput = audioCtx.createMediaStreamSource(this.stream);
+    audioInput = audioCtx.createMediaStreamSource(this.stream);
 
+    sampleRate = audioCtx.sampleRate
 
     if(audioCtx && audioCtx.state === 'suspended') {
       audioCtx.resume();
     }
 
-
     audioInput.connect(volume)
 
     const bufferSize = 2048;
-    const recorder = audioCtx.createScriptProcessor(bufferSize, 2, 2);
+    recorder = audioCtx.createScriptProcessor(bufferSize, 2, 2);
 
     recorder.onaudioprocess = function(e){
       console.log ('recording');
@@ -53,10 +56,15 @@ export default class AudioRecorder {
   stop() {
     const { stream, audioCtx } = this
 
+    recordingLength= 0
+    leftchannel = [];
+    rightchannel = [];
+
     stream.getAudioTracks().forEach((track) => {
       track.stop()
     })
 
+    recorder.disconnect(this.audioCtx)
     audioCtx.suspend();
   }
 
@@ -96,8 +104,8 @@ export default class AudioRecorder {
 
   exportWav() {
     // we flat the left and right channels down
-    var leftBuffer = this.mergeBuffers ( leftchannel, recordingLength );
-    var rightBuffer = this.mergeBuffers ( rightchannel, recordingLength );
+    var leftBuffer = this.mergeBuffers( leftchannel, recordingLength );
+    var rightBuffer = this.mergeBuffers( rightchannel, recordingLength );
     // we interleave both channels together
     var interleaved = this.interleave( leftBuffer, rightBuffer );
 
