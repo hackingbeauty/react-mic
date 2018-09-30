@@ -33,7 +33,12 @@ export default class AudioRecorder {
     audioInput.connect(volume)
 
     const bufferSize = 2048;
-    recorder = audioCtx.createScriptProcessor(bufferSize, 2, 2);
+
+    if (audioCtx.createScriptProcessor) {
+      recorder = audioCtx.createScriptProcessor(bufferSize, 2, 2);
+    } else {
+      recorder = audioCtx.createJavaScriptNode(bufferSize, 2, 2);
+    }
 
     recorder.onaudioprocess = function(e){
       console.log ('recording');
@@ -109,40 +114,37 @@ export default class AudioRecorder {
     // we interleave both channels together
     var interleaved = this.interleave( leftBuffer, rightBuffer );
 
-    // create the buffer and view to create the .WAV file
+    // we create our wav file
     var buffer = new ArrayBuffer(44 + interleaved.length * 2);
     var view = new DataView(buffer);
 
-    // write the WAV container, check spec at: https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
     // RIFF chunk descriptor
     this.writeUTFBytes(view, 0, 'RIFF');
     view.setUint32(4, 44 + interleaved.length * 2, true);
     this.writeUTFBytes(view, 8, 'WAVE');
     // FMT sub-chunk
     this.writeUTFBytes(view, 12, 'fmt ');
-    view.setUint32(16, 16, true);
-    view.setUint16(20, 1, true);
-    // stereo (2 channels)
-    view.setUint16(22, 2, true);
-    view.setUint32(24, sampleRate, true);
-    view.setUint32(28, sampleRate * 4, true);
-    view.setUint16(32, 4, true);
-    view.setUint16(34, 16, true);
+    view.setUint32(16, 16, true); // chunkSize
+    view.setUint16(20, 1, true); // wFormatTag
+    view.setUint16(22, 2, true); // wChannels: stereo (2 channels)
+    view.setUint32(24, sampleRate, true); // dwSamplesPerSec
+    view.setUint32(28, sampleRate * 4, true); // dwAvgBytesPerSec
+    view.setUint16(32, 4, true); // wBlockAlign
+    view.setUint16(34, 16, true); // wBitsPerSample
     // data sub-chunk
     this.writeUTFBytes(view, 36, 'data');
     view.setUint32(40, interleaved.length * 2, true);
 
     // write the PCM samples
-    var lng = interleaved.length;
     var index = 44;
     var volume = 1;
-    for (var i = 0; i < lng; i++){
+    for (var i = 0; i < interleaved.length; i++) {
         view.setInt16(index, interleaved[i] * (0x7FFF * volume), true);
         index += 2;
     }
 
-    // our final binary blob that we can hand off
-    var blob = new Blob ( [ view ], { type : 'audio/wav' } );
+    // our final blob
+    var blob = new Blob([view], { type: 'audio/wav' });
 
     const blobObject =  {
       blob      : blob,
