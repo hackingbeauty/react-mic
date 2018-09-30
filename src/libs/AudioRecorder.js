@@ -43,8 +43,8 @@ export default class AudioRecorder {
     recorder.onaudioprocess = function(e){
       console.log ('recording');
 
-      const left = e.inputBuffer.getChannelData (0);
-      const right = e.inputBuffer.getChannelData (1);
+      const left = e.inputBuffer.getChannelData(0);
+      const right = e.inputBuffer.getChannelData(1);
 
       // // we clone the samples
       leftchannel.push (new Float32Array (left));
