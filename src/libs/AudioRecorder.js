@@ -1,5 +1,5 @@
 /* Reference this: https://gist.github.com/meziantou/edb7217fddfbb70e899e */
-
+/*https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API*/
 import AudioContext from './AudioContext';
 
 let recordingLength= 0 // why can you not put this in constructor?
