@@ -6,7 +6,7 @@ Record a user's voice and display as an oscillation.  Audio is saved as [WebM](h
 
 If you need a version of this React component with added WAV support so you can record and play back audio recordings in *any* browser and mobile device (iOS + Android), please [purchase React-Mic-Plus](https://hackingbeautyllc.clickfunnels.com/sales-page23901658).  You can [join this Slack channel](https://publicslack.com/slacks/hackingbeauty/invites/new) if you have any questions or problems.
 
-Featured in the course ["How To Develop A Professional React App"](http://www.professionalreactapp.com).
+Featured in the course ["How To Develop A Professional React App"](http://professionalreactapp.com).
 
 Works via the HTML5 MediaRecorder API ([currently only available in Chrome & Firefox](https://caniuse.com/#search=MediaRecorder)).
 
