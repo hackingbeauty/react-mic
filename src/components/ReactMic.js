@@ -81,10 +81,10 @@ export default class ReactMic extends Component {
 
     if(visualSetting === 'sinewave') {
       Visualizer.visualizeSineWave(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
-
     } else if(visualSetting === 'frequencyBars') {
       Visualizer.visualizeFrequencyBars(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
-
+    } else if(visualSetting === 'frequencyCircles') {
+      Visualizer.visualizeFrequencyCircles(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
     }
 
   }
