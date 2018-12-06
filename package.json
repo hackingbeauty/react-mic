@@ -1,6 +1,6 @@
 {
   "name": "react-mic",
-  "version": "12.2.2",
+  "version": "12.3.0",
   "description": "Record audio from your microphone and display as a sound oscillation",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
