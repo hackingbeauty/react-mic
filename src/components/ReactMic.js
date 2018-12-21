@@ -79,13 +79,16 @@ export default class ReactMic extends Component {
     const { backgroundColor, strokeColor, width, height, visualSetting } = this.props;
     const { canvas, canvasCtx, analyser } = this.state;
 
-    if(visualSetting === 'sinewave') {
-      Visualizer.visualizeSineWave(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
-    } else if(visualSetting === 'frequencyBars') {
-      Visualizer.visualizeFrequencyBars(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
-    } else if(visualSetting === 'frequencyCircles') {
-      Visualizer.visualizeFrequencyCircles(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
+    var visualization_classes = {
+        'sinewave': Visualizer.visualizeSineWave,
+        'frequencyBars': Visualizer.visualizeFrequencyBars,
+        'frequencyCircles': Visualizer.visualizeFrequencyCircles,
+    };
+    var visualization_class = visualSetting;
+    if (visualSetting in visualization_classes) {
+        visualization_class = visualization_classes[visualSetting]
     }
+    new visualization_class(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
 
   }
 
