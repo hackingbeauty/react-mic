@@ -1,5 +1,14 @@
 let drawVisual;
 
+function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
 const Visualizer = {
 
   visualizeSineWave(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
@@ -70,7 +79,7 @@ const Visualizer = {
       for(let i = 0; i < bufferLength; i++) {
         barHeight = dataArray[i];
 
-        const rgb = self.hexToRgb(strokeColor);
+        const rgb = hexToRgb(strokeColor);
 
         // canvasCtx.fillStyle = `rgb(${barHeight+100},${rgb.g},${rgb.b})`;
         canvasCtx.fillStyle = strokeColor;
@@ -121,17 +130,6 @@ const Visualizer = {
     };
      draw();
   },
-
-
-  hexToRgb(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
-  }
-
 }
 
 export default Visualizer;
