@@ -16,7 +16,6 @@ export default class ReactMic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      analyser            : null,
       microphoneRecorder  : null,
       canvas              : null,
       canvasCtx           : null
@@ -42,22 +41,17 @@ export default class ReactMic extends Component {
     }
 
     if(audioElem) {
-      const analyser = AudioContext.getAnalyser();
-
       AudioPlayer.create(audioElem);
 
       this.setState({
-        analyser            : analyser,
         canvas              : canvas,
         canvasCtx           : canvasCtx
       }, () => {
         this.visualize();
       });
     } else {
-      const analyser = AudioContext.getAnalyser();
 
       this.setState({
-        analyser            : analyser,
         microphoneRecorder  : new MicrophoneRecorder(
                                 onStart,
                                 onStop,
@@ -74,34 +68,35 @@ export default class ReactMic extends Component {
 
   }
 
-  visualize= () => {
+  visualize = () => {
     const self = this;
     const { backgroundColor, strokeColor, width, height, visualSetting } = this.props;
-    const { canvas, canvasCtx, analyser } = this.state;
+    const { canvas, canvasCtx } = this.state;
 
     if(visualSetting === 'sinewave') {
-      Visualizer.visualizeSineWave(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
+      Visualizer.visualizeSineWave(canvasCtx, canvas, width, height, backgroundColor, strokeColor);
     } else if(visualSetting === 'frequencyBars') {
-      Visualizer.visualizeFrequencyBars(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
+      Visualizer.visualizeFrequencyBars(canvasCtx, canvas, width, height, backgroundColor, strokeColor);
     } else if(visualSetting === 'frequencyCircles') {
-      Visualizer.visualizeFrequencyCircles(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor);
+      Visualizer.visualizeFrequencyCircles(canvasCtx, canvas, width, height, backgroundColor, strokeColor);
     }
 
   }
 
   clear() {
     const { width, height } = this.props;
-    const { canvasCtx  } = this.state
+    const { canvasCtx  } = this.state;
     canvasCtx.clearRect(0, 0, width, height);
   }
 
   render() {
     const { record, onStop, width, height } = this.props;
-    const { analyser,  microphoneRecorder, canvasCtx } = this.state;
+    const { microphoneRecorder, canvasCtx } = this.state;
 
     if(record) {
       if(microphoneRecorder) {
         microphoneRecorder.startRecording();
+
       }
     } else {
       if (microphoneRecorder) {

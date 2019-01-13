@@ -75,13 +75,14 @@ export class MicrophoneRecorder {
             }
 
             audioCtx = AudioContext.getAudioContext();
-            analyser = AudioContext.getAnalyser();
+            audioCtx.resume().then(() => {
 
-            audioCtx.resume();
-            mediaRecorder.start(10);
+              analyser = AudioContext.getAnalyser();
+              mediaRecorder.start(10);
+              const sourceNode = audioCtx.createMediaStreamSource(stream);
+              sourceNode.connect(analyser);
+            });
 
-            const source = audioCtx.createMediaStreamSource(stream);
-            source.connect(analyser);
           });
 
       } else {
@@ -98,10 +99,8 @@ export class MicrophoneRecorder {
       stream.getAudioTracks().forEach((track) => {
         track.stop()
       })
-
       mediaRecorder = null
-
-      audioCtx.suspend();
+      AudioContext.resetAnalyser();
     }
   }
 

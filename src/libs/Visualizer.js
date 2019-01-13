@@ -1,9 +1,12 @@
+import AudioContext from './AudioContext';
+
+
 let drawVisual;
 
 const Visualizer = {
 
-  visualizeSineWave(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
-    analyser.fftSize = 2048;
+  visualizeSineWave(canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
+    let analyser = AudioContext.getAnalyser();
 
     const bufferLength = analyser.fftSize;
     const dataArray = new Uint8Array(bufferLength);
@@ -13,6 +16,8 @@ const Visualizer = {
     function draw() {
 
       drawVisual = requestAnimationFrame(draw);
+
+      analyser = AudioContext.getAnalyser();
 
       analyser.getByteTimeDomainData(dataArray);
 
@@ -47,8 +52,9 @@ const Visualizer = {
     draw();
   },
 
-  visualizeFrequencyBars(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
+  visualizeFrequencyBars(canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
     const self = this;
+    let analyser = AudioContext.getAnalyser();
     analyser.fftSize = 256;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
@@ -58,6 +64,7 @@ const Visualizer = {
     function draw() {
       drawVisual = requestAnimationFrame(draw);
 
+      analyser = AudioContext.getAnalyser();
       analyser.getByteFrequencyData(dataArray);
 
       canvasCtx.fillStyle = backgroundColor;
@@ -83,18 +90,23 @@ const Visualizer = {
     draw();
   },
 
-  visualizeFrequencyCircles(analyser, canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
+  visualizeFrequencyCircles(canvasCtx, canvas, width, height, backgroundColor, strokeColor) {
     const self = this;
+    let analyser = AudioContext.getAnalyser();
     analyser.fftSize = 32;
     const bufferLength = analyser.frequencyBinCount;
 
     const dataArray = new Uint8Array(bufferLength);
-     canvasCtx.clearRect(0, 0, width, height);
-     function draw() {
+    canvasCtx.clearRect(0, 0, width, height);
+
+    function draw() {
+
       drawVisual = requestAnimationFrame(draw);
-       analyser.getByteFrequencyData(dataArray);
-       const reductionAmount = 3;
+      analyser = AudioContext.getAnalyser();
+      analyser.getByteFrequencyData(dataArray);
+      const reductionAmount = 3;
       const reducedDataArray = new Uint8Array(bufferLength / reductionAmount);
+
       for (let i = 0; i < bufferLength; i += reductionAmount) {
         let sum = 0;
         for (let j = 0; j < reductionAmount; j++) {
@@ -119,7 +131,7 @@ const Visualizer = {
         canvasCtx.stroke();
       }
     };
-     draw();
+    draw();
   },
 
 

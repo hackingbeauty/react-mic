@@ -1,5 +1,5 @@
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const analyser = audioCtx.createAnalyser();
+let analyser = audioCtx.createAnalyser();
 
 const AudioContext  = {
 
@@ -9,6 +9,10 @@ const AudioContext  = {
 
   getAnalyser() {
     return analyser;
+  },
+
+  resetAnalyser() {
+    analyser = audioCtx.createAnalyser();
   },
 
   decodeAudioData() {
