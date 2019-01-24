@@ -44,23 +44,23 @@ export default class ReactMic extends Component {
       AudioPlayer.create(audioElem);
 
       this.setState({
-        canvas              : canvas,
-        canvasCtx           : canvasCtx
+        canvas: canvas,
+        canvasCtx: canvasCtx
       }, () => {
         this.visualize();
       });
     } else {
 
       this.setState({
-        microphoneRecorder  : new MicrophoneRecorder(
-                                onStart,
-                                onStop,
-                                onSave,
-                                onData,
-                                options
-                              ),
-        canvas              : canvas,
-        canvasCtx           : canvasCtx
+        microphoneRecorder: new MicrophoneRecorder(
+                              onStart,
+                              onStop,
+                              onSave,
+                              onData,
+                              options
+                            ),
+        canvas: canvas,
+        canvasCtx: canvasCtx
       }, () => {
         this.visualize();
       });
