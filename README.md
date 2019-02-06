@@ -4,7 +4,7 @@ Record a user's voice and display as an oscillation.  Audio is saved as [WebM](h
 
 **PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as a WAV file  in order to get full cross-browser and cross-device support.
 
-If you need a version of this React component with added WAV support so you can record and play back audio recordings in *any* browser and mobile device (iOS + Android), please [purchase React-Mic-Plus](https://hackingbeautyllc.clickfunnels.com/sales-page23901658).  You can [join this Slack channel](https://publicslack.com/slacks/hackingbeauty/invites/new) if you have any questions or problems.
+If you need a version of this React component with added WAV support so you can record and play back audio recordings in *any* browser and mobile device (iOS + Android), please [purchase React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).  You can [join this Slack channel](https://publicslack.com/slacks/hackingbeauty/invites/new) if you have any questions or problems.
 
 Featured in the course ["How To Develop A Professional React App"](http://professionalreactapp.com).
 
