@@ -32,6 +32,7 @@ Check out the [demo](https://www.voicerecordpro.com/#/record).
 
 <ReactMic
   record={boolean}         // defaults -> false.  Set to true to begin recording
+  pause={boolean}          // defaults -> false.  Available in React-Mic-Plus upgrade only
   className={string}       // provide css class name
   onStop={function}        // callback to execute when audio stops recording
   onData={function}        // callback to execute when chunk of audio data is available
