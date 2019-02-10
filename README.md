@@ -1,6 +1,6 @@
 # react-mic
 
-Record a user's voice and display as an oscillation.  Audio is saved as [WebM](https://en.wikipedia.org/wiki/WebM) audio file format.
+Record a user's voice and display as an oscillation.  Plug-n-play component for React apps. Audio is saved as [WebM](https://en.wikipedia.org/wiki/WebM) audio file format.
 
 **PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as a WAV file  in order to get full cross-browser and cross-device support.
 
