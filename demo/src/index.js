@@ -36,9 +36,7 @@ export default class Demo extends Component {
     } else if(isRecording) {
       this.setState({ isPaused: true })
     } else {
-      this.setState({
-        isRecording: true
-      })
+      this.setState({ isRecording: true })
     }
   }
 
