@@ -4,13 +4,13 @@ import { FloatingActionButton,
         MuiThemeProvider }         from 'material-ui';
 import MicrophoneOn                from 'material-ui/svg-icons/av/mic';
 import MicrophoneOff               from 'material-ui/svg-icons/av/stop';
+import PauseIcon                   from 'material-ui/svg-icons/av/pause';
 
-import { ReactMic, saveRecording } from '../../src';
+import { ReactMic }                from '../../src';
 import sampleAudio                 from './sample_audio.webm';
 import ReactGA                     from 'react-ga';
 
 require ('./styles.scss');
-
 
 ReactGA.initialize('UA-98862819-1');
 
@@ -19,7 +19,8 @@ export default class Demo extends Component {
     super(props);
     this.state = {
       blobObject: null,
-      isRecording: false
+      isRecording: false,
+      isPaused: false
     }
   }
 
@@ -27,16 +28,22 @@ export default class Demo extends Component {
     ReactGA.pageview(window.location.pathname);
   }
 
-  startRecording= () => {
-    this.setState({
-      isRecording: true
-    });
+  startOrPauseRecording= () => {
+    const { isPaused, isRecording } = this.state
+
+    if(isPaused) {
+      this.setState({ isPaused: false })
+    } else if(isRecording) {
+      this.setState({ isPaused: true })
+    } else {
+      this.setState({
+        isRecording: true
+      })
+    }
   }
 
   stopRecording= () => {
-    this.setState({
-      isRecording: false
-    });
+    this.setState({ isRecording: false });
   }
 
   onSave=(blobObject) => {
@@ -47,26 +54,33 @@ export default class Demo extends Component {
   }
 
   onStop= (blobObject) => {
-    this.setState({
-      blobURL : blobObject.blobURL
-    });
+    this.setState({ blobURL : blobObject.blobURL });
   }
 
   onData(recordedBlob){
-    console.log('chunk of real-time data is: ', recordedBlob);
+    console.log('ONDATA CALL IS BEING CALLED! ', recordedBlob);
+  }
+
+  onBlock() {
+    alert('ya blocked me!')
+  }
+
+  onPause() {
+    alert('ya paused it')
   }
 
   render() {
-    const { isRecording } = this.state;
+    const { blobURL, isRecording, isPaused } = this.state;
 
     return(
       <MuiThemeProvider>
         <div>
-          <h1>React-Mic</h1>
+          <h1>React-Mic-Plus</h1>
           <p><a href="https://github.com/hackingbeauty/react-mic">Documentation</a></p>
           <ReactMic
             className="oscilloscope"
             record={isRecording}
+            pause={isPaused}
             backgroundColor="#FF4081"
             visualSetting="sinewave"
             audioBitsPerSecond= {128000}
@@ -74,18 +88,19 @@ export default class Demo extends Component {
             onStart={this.onStart}
             onSave={this.onSave}
             onData={this.onData}
+            onBlock={this.onBlock} //Only available in React-Mic-Plus
+            onPause={this.onPause} //Only available in React-Mic-Plus
             strokeColor="#000000" />
           <div>
-            <audio ref="audioSource" controls="controls" src={this.state.blobURL}></audio>
+            <audio ref="audioSource" controls="controls" src={blobURL}></audio>
           </div>
           <br />
           <br />
           <FloatingActionButton
             className="btn"
             secondary={true}
-            disabled={isRecording}
-            onClick={this.startRecording}>
-            <MicrophoneOn />
+            onClick={this.startOrPauseRecording}>
+            { (isRecording && !isPaused )? <PauseIcon /> : <MicrophoneOn /> }
           </FloatingActionButton>
           <FloatingActionButton
             className="btn"
