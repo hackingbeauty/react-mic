@@ -38,6 +38,7 @@ Check out the [demo](https://www.voicerecordpro.com/#/record).
   onData={function}        // callback to execute when chunk of audio data is available
   strokeColor={string}     // sound wave color
   backgroundColor={string} // background color
+  mimeType={string}        // sound type
 />
 
 ```
@@ -85,7 +86,8 @@ export class Example extends React.Component {
           onStop={this.onStop}
           onData={this.onData}
           strokeColor="#000000"
-          backgroundColor="#FF4081" />
+          backgroundColor="#FF4081"
+          mimeType="audio/wav" />
         <button onTouchTap={this.startRecording} type="button">Start</button>
         <button onTouchTap={this.stopRecording} type="button">Stop</button>
       </div>
