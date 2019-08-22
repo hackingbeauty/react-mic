@@ -6,7 +6,7 @@ Record a user's voice and display as an oscillation.  Plug-n-play component for 
 
 If you need a version of this React component that supports the WAV audio format so that you can record and play back audio recordings in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).  React-Mic-Plus also comes with an optional pause feature.
 
-**NEW!!!**  The full React code for [Voice Record Pro](https://voicerecordpro.com) with React-Mic-Plus built in is[now available](https://hackingbeautyllc.clickfunnels.com/sales-pagewlku31vk).  Create your audio recording or voice-activated React app by building on top of an expert codebase and fully responsive interface that runs on any device.  Let your users share audio recordings by just sharing a web link.  Installation support provided.  Contact [Mark](mailto:support@professionalreactapp.com) if you have any questions.
+**NEW!!!**  The full React code for [Voice Record Pro](https://voicerecordpro.com) with React-Mic-Plus built in is [now available](https://hackingbeautyllc.clickfunnels.com/sales-pagewlku31vk).  Create your audio recording or voice-activated React app by building on top of an expert codebase and fully responsive interface that runs on any device.  Let your users share audio recordings by just sharing a web link.  Installation support provided.  Contact [Mark](mailto:support@professionalreactapp.com) if you have any questions.
 
 Join the [Slack channel](https://publicslack.com/slacks/hackingbeauty/invites/new) if you have any questions or problems with React-Mic or React-Mic-Plus.
 
