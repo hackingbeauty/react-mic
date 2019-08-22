@@ -10,8 +10,6 @@ If you need a version of this React component that supports the WAV audio format
 
 Join the [Slack channel](https://publicslack.com/slacks/hackingbeauty/invites/new) if you have any questions or problems with React-Mic or React-Mic-Plus.
 
-Featured in the course ["How To Develop A Professional React App"](http://professionalreactapp.com).
-
 Works via the HTML5 MediaRecorder API ([currently only available in Chrome & Firefox](https://caniuse.com/#search=MediaRecorder)).
 
 ## Demos
