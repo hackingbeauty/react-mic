@@ -10,6 +10,7 @@ If you need a version of this React component that supports the WAV audio format
 
 Join the [Slack channel](https://publicslack.com/slacks/hackingbeauty/invites/new) if you have any questions or problems with React-Mic or React-Mic-Plus.
 
+Also check out my latest course on [building professional React apps](https://trainingprogram.professionalreactapp.com/sales-page48d2u9lq) for an employer, clients, or your own startup!
 
 
 ## Demos
