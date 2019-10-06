@@ -8,7 +8,7 @@ If you need a version of this React component that supports the WAV audio format
 
 **NEW!!!**  The full React code for [Voice Record Pro](https://voicerecordpro.com) with React-Mic-Plus built in is [now available](https://hackingbeautyllc.clickfunnels.com/sales-pagewlku31vk).  Create your audio recording or voice-activated React app by building on top of an expert codebase and fully responsive interface that runs on any device.  Let your users share audio recordings by just sharing a web link.  Installation support provided.  Contact [Mark](mailto:support@professionalreactapp.com) if you have any questions.
 
-Join the [Slack channel](https://publicslack.com/slacks/hackingbeauty/invites/new) if you have any questions or problems with React-Mic or React-Mic-Plus.
+Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic or React-Mic-Plus.
 
 Also check out my latest course on [building professional React apps](https://trainingprogram.professionalreactapp.com/sales-page48d2u9lq) for an employer, clients, or your own startup!
 
