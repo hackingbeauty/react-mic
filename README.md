@@ -4,13 +4,12 @@ Record a user's voice and display as an oscillation.  Plug-n-play component for 
 
 **PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as a WAV file in order to get full cross-browser and cross-device support.
 
-If you need a version of this React component that supports the WAV audio format so that you can record and play back audio recordings in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).  React-Mic-Plus also comes with an optional pause feature.
+If you need a version of this React component that supports the WAV audio format so that you can record audio recordings in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).  React-Mic-Plus also comes with an optional pause feature and additional premium enhancements.
 
-**NEW!!!**  The full React code for [Voice Record Pro](https://voicerecordpro.com) with React-Mic-Plus built in is [now available](https://hackingbeautyllc.clickfunnels.com/sales-pagewlku31vk).  Create your audio recording or voice-activated React app by building on top of an expert codebase and fully responsive interface that runs on any device.  Let your users share audio recordings by just sharing a web link.  Installation support provided.  Contact [Mark](mailto:support@professionalreactapp.com) if you have any questions.
 
 Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic or React-Mic-Plus.
 
-Also check out my latest course on [building professional React apps](https://trainingprogram.professionalreactapp.com/sales-page48d2u9lq) for an employer, clients, or your own startup!
+Also check out my latest course on [building professional React apps](https://training.professionalreactapp.com/workshop) for an employer, clients, or your own startup!
 
 
 ## Demos
