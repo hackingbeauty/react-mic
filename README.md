@@ -6,6 +6,9 @@ Record a user's voice and display as an oscillation.  Plug-n-play component for 
 
 If you need a version of this React component that supports the WAV audio format so that you can record audio recordings in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).  React-Mic-Plus also comes with an optional pause feature and additional premium enhancements.
 
+If you need to play back audio with a super cool visualization, then take a look at [https://react-sound-display.professionalreactapp.com/](React-Sound-Display).  With React-Sound-Display you can play back audio as either an oscilation or as frequency bars.
+
+See a demo of React-Sound-Display in action [here](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09).  The demo uses the frequency bars visualization, but you can also choose to display audio as an oscillation.
 
 Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic or React-Mic-Plus.
 
