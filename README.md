@@ -1,6 +1,6 @@
 # React-Mic
 
-Record a user's voice and display as an oscillation.
+Record a user's voice and display as an oscillation (or frequency bars).
 
 Plug-n-play component for React apps.
 
@@ -8,44 +8,30 @@ Audio is saved as [WebM](https://en.wikipedia.org/wiki/WebM) audio file format. 
 
 **PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as a WAV file in order to get full cross-browser and cross-device support.
 
-# React-Mic-Plus
+You can do that with the premium enhancement of this component called [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com/sales-page23901658).
 
-If you need a version of this React component that supports the WAV audio format so that you can record audio recordings in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).
+Companies that develop speech-recognition apps, voice-activated software, apps that require audio recording features, or language-learning products all use React-Mic-Plus.
 
-The goal: develop one codebase, and deploy apps that can record audio to *any* device.  One codebase, every device.  The beauty of building for the Web.
-
-React-Mic-Plus also comes with an optional pause feature and additional [premium enhancements](https://react-mic-plus.professionalreactapp.com).
-
-# React-Sound-Display
-
-If you need to play back audio with a super cool visualization, you can do that with [React-Sound-Display](https://react-sound-display.professionalreactapp.com).  With React-Sound-Display you can play back audio and synchronize it with awesome visualizations that will impress your users.  You can choose to display audio as either oscillations or frequency bars (your choice).
-
-See a demo of React-Sound-Display in action [here](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09) (using frequency bars visualization).
-
-# Get Support
-
-Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic, React-Mic-Plus, or React-Sound-Display.  I'm here to help you build amazing apps with audio recording capabilities.
-
-Customers of React-Mic-Plus and associated products frequently develop voice-activate apps, speech recognition apps, language learning apps, and much more.
-
-# React Training Program
-
-Register your seat for the FREE training workshop on [how to develop and design professional React apps](https://training.professionalreactapp.com/workshop) for an employer, clients, or your own startup.
-
-
-## Demos
-
-Check out the [demo](https://www.voicerecordpro.com/#/record).
 
 ## Installation
 
 `npm install --save react-mic`
+
+`yarn add react-mic`
+
+## Demos
+
+Check out the simple React-Mic [demo](https://hackingbeauty.github.io/react-mic/).
 
 ## Features
 
 - Record audio from microphone
 - Display sound wave as voice is being recorded
 - Save audio as BLOB
+
+## License
+
+MIT
 
 ## Usage
 
@@ -54,9 +40,12 @@ Check out the [demo](https://www.voicerecordpro.com/#/record).
 <ReactMic
   record={boolean}         // defaults -> false.  Set to true to begin recording
   pause={boolean}          // defaults -> false.  Available in React-Mic-Plus upgrade only
+  visualSetting="sinewave" // defaults -> "sinewave".  Other option is "frequencyBars"
   className={string}       // provide css class name
-  onStop={function}        // callback to execute when audio stops recording
-  onData={function}        // callback to execute when chunk of audio data is available
+  onStop={function}        // called when audio stops recording
+  onData={function}        // called when chunk of audio data is available
+  onBlock={function}       // called if user selected "block" when prompted to allow microphone access.
+  //onBlock is available in React-Mic-Plus upgrade only.
   strokeColor={string}     // sound wave color
   backgroundColor={string} // background color
 />
@@ -115,6 +104,62 @@ export class Example extends React.Component {
 }
 ```
 
-## License
+# React-Mic-Plus
 
-MIT
+![Voice Record Pro](https://professionalreactapp.com/assets/images/voice-record-pro-iphone-encased-small.png)
+
+If you need a version of this React component that supports the WAV audio format so that you can record audio in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).
+
+The goal: develop one codebase and deploy an app that can record audio on *any* device.  One codebase, every device.  The beauty of building for the Web.
+
+React-Mic-Plus also comes with an optional pause feature and additional [premium enhancements](https://react-mic-plus.professionalreactapp.com).
+
+[Demo](https://voicerecordpro.com/#/record) of React-Mic-Plus in action (using oscillation visualization).
+
+Existing members, please log into the private member's area [here](https://hackingbeautyllc.clickfunnels.com/react-mic-plus-members-area).
+
+**PLEASE NOTE**: Apple does not allow audio recording from the Chrome browser on Iphone/iOS.  To record audio from a web application on an Iphone, a user must use the Safari browser.  There is no way around this.
+
+&nbsp;
+&nbsp;
+
+# Private Member's Area
+
+After you get the code for React-Mic-Plus, you'll get instant access to the private member's area.
+
+In the private member's area, you'll get access to a video course that will teach you how to integrate React-Mic-Plus into your app.
+
+![React-Mic-Plus private member's area](https://professionalreactapp.com/assets/images/react-mic-plus-private-members-area.png)
+
+&nbsp;
+&nbsp;
+
+# React-Sound-Display
+
+![React-Sound-Display snapshot](https://professionalreactapp.com/assets/images/thumbnails/thumb-playback-view-2.png)
+
+If you need to play back audio with a super cool visualization, you can do that with [React-Sound-Display](https://react-sound-display.professionalreactapp.com).
+
+With React-Sound-Display you can play back audio and synchronize it with awesome visualizations that will impress your users.  You can choose to display audio as either oscillations or frequency bars (your choice).
+
+[Demo](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/test-recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09) of React-Sound-Display (using oscillation visualization).
+
+[Demo](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09) of React-Sound-Display (using frequency bars visualization).
+
+&nbsp;
+&nbsp;
+
+# Get Support
+
+Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic, React-Mic-Plus, or React-Sound-Display.  I'm here to help you build amazing apps with audio recording capabilities.
+
+Customers of React-Mic-Plus and associated products frequently develop voice-activated apps, speech recognition apps, language learning apps, and much more.
+
+&nbsp;
+&nbsp;
+
+# React Training
+
+Register your seat for the FREE training workshop on [how to develop and design professional React apps](https://training.professionalreactapp.com/workshop) for an employer, clients, or your own startup.
+
+Get the skills to become a 6 figure Front-End Engineer, or learn how to develop and design your own products using the insanely popular React.js tech stack.
