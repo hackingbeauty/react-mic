@@ -93,36 +93,6 @@ export class Example extends React.Component {
   }
 }
 ```
-# Having issues with the lambda function?
-Try installing babel-preset-stage-1
-
-Include stage-1 in your webpack.config under presets.
-
-e.g.
-
-```js
-module.exports = {
-    entry: "./scripts/Main.js",
-    output: {
-        path: __dirname,
-        filename: "./static/script.js"
-    },
-    module: {
-        loaders: [{
-            test: /\.css$/,
-            loader: "style!css"
-        }, {
-            test: /\.js$/,
-            // exclude: /(node_modules)/,
-            loader: 'babel-loader',
-            query: {
-                presets: ['es2015', 'react', 'stage-1']
-            }
-        }]
-
-    }
-};
-```
 
 ## License
 
