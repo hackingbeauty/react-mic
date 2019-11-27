@@ -1,5 +1,5 @@
 # React-Mic
-
+ 
 Record a user's voice and display as an oscillation (or frequency bars).
 
 Plug-n-play component for React apps.
@@ -116,20 +116,9 @@ React-Mic-Plus also comes with an optional pause feature and additional [premium
 
 [Demo](https://voicerecordpro.com/#/record) of React-Mic-Plus in action (using oscillation visualization).
 
-Existing members, please log into the private member's area [here](https://hackingbeautyllc.clickfunnels.com/react-mic-plus-members-area).
+Existing customers, please access the latest code updates from the private member's area [here](https://hackingbeautyllc.clickfunnels.com/react-mic-plus-members-area).
 
 **PLEASE NOTE**: Apple does not allow audio recording from the Chrome browser on Iphone/iOS.  To record audio from a web application on an Iphone, a user must use the Safari browser.  There is no way around this.
-
-&nbsp;
-&nbsp;
-
-# Private Member's Area
-
-After you get the code for React-Mic-Plus, you'll get instant access to the private member's area.
-
-In the private member's area, you'll get access to a video course that will teach you how to integrate React-Mic-Plus into your app.
-
-![React-Mic-Plus private member's area](https://professionalreactapp.com/assets/images/react-mic-plus-private-members-area.png)
 
 &nbsp;
 &nbsp;
@@ -158,8 +147,22 @@ Customers of React-Mic-Plus and associated products frequently develop voice-act
 &nbsp;
 &nbsp;
 
+# Voice Record Pro App Template
+
+Begin development of your audio-recording, speech-recognition, or language-learning app with an expert React codebase and basic features.
+
+Leare more about the app template [here](https://hackingbeautyllc.clickfunnels.com/sales-pagewlku31vk).
+
+&nbsp;
+&nbsp;
+
 # React Training
 
-Register your seat for the FREE training workshop on [how to develop and design professional React apps](https://training.professionalreactapp.com/workshop) for an employer, clients, or your own startup.
+Get the skills to become a 6 figure Front-End Engineer, and register your seat for the FREE training workshop ["How To Develop Professional React Apps"](https://professionalreactapp.com).
 
-Get the skills to become a 6 figure Front-End Engineer, or learn how to develop and design your own products using the insanely popular React.js tech stack.
+Learn how to develop high qualty apps using the insanely popular React.js for clients, employers, or your own startup.
+
+&nbsp;
+&nbsp;
+
+![React.js high salary](https://professionalreactapp.com/assets/images/react-salary.png)
