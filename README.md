@@ -149,9 +149,14 @@ Customers of React-Mic-Plus and associated products frequently develop voice-act
 
 # Voice Record Pro App Template
 
-Begin development of your audio-recording, speech-recognition, or language-learning app with an expert React codebase and basic features.
+Begin development of your audio-recording, speech-recognition, or language-learning app with an expert React codebase and basic features created by professional Front-End Engineers.  And save a *ton* of development time and headaches.
 
 Leare more about the app template [here](https://hackingbeautyllc.clickfunnels.com/sales-pagewlku31vk).
+
+Purchase of the expert template includes a video course which shows you how to install, configure, deploy, and change the UI theme of the template easily.
+
+![Voice Record Pro App Template](https://professionalreactapp.com/assets/images/expert-react-ui.png
+)
 
 &nbsp;
 &nbsp;
