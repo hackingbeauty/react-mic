@@ -155,8 +155,7 @@ Leare more about the app template [here](https://hackingbeautyllc.clickfunnels.c
 
 Purchase of the expert template includes a video course which shows you how to install, configure, deploy, and change the UI theme of the template easily.
 
-![Voice Record Pro App Template](https://professionalreactapp.com/assets/images/expert-react-ui.png
-)
+![Voice Record Pro App Template](https://images.clickfunnels.com/cc/3d9378f44f4aaf8ff31dcdeb136c7e/big-browser-voice-record-pro.png)
 
 &nbsp;
 &nbsp;
