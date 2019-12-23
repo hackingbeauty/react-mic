@@ -52,13 +52,15 @@ npm manifest:
       "language"
     ],
     "scripts": {
+      "build:demo": "npm run clean && webpack --progress --verbose --colors --display-error-details --config ./webpack.demo.config.js",
       "build": "nwb build-react-component",
       "clean": "nwb clean-module && npm clean-demo",
       "start": "nwb serve-react-demo",
       "test": "nwb test",
       "test:coverage": "nwb test --coverage",
       "test:watch": "nwb test --server",
-      "deploy": "nwb build-react-component && gh-pages -d demo/dist"
+      "deploy": "nwb build-react-component && gh-pages -d demo/dist",
+      "deploy": "npm run build && npm run build:demo && gh-pages -d demo/dist"
     },
     "peerDependencies": {
       "prop-types": "^15.5.10",
@@ -99,9 +101,6 @@ npm manifest:
       "url-loader": "^3.0.0",
       "webpack": "^4.41.4",
       "webpack-cli": "^3.3.10"
-  
-  
-  
     },
     "author": "Mark Muskardin",
     "homepage": "https://hackingbeauty.github.io/react-mic",
