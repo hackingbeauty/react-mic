@@ -1,22 +1,30 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add node-sass
+  /usr/local/bin/node /usr/local/bin/yarn install
 
 PATH: 
   /Users/markmuskardin/.rvm/gems/ruby-2.0.0-p648/bin:/Users/markmuskardin/.rvm/gems/ruby-2.0.0-p648@global/bin:/Users/markmuskardin/.rvm/rubies/ruby-2.0.0-p648/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/markmuskardin/.rvm/bin
 
 Yarn version: 
-  1.5.1
+  1.21.1
 
 Node version: 
-  10.8.0
+  11.10.1
 
 Platform: 
   darwin x64
 
+Trace: 
+  SyntaxError: /Users/markmuskardin/code/javascript/react-mic/package.json: Unexpected string in JSON at position 439
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+
 npm manifest: 
   {
     "name": "react-mic",
-    "version": "12.2.1",
+    "version": "12.4.1",
     "description": "Record audio from your microphone and display as a sound oscillation",
     "main": "lib/index.js",
     "jsnext:main": "es/index.js",
@@ -32,7 +40,16 @@ npm manifest:
       "react-component",
       "microphone",
       "MediaRecorder",
-      "volume meter"
+      "volume meter",
+      "audio recording",
+      "record audio"
+      "web audio api",
+      "html5 canvas",
+      "getUserMedia",
+      "voice recognition",
+      "voice activation",
+      "speech recognition",
+      "language"
     ],
     "scripts": {
       "build": "nwb build-react-component",
@@ -44,15 +61,47 @@ npm manifest:
       "deploy": "nwb build-react-component && gh-pages -d demo/dist"
     },
     "peerDependencies": {
+      "prop-types": "^15.5.10",
       "react": "16.x"
     },
     "devDependencies": {
       "gh-pages": "^1.0.0",
-      "material-ui": "^0.19.2",
-      "nwb": "^0.15.6",
-      "nwb-sass": "^0.6.0",
-      "react": "^16.0.0",
-      "react-dom": "^16.0.0"
+      "nwb": "^0.23.0",
+      "nwb-sass": "^0.9.0",
+      "@babel/core": "^7.7.7",
+      "@babel/plugin-proposal-class-properties": "^7.7.4",
+      "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+      "@babel/plugin-transform-runtime": "^7.7.6",
+      "@babel/preset-env": "^7.7.7",
+      "@babel/preset-react": "^7.7.4",
+      "@babel/runtime": "^7.7.7",
+      "babel-eslint": "^10.0.3",
+      "babel-loader": "^8.0.6",
+      "copy-webpack-plugin": "^5.1.1",
+      "css-loader": "^3.4.0",
+      "eslint": "^6.8.0",
+      "eslint-config-airbnb": "^18.0.1",
+      "eslint-plugin-import": "^2.19.1",
+      "eslint-plugin-jsx-a11y": "^6.2.3",
+      "eslint-plugin-react": "^7.17.0",
+      "exports-loader": "^0.7.0",
+      "extract-text-webpack-plugin": "^4.0.0-beta.0",
+      "file-loader": "^5.0.2",
+      "html-webpack-plugin": "^3.2.0",
+      "husky": "^3.1.0",
+      "lint-staged": "^9.5.0",
+      "react": "^16.12.0",
+      "react-dom": "^16.12.0",
+      "react-ga": "^2.7.0",
+      "rimraf": "^3.0.0",
+      "sass-loader": "^8.0.0",
+      "style-loader": "^1.1.1",
+      "url-loader": "^3.0.0",
+      "webpack": "^4.41.4",
+      "webpack-cli": "^3.3.10"
+  
+  
+  
     },
     "author": "Mark Muskardin",
     "homepage": "https://hackingbeauty.github.io/react-mic",
@@ -61,6 +110,17 @@ npm manifest:
     "dependencies": {
       "prop-types": "^15.5.10",
       "react-ga": "^2.2.0"
+    },
+    "lint-staged": {
+      "./src/**/*.js": [
+        "eslint --fix",
+        "git add"
+      ]
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "lint-staged"
+      }
     }
   }
 
@@ -120,13 +180,24 @@ Lockfile:
       json-stable-stringify "^1.0.1"
   
   ajv@^5.1.0:
-    version "5.2.3"
-    resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.2.3.tgz#c06f598778c44c6b161abafe3466b81ad1814ed2"
+    version "5.5.2"
+    resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
+    integrity sha1-c7Xuyj+rZT49P5Qis0GtQiBdyWU=
     dependencies:
       co "^4.6.0"
       fast-deep-equal "^1.0.0"
+      fast-json-stable-stringify "^2.0.0"
       json-schema-traverse "^0.3.0"
-      json-stable-stringify "^1.0.1"
+  
+  ajv@^6.5.5:
+    version "6.10.2"
+    resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.10.2.tgz#d3cea04d6b017b2894ad69040fec8b623eb4bd52"
+    integrity sha512-TXtUUEYHuaTEbLZWIKUr5pmBuhDLy+8KYtPYdcV8qC+pOZL+NKqYwvWSRrVXHn+ZmRRAu8vJTAznH7Oag6RVRw==
+    dependencies:
+      fast-deep-equal "^2.0.1"
+      fast-json-stable-stringify "^2.0.0"
+      json-schema-traverse "^0.4.1"
+      uri-js "^4.2.2"
   
   align-text@^0.1.1, align-text@^0.1.3:
     version "0.1.4"
@@ -275,6 +346,7 @@ Lockfile:
   async-foreach@^0.1.3:
     version "0.1.3"
     resolved "https://registry.yarnpkg.com/async-foreach/-/async-foreach-0.1.3.tgz#36121f845c0578172de419a97dbeb1d16ec34542"
+    integrity sha1-NhIfhFwFeBct5Bmpfb6x0W7DRUI=
   
   async@1.x, async@^1.4.0:
     version "1.5.2"
@@ -286,7 +358,7 @@ Lockfile:
     dependencies:
       lodash "^4.14.0"
   
-  async@^2.0.1, async@^2.1.2:
+  async@^2.1.2:
     version "2.5.0"
     resolved "https://registry.yarnpkg.com/async/-/async-2.5.0.tgz#843190fd6b7357a0b9e1c956edddd5ec8462b54d"
     dependencies:
@@ -329,10 +401,16 @@ Lockfile:
   aws-sign2@~0.7.0:
     version "0.7.0"
     resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
+    integrity sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=
   
-  aws4@^1.2.1, aws4@^1.6.0:
+  aws4@^1.2.1:
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
+  
+  aws4@^1.6.0, aws4@^1.8.0:
+    version "1.9.0"
+    resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.0.tgz#24390e6ad61386b0a747265754d2a17219de862c"
+    integrity sha512-Uvq6hVe90D0B2WEnUqtdgY1bATGz3mw33nH9Y+dmA+w5DHvUmBgkr5rM/KCHpCsiFNRUfokW/szpPPgMK2hm4A==
   
   babel-cli@6.22.2:
     version "6.22.2"
@@ -1213,6 +1291,11 @@ Lockfile:
     version "3.2.0"
     resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
   
+  big.js@^5.2.2:
+    version "5.2.2"
+    resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
+    integrity sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
+  
   binary-extensions@^1.0.0:
     version "1.10.0"
     resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.10.0.tgz#9aeb9a6c5e88638aad171e167f5900abe24835d0"
@@ -1263,18 +1346,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
     dependencies:
       hoek "2.x.x"
-  
-  boom@4.x.x:
-    version "4.3.1"
-    resolved "https://registry.yarnpkg.com/boom/-/boom-4.3.1.tgz#4f8a3005cb4a7e3889f749030fd25b96e01d2e31"
-    dependencies:
-      hoek "4.x.x"
-  
-  boom@5.x.x:
-    version "5.2.0"
-    resolved "https://registry.yarnpkg.com/boom/-/boom-5.2.0.tgz#5dd9da6ee3a5f302077436290cb717d3f4a54e02"
-    dependencies:
-      hoek "4.x.x"
   
   bowser@^1.7.3:
     version "1.7.3"
@@ -1520,8 +1591,8 @@ Lockfile:
       chalk "^1.1.3"
   
   clean-css@4.1.x:
-    version "4.1.9"
-    resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.9.tgz#35cee8ae7687a49b98034f70de00c4edd3826301"
+    version "4.1.11"
+    resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.1.11.tgz#2ecdf145aba38f54740f26cefd0ff3e03e125d6a"
     dependencies:
       source-map "0.5.x"
   
@@ -1554,6 +1625,16 @@ Lockfile:
       string-width "^1.0.1"
       strip-ansi "^3.0.1"
       wrap-ansi "^2.0.0"
+  
+  clone-deep@^2.0.1:
+    version "2.0.2"
+    resolved "https://registry.yarnpkg.com/clone-deep/-/clone-deep-2.0.2.tgz#00db3a1e173656730d1188c3d6aced6d7ea97713"
+    integrity sha512-SZegPTKjCgpQH63E+eN6mVEEPdQBOUzjyJm5Pora4lrwWRFS8I0QAxV/KD6vV/i0WuijHZWQC1fMsPEdxfdVCQ==
+    dependencies:
+      for-own "^1.0.0"
+      is-plain-object "^2.0.4"
+      kind-of "^6.0.0"
+      shallow-clone "^1.0.0"
   
   clone@^1.0.2:
     version "1.0.2"
@@ -1618,6 +1699,13 @@ Lockfile:
   combined-stream@^1.0.5, combined-stream@~1.0.5:
     version "1.0.5"
     resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.5.tgz#938370a57b4a51dea2c77c15d5c5fdf895164009"
+    dependencies:
+      delayed-stream "~1.0.0"
+  
+  combined-stream@^1.0.6, combined-stream@~1.0.6:
+    version "1.0.8"
+    resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.8.tgz#c3d45a8b34fd730631a110a8a2520682b31d5a7f"
+    integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
     dependencies:
       delayed-stream "~1.0.0"
   
@@ -1807,6 +1895,7 @@ Lockfile:
   cross-spawn@^3.0.0:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
+    integrity sha1-ElYDfsufDF9549bvE14wdwGEuYI=
     dependencies:
       lru-cache "^4.0.1"
       which "^1.2.9"
@@ -1828,12 +1917,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/cryptiles/-/cryptiles-2.0.5.tgz#3bdfecdc608147c1c67202fa291e7dca59eaa3b8"
     dependencies:
       boom "2.x.x"
-  
-  cryptiles@3.x.x:
-    version "3.1.2"
-    resolved "https://registry.yarnpkg.com/cryptiles/-/cryptiles-3.1.2.tgz#a89fbb220f5ce25ec56e8c4aa8a4fd7b5b0d29fe"
-    dependencies:
-      boom "5.x.x"
   
   crypto-browserify@^3.11.0:
     version "3.11.1"
@@ -2414,9 +2497,14 @@ Lockfile:
       utils-merge "1.0.0"
       vary "~1.1.0"
   
-  extend@^3.0.0, extend@~3.0.0, extend@~3.0.1:
+  extend@^3.0.0, extend@~3.0.0:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
+  
+  extend@~3.0.1, extend@~3.0.2:
+    version "3.0.2"
+    resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
+    integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
   
   external-editor@^2.0.1:
     version "2.0.5"
@@ -2464,8 +2552,19 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.3.0.tgz#96918440e3041a7a414f8c52e3c574eb3c3e1e05"
   
   fast-deep-equal@^1.0.0:
-    version "1.0.0"
-    resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-1.0.0.tgz#96256a3bc975595eb36d82e9929d060d893439ff"
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-1.1.0.tgz#c053477817c86b51daa853c81e059b733d023614"
+    integrity sha1-wFNHeBfIa1HaqFPIHgWbcz0CNhQ=
+  
+  fast-deep-equal@^2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
+    integrity sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk=
+  
+  fast-json-stable-stringify@^2.0.0:
+    version "2.1.0"
+    resolved "https://registry.yarnpkg.com/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz#874bf69c6f404c2b5d99c481341399fd55892633"
+    integrity sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==
   
   fast-levenshtein@~2.0.4:
     version "2.0.6"
@@ -2564,6 +2663,11 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
   
+  for-in@^0.1.3:
+    version "0.1.8"
+    resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
+    integrity sha1-2Hc5COMSVhCZUrH9ubP6hn0ndeE=
+  
   for-in@^1.0.1:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -2571,6 +2675,13 @@ Lockfile:
   for-own@^0.1.4:
     version "0.1.5"
     resolved "https://registry.yarnpkg.com/for-own/-/for-own-0.1.5.tgz#5265c681a4f294dabbf17c9509b6763aa84510ce"
+    dependencies:
+      for-in "^1.0.1"
+  
+  for-own@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/for-own/-/for-own-1.0.0.tgz#c63332f415cedc4b04dbfe70cf836494c53cb44b"
+    integrity sha1-xjMy9BXO3EsE2/5wz4NklMU8tEs=
     dependencies:
       for-in "^1.0.1"
   
@@ -2590,12 +2701,13 @@ Lockfile:
       combined-stream "^1.0.5"
       mime-types "^2.1.12"
   
-  form-data@~2.3.1:
-    version "2.3.1"
-    resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.1.tgz#6fb94fbd71885306d73d15cc497fe4cc4ecd44bf"
+  form-data@~2.3.1, form-data@~2.3.2:
+    version "2.3.3"
+    resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.3.tgz#dcce52c05f644f298c6a7ab936bd724ceffbf3a6"
+    integrity sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==
     dependencies:
       asynckit "^0.4.0"
-      combined-stream "^1.0.5"
+      combined-stream "^1.0.6"
       mime-types "^2.1.12"
   
   forwarded@~0.1.0:
@@ -2670,6 +2782,16 @@ Lockfile:
       mkdirp ">=0.5 0"
       rimraf "2"
   
+  fstream@^1.0.12:
+    version "1.0.12"
+    resolved "https://registry.yarnpkg.com/fstream/-/fstream-1.0.12.tgz#4e8ba8ee2d48be4f7d0de505455548eae5932045"
+    integrity sha512-WvJ193OHa0GHPEL+AycEJgxvBEwyfRkN1vhjca23OaPVMCaLCXTd5qAu82AjTcgP1UJmytkOKb63Ypde7raDIg==
+    dependencies:
+      graceful-fs "^4.1.2"
+      inherits "~2.0.0"
+      mkdirp ">=0.5 0"
+      rimraf "2"
+  
   function-bind@^1.0.2, function-bind@^1.1.0, function-bind@^1.1.1:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
@@ -2688,14 +2810,17 @@ Lockfile:
       wide-align "^1.1.0"
   
   gaze@^1.0.0:
-    version "1.1.2"
-    resolved "https://registry.yarnpkg.com/gaze/-/gaze-1.1.2.tgz#847224677adb8870d679257ed3388fdb61e40105"
+    version "1.1.3"
+    resolved "https://registry.yarnpkg.com/gaze/-/gaze-1.1.3.tgz#c441733e13b927ac8c0ff0b4c3b033f28812924a"
+    integrity sha512-BRdNm8hbWzFzWHERTrejLqwHDfS4GibPoq5wjTPIoJHoBtKGPg3xAFfxmM+9ztbXelxcf2hwQcaz1PtmFeue8g==
     dependencies:
       globule "^1.0.0"
   
   generate-function@^2.0.0:
-    version "2.0.0"
-    resolved "https://registry.yarnpkg.com/generate-function/-/generate-function-2.0.0.tgz#6858fe7c0969b7d4e9093337647ac79f60dfbe74"
+    version "2.3.1"
+    resolved "https://registry.yarnpkg.com/generate-function/-/generate-function-2.3.1.tgz#f069617690c10c868e73b8465746764f97c3479f"
+    dependencies:
+      is-property "^1.0.2"
   
   generate-object-property@^1.1.0:
     version "1.2.0"
@@ -2784,9 +2909,21 @@ Lockfile:
       once "^1.3.0"
       path-is-absolute "^1.0.0"
   
-  glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@~7.1.1:
+  glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1:
     version "7.1.2"
     resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
+    dependencies:
+      fs.realpath "^1.0.0"
+      inflight "^1.0.4"
+      inherits "2"
+      minimatch "^3.0.4"
+      once "^1.3.0"
+      path-is-absolute "^1.0.0"
+  
+  glob@^7.1.2, glob@~7.1.1:
+    version "7.1.6"
+    resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
+    integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
     dependencies:
       fs.realpath "^1.0.0"
       inflight "^1.0.4"
@@ -2817,11 +2954,12 @@ Lockfile:
       pinkie-promise "^2.0.0"
   
   globule@^1.0.0:
-    version "1.2.0"
-    resolved "https://registry.yarnpkg.com/globule/-/globule-1.2.0.tgz#1dc49c6822dd9e8a2fa00ba2a295006e8664bd09"
+    version "1.3.0"
+    resolved "https://registry.yarnpkg.com/globule/-/globule-1.3.0.tgz#41d0e9fb44afd4b80d93a23263714f90b3dec904"
+    integrity sha512-YlD4kdMqRCQHrhVdonet4TdRtv1/sZKepvoxNT4Nrhrp5HI8XFfc8kFlGlBn2myBo80aGp8Eft259mbcUJhgSg==
     dependencies:
       glob "~7.1.1"
-      lodash "~4.17.4"
+      lodash "~4.17.10"
       minimatch "~3.0.2"
   
   graceful-fs@4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.4, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
@@ -2859,6 +2997,7 @@ Lockfile:
   har-schema@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"
+    integrity sha1-qUwiJOvKwEeCoNkDVSHyRzW37JI=
   
   har-validator@~2.0.6:
     version "2.0.6"
@@ -2879,8 +3018,17 @@ Lockfile:
   har-validator@~5.0.3:
     version "5.0.3"
     resolved "https://registry.yarnpkg.com/har-validator/-/har-validator-5.0.3.tgz#ba402c266194f15956ef15e0fcf242993f6a7dfd"
+    integrity sha1-ukAsJmGU8VlW7xXg/PJCmT9qff0=
     dependencies:
       ajv "^5.1.0"
+      har-schema "^2.0.0"
+  
+  har-validator@~5.1.0:
+    version "5.1.3"
+    resolved "https://registry.yarnpkg.com/har-validator/-/har-validator-5.1.3.tgz#1ef89ebd3e4996557675eed9893110dc350fa080"
+    integrity sha512-sNvOCzEQNr/qrvJgc3UG/kD4QtlHycrzwS+6mfTrrSq97BvaYcPZZI1ZSqGSPR73Cxn4LKTD4PttRwfU7jWq5g==
+    dependencies:
+      ajv "^6.5.5"
       har-schema "^2.0.0"
   
   has-ansi@^2.0.0:
@@ -2953,15 +3101,6 @@ Lockfile:
       hoek "2.x.x"
       sntp "1.x.x"
   
-  hawk@~6.0.2:
-    version "6.0.2"
-    resolved "https://registry.yarnpkg.com/hawk/-/hawk-6.0.2.tgz#af4d914eb065f9b5ce4d9d11c1cb2126eecc3038"
-    dependencies:
-      boom "4.x.x"
-      cryptiles "3.x.x"
-      hoek "4.x.x"
-      sntp "2.x.x"
-  
   he@1.1.x:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
@@ -2977,10 +3116,6 @@ Lockfile:
   hoek@2.x.x:
     version "2.16.3"
     resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
-  
-  hoek@4.x.x:
-    version "4.2.0"
-    resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.0.tgz#72d9d0754f7fe25ca2d01ad8f8f9a9449a89526d"
   
   hoist-non-react-statics@^1.0.0:
     version "1.2.0"
@@ -3073,6 +3208,7 @@ Lockfile:
   http-signature@~1.2.0:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/http-signature/-/http-signature-1.2.0.tgz#9aecd925114772f3d95b65a60abb8f7c18fbace1"
+    integrity sha1-muzZJRFHcvPZW2WmCruPfBj7rOE=
     dependencies:
       assert-plus "^1.0.0"
       jsprim "^1.2.2"
@@ -3101,6 +3237,7 @@ Lockfile:
   in-publish@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/in-publish/-/in-publish-2.0.0.tgz#e20ff5e3a2afc2690320b6dc552682a9c7fadf51"
+    integrity sha1-4g/146KvwmkDILbcVSaCqcf631E=
   
   indent-string@^2.1.0:
     version "2.1.0"
@@ -3298,12 +3435,17 @@ Lockfile:
     dependencies:
       is-extglob "^2.1.0"
   
+  is-my-ip-valid@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/is-my-ip-valid/-/is-my-ip-valid-1.0.0.tgz#7b351b8e8edd4d3995d4d066680e664d94696824"
+  
   is-my-json-valid@^2.12.4:
-    version "2.16.1"
-    resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.16.1.tgz#5a846777e2c2620d1e69104e5d3a03b1f6088f11"
+    version "2.20.0"
+    resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.20.0.tgz#1345a6fca3e8daefc10d0fa77067f54cedafd59a"
     dependencies:
       generate-function "^2.0.0"
       generate-object-property "^1.1.0"
+      is-my-ip-valid "^1.0.0"
       jsonpointer "^4.0.0"
       xtend "^4.0.0"
   
@@ -3331,6 +3473,13 @@ Lockfile:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
   
+  is-plain-object@^2.0.4:
+    version "2.0.4"
+    resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-2.0.4.tgz#2c163b3fafb1b606d9d17928f05c2a1c38e07677"
+    integrity sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==
+    dependencies:
+      isobject "^3.0.1"
+  
   is-posix-bracket@^0.1.0:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/is-posix-bracket/-/is-posix-bracket-0.1.1.tgz#3334dc79774368e92f016e6fbc0a88f5cd6e6bc4"
@@ -3343,7 +3492,7 @@ Lockfile:
     version "2.1.0"
     resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-2.1.0.tgz#79a2a9ece7f096e80f36d2b2f3bc16c1ff4bf3fa"
   
-  is-property@^1.0.0:
+  is-property@^1.0.0, is-property@^1.0.2:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/is-property/-/is-property-1.0.2.tgz#57fe1c4e48474edd65b09911f26b1cd4095dda84"
   
@@ -3401,6 +3550,11 @@ Lockfile:
     dependencies:
       isarray "1.0.0"
   
+  isobject@^3.0.1:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
+    integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
+  
   isomorphic-fetch@^2.1.1:
     version "2.2.1"
     resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
@@ -3447,7 +3601,12 @@ Lockfile:
       which "^1.1.1"
       wordwrap "^1.0.0"
   
-  js-base64@^2.1.8, js-base64@^2.1.9:
+  js-base64@^2.1.8:
+    version "2.5.1"
+    resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
+    integrity sha512-M7kLczedRMYX4L8Mdh4MzyAMM9O5osx+4FcOQuTvr3A9F2D9S5JXheN0ewNbrvK2UatkTRhL5ejGmGSjNMiZuw==
+  
+  js-base64@^2.1.9:
     version "2.3.2"
     resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.3.2.tgz#a79a923666372b580f8e27f51845c6f7e8fbfbaf"
   
@@ -3492,6 +3651,12 @@ Lockfile:
   json-schema-traverse@^0.3.0:
     version "0.3.1"
     resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.3.1.tgz#349a6d44c53a51de89b40805c5d5e59b417d3340"
+    integrity sha1-NJptRMU6Ud6JtAgFxdXlm0F9M0A=
+  
+  json-schema-traverse@^0.4.1:
+    version "0.4.1"
+    resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"
+    integrity sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==
   
   json-schema@0.2.3:
     version "0.2.3"
@@ -3514,6 +3679,13 @@ Lockfile:
   json5@^0.5.0, json5@^0.5.1:
     version "0.5.1"
     resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
+  
+  json5@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.1.tgz#779fb0018604fa854eacbf6252180d83543e3dbe"
+    integrity sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
+    dependencies:
+      minimist "^1.2.0"
   
   jsonfile@^2.1.0:
     version "2.4.0"
@@ -3648,6 +3820,16 @@ Lockfile:
     dependencies:
       is-buffer "^1.1.5"
   
+  kind-of@^5.0.0:
+    version "5.1.0"
+    resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-5.1.0.tgz#729c91e2d857b7a419a1f9aa65685c4c33f5845d"
+    integrity sha512-NGEErnH6F2vUuXDh+OlbcKW7/wOcfdRHaZ7VWtqCztfHri/++YKmP51OdWeGPuqCOba6kk2OTe5d02VmTB80Pw==
+  
+  kind-of@^6.0.0:
+    version "6.0.2"
+    resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
+    integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
+  
   klaw@^1.0.0:
     version "1.3.1"
     resolved "https://registry.yarnpkg.com/klaw/-/klaw-1.3.1.tgz#4088433b46b3b1ba259d78785d8e96f73ba02439"
@@ -3694,6 +3876,15 @@ Lockfile:
       json5 "^0.5.0"
       object-assign "^4.0.1"
   
+  loader-utils@^1.0.1:
+    version "1.2.3"
+    resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.2.3.tgz#1ff5dc6911c9f0a062531a4c04b609406108c2c7"
+    integrity sha512-fkpz8ejdnEMG3s37wGL07iSBDg99O9D5yflE9RGNH3hRdx9SOwYfnGYdZOUIZitN8E+E2vkq3MUMYMvPYl5ZZA==
+    dependencies:
+      big.js "^5.2.2"
+      emojis-list "^2.0.0"
+      json5 "^1.0.1"
+  
   loader-utils@^1.0.2:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.1.0.tgz#c98aef488bcceda2ffb5e2de646d6a754429f5cd"
@@ -3728,6 +3919,7 @@ Lockfile:
   lodash.assign@^4.2.0:
     version "4.2.0"
     resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
+    integrity sha1-DZnzzNem0mHRm9rrkkUAXShYCOc=
   
   lodash.camelcase@^4.3.0:
     version "4.3.0"
@@ -3736,6 +3928,7 @@ Lockfile:
   lodash.clonedeep@^4.3.2:
     version "4.5.0"
     resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+    integrity sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=
   
   lodash.create@3.1.1:
     version "3.1.1"
@@ -3769,6 +3962,16 @@ Lockfile:
     version "4.6.0"
     resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
   
+  lodash.mergewith@^4.6.0:
+    version "4.6.2"
+    resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz#617121f89ac55f59047c7aec1ccd6654c6590f55"
+    integrity sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==
+  
+  lodash.tail@^4.1.1:
+    version "4.1.1"
+    resolved "https://registry.yarnpkg.com/lodash.tail/-/lodash.tail-4.1.1.tgz#d2333a36d9e7717c8ad2f7cacafec7c32b444664"
+    integrity sha1-0jM6NtnncXyK0vfKyv7HwytERmQ=
+  
   lodash.throttle@^4.1.1:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
@@ -3781,7 +3984,12 @@ Lockfile:
     version "3.10.1"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
   
-  lodash@^4.0.0, lodash@^4.0.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.1, lodash@~4.17.4:
+  lodash@^4.0.0, lodash@~4.17.10:
+    version "4.17.15"
+    resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+    integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  
+  lodash@^4.0.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.1:
     version "4.17.4"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
   
@@ -3831,8 +4039,8 @@ Lockfile:
       yallist "^2.1.2"
   
   macaddress@^0.2.8:
-    version "0.2.8"
-    resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"
+    version "0.2.9"
+    resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.9.tgz#3579b8b9acd5b96b4553abf0f394185a86813cb3"
   
   map-obj@^1.0.0, map-obj@^1.0.1:
     version "1.0.1"
@@ -3945,15 +4153,27 @@ Lockfile:
       bn.js "^4.0.0"
       brorand "^1.0.1"
   
+  mime-db@1.42.0:
+    version "1.42.0"
+    resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.42.0.tgz#3e252907b4c7adb906597b4b65636272cf9e7bac"
+    integrity sha512-UbfJCR4UAVRNgMpfImz05smAXK7+c+ZntjaA26ANtkXLlOe947Aag5zdIcKQULAiF9Cq4WxBi9jUs5zkA84bYQ==
+  
   mime-db@~1.30.0:
     version "1.30.0"
     resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.30.0.tgz#74c643da2dd9d6a45399963465b26d5ca7d71f01"
   
-  mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.15, mime-types@~2.1.16, mime-types@~2.1.17, mime-types@~2.1.7:
+  mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.15, mime-types@~2.1.16, mime-types@~2.1.7:
     version "2.1.17"
     resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.17.tgz#09d7a393f03e995a79f8af857b70a9e0ab16557a"
     dependencies:
       mime-db "~1.30.0"
+  
+  mime-types@~2.1.17, mime-types@~2.1.19:
+    version "2.1.25"
+    resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.25.tgz#39772d46621f93e2a80a856c53b86a62156a6437"
+    integrity sha512-5KhStqB5xpTAeGqKBAMgwaYMnQik7teQN4IAzC7npDv6kzeU6prfkR67bc87J1kWMPGkoaZSq1npmexMgkmEVg==
+    dependencies:
+      mime-db "1.42.0"
   
   mime@1.2.x:
     version "1.2.11"
@@ -4003,6 +4223,14 @@ Lockfile:
     version "0.0.10"
     resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
   
+  mixin-object@^2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/mixin-object/-/mixin-object-2.0.1.tgz#4fb949441dab182540f1fe035ba60e1947a5e57e"
+    integrity sha1-T7lJRB2rGCVA8f4DW6YOGUel5X4=
+    dependencies:
+      for-in "^0.1.3"
+      is-extendable "^0.1.1"
+  
   mkdirp@0.5.0:
     version "0.5.0"
     resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.0.tgz#1d73076a6df986cd9344e15e71fcc05a4c9abf12"
@@ -4047,7 +4275,12 @@ Lockfile:
     version "0.0.7"
     resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   
-  nan@^2.3.0, nan@^2.3.2:
+  nan@^2.10.0:
+    version "2.14.0"
+    resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
+    integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
+  
+  nan@^2.3.0:
     version "2.7.0"
     resolved "https://registry.yarnpkg.com/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
   
@@ -4060,6 +4293,11 @@ Lockfile:
   negotiator@0.6.1:
     version "0.6.1"
     resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+  
+  neo-async@^2.5.0:
+    version "2.6.1"
+    resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
+    integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
   
   no-case@^2.2.0:
     version "2.3.2"
@@ -4081,18 +4319,18 @@ Lockfile:
       is-stream "^1.0.1"
   
   node-gyp@^3.3.1:
-    version "3.6.2"
-    resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-3.6.2.tgz#9bfbe54562286284838e750eac05295853fa1c60"
+    version "3.8.0"
+    resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-3.8.0.tgz#540304261c330e80d0d5edce253a68cb3964218c"
+    integrity sha512-3g8lYefrRRzvGeSowdJKAKyks8oUpLEd/DyPV4eMhVlhJ0aNaZqIrNUIPuEWWTAoPqyFkfGrM67MC69baqn6vA==
     dependencies:
       fstream "^1.0.0"
       glob "^7.0.3"
       graceful-fs "^4.1.2"
-      minimatch "^3.0.2"
       mkdirp "^0.5.0"
       nopt "2 || 3"
       npmlog "0 || 1 || 2 || 3 || 4"
       osenv "0"
-      request "2"
+      request "^2.87.0"
       rimraf "2"
       semver "~5.3.0"
       tar "^2.0.0"
@@ -4141,9 +4379,10 @@ Lockfile:
       tar "^2.2.1"
       tar-pack "^3.4.0"
   
-  node-sass@^3.8.0:
-    version "3.13.1"
-    resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-3.13.1.tgz#7240fbbff2396304b4223527ed3020589c004fc2"
+  node-sass@4.9.2:
+    version "4.9.2"
+    resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.9.2.tgz#5e63fe6bd0f2ae3ac9d6c14ede8620e2b8bdb437"
+    integrity sha512-LdxoJLZutx0aQXHtWIYwJKMj+9pTjneTcLWJgzf2XbGu0q5pRNqW5QvFCEdm3mc5rJOdru/mzln5d0EZLacf6g==
     dependencies:
       async-foreach "^0.1.3"
       chalk "^1.1.1"
@@ -4154,13 +4393,16 @@ Lockfile:
       in-publish "^2.0.0"
       lodash.assign "^4.2.0"
       lodash.clonedeep "^4.3.2"
+      lodash.mergewith "^4.6.0"
       meow "^3.7.0"
       mkdirp "^0.5.1"
-      nan "^2.3.2"
+      nan "^2.10.0"
       node-gyp "^3.3.1"
       npmlog "^4.0.0"
-      request "^2.61.0"
-      sass-graph "^2.1.1"
+      request "2.87.0"
+      sass-graph "^2.2.4"
+      stdout-stream "^1.4.0"
+      "true-case-path" "^1.0.2"
   
   noop2@^2.0.0:
     version "2.0.0"
@@ -4242,12 +4484,13 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   
-  nwb-sass@^0.6.0:
-    version "0.6.0"
-    resolved "https://registry.yarnpkg.com/nwb-sass/-/nwb-sass-0.6.0.tgz#11852951692d7e922bc621eca9031d59e4463d3f"
+  nwb-sass@^0.9.0:
+    version "0.9.0"
+    resolved "https://registry.yarnpkg.com/nwb-sass/-/nwb-sass-0.9.0.tgz#dac9650d6a5fde24c9eac7ec85d91563bf9516ff"
+    integrity sha512-QHgK2c2W+OmADQbmEzJ4AXPWw0tGOGx5uk/IzSB5aCXHfHRzeSAvV7YKuE0UfxSgajXEZqPC2yHF+l3tECumSg==
     dependencies:
-      node-sass "^3.8.0"
-      sass-loader "^4.0.0"
+      node-sass "4.9.2"
+      sass-loader "7.1.0"
   
   nwb@^0.15.6:
     version "0.15.9"
@@ -4335,6 +4578,11 @@ Lockfile:
   oauth-sign@~0.8.1, oauth-sign@~0.8.2:
     version "0.8.2"
     resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
+  
+  oauth-sign@~0.9.0:
+    version "0.9.0"
+    resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
+    integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
   
   object-assign@4.1.0:
     version "4.1.0"
@@ -4439,7 +4687,15 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   
-  osenv@0, osenv@^0.1.4:
+  osenv@0:
+    version "0.1.5"
+    resolved "https://registry.yarnpkg.com/osenv/-/osenv-0.1.5.tgz#85cdfafaeb28e8677f416e287592b5f3f49ea410"
+    integrity sha512-0CWcCECdMVc2Rw3U5w9ZjqX6ga6ubk1xDVKxtBQPK7wis/0F2r9T6k4ydGYhecl7YUBxBVxhL5oisPsNxAPe2g==
+    dependencies:
+      os-homedir "^1.0.0"
+      os-tmpdir "^1.0.0"
+  
+  osenv@^0.1.4:
     version "0.1.4"
     resolved "https://registry.yarnpkg.com/osenv/-/osenv-0.1.4.tgz#42fe6d5953df06c8064be6f176c3d05aaaa34644"
     dependencies:
@@ -4562,6 +4818,7 @@ Lockfile:
   performance-now@^2.1.0:
     version "2.1.0"
     resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
+    integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
   
   phantomjs-prebuilt@2.1.14:
     version "2.1.14"
@@ -4594,6 +4851,11 @@ Lockfile:
   pify@^2.0.0:
     version "2.3.0"
     resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
+  
+  pify@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
+    integrity sha1-5aSs0sEB/fPZpNB/DbxNtJ3SgXY=
   
   pinkie-promise@^2.0.0:
     version "2.0.1"
@@ -4963,6 +5225,11 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
   
+  psl@^1.1.24:
+    version "1.6.0"
+    resolved "https://registry.yarnpkg.com/psl/-/psl-1.6.0.tgz#60557582ee23b6c43719d9890fb4170ecd91e110"
+    integrity sha512-SYKKmVel98NCOYXpkwUqZqh0ahZeeKfmisiLIcEZdsb+WbLv02g/dI5BUmZnIyOe7RzZtLax81nnb2HbvC2tzA==
+  
   public-encrypt@^4.0.0:
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/public-encrypt/-/public-encrypt-4.0.0.tgz#39f699f3a46560dd5ebacbca693caf7c65c18cc6"
@@ -4988,6 +5255,11 @@ Lockfile:
     version "1.4.1"
     resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
   
+  punycode@^2.1.0:
+    version "2.1.1"
+    resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
+    integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
+  
   q@^1.1.2:
     version "1.5.0"
     resolved "https://registry.yarnpkg.com/q/-/q-1.5.0.tgz#dd01bac9d06d30e6f219aecb8253ee9ebdc308f1"
@@ -5000,7 +5272,7 @@ Lockfile:
     version "6.2.0"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.0.tgz#3b7848c03c2dece69a9522b0fae8c4126d745f3b"
   
-  qs@6.5.1, qs@~6.5.1:
+  qs@6.5.1:
     version "6.5.1"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
   
@@ -5011,6 +5283,11 @@ Lockfile:
   qs@~6.4.0:
     version "6.4.0"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
+  
+  qs@~6.5.1, qs@~6.5.2:
+    version "6.5.2"
+    resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
+    integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
   
   query-string@^4.1.0:
     version "4.3.4"
@@ -5313,33 +5590,6 @@ Lockfile:
     dependencies:
       throttleit "^1.0.0"
   
-  request@2, request@^2.61.0:
-    version "2.83.0"
-    resolved "https://registry.yarnpkg.com/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
-    dependencies:
-      aws-sign2 "~0.7.0"
-      aws4 "^1.6.0"
-      caseless "~0.12.0"
-      combined-stream "~1.0.5"
-      extend "~3.0.1"
-      forever-agent "~0.6.1"
-      form-data "~2.3.1"
-      har-validator "~5.0.3"
-      hawk "~6.0.2"
-      http-signature "~1.2.0"
-      is-typedarray "~1.0.0"
-      isstream "~0.1.2"
-      json-stringify-safe "~5.0.1"
-      mime-types "~2.1.17"
-      oauth-sign "~0.8.2"
-      performance-now "^2.1.0"
-      qs "~6.5.1"
-      safe-buffer "^5.1.1"
-      stringstream "~0.0.5"
-      tough-cookie "~2.3.3"
-      tunnel-agent "^0.6.0"
-      uuid "^3.1.0"
-  
   request@2.81.0, request@~2.81.0:
     version "2.81.0"
     resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
@@ -5366,6 +5616,58 @@ Lockfile:
       tough-cookie "~2.3.0"
       tunnel-agent "^0.6.0"
       uuid "^3.0.0"
+  
+  request@2.87.0:
+    version "2.87.0"
+    resolved "https://registry.yarnpkg.com/request/-/request-2.87.0.tgz#32f00235cd08d482b4d0d68db93a829c0ed5756e"
+    integrity sha512-fcogkm7Az5bsS6Sl0sibkbhcKsnyon/jV1kF3ajGmF0c8HrttdKTPRT9hieOaQHA5HEq6r8OyWOo/o781C1tNw==
+    dependencies:
+      aws-sign2 "~0.7.0"
+      aws4 "^1.6.0"
+      caseless "~0.12.0"
+      combined-stream "~1.0.5"
+      extend "~3.0.1"
+      forever-agent "~0.6.1"
+      form-data "~2.3.1"
+      har-validator "~5.0.3"
+      http-signature "~1.2.0"
+      is-typedarray "~1.0.0"
+      isstream "~0.1.2"
+      json-stringify-safe "~5.0.1"
+      mime-types "~2.1.17"
+      oauth-sign "~0.8.2"
+      performance-now "^2.1.0"
+      qs "~6.5.1"
+      safe-buffer "^5.1.1"
+      tough-cookie "~2.3.3"
+      tunnel-agent "^0.6.0"
+      uuid "^3.1.0"
+  
+  request@^2.87.0:
+    version "2.88.0"
+    resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
+    integrity sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==
+    dependencies:
+      aws-sign2 "~0.7.0"
+      aws4 "^1.8.0"
+      caseless "~0.12.0"
+      combined-stream "~1.0.6"
+      extend "~3.0.2"
+      forever-agent "~0.6.1"
+      form-data "~2.3.2"
+      har-validator "~5.1.0"
+      http-signature "~1.2.0"
+      is-typedarray "~1.0.0"
+      isstream "~0.1.2"
+      json-stringify-safe "~5.0.1"
+      mime-types "~2.1.19"
+      oauth-sign "~0.9.0"
+      performance-now "^2.1.0"
+      qs "~6.5.2"
+      safe-buffer "^5.1.2"
+      tough-cookie "~2.4.3"
+      tunnel-agent "^0.6.0"
+      uuid "^3.3.2"
   
   request@~2.79.0:
     version "2.79.0"
@@ -5476,22 +5778,32 @@ Lockfile:
     version "5.1.1"
     resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
   
-  sass-graph@^2.1.1:
+  safe-buffer@^5.1.2:
+    version "5.2.0"
+    resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.0.tgz#b74daec49b1148f88c64b68d49b1e815c1f2f519"
+    integrity sha512-fZEwUGbVl7kouZs1jCdMLdt95hdIv0ZeHg6L7qPeciMZhZ+/gdesW4wgTARkrFWEpspjEATAzUGPG8N2jJiwbg==
+  
+  sass-graph@^2.2.4:
     version "2.2.4"
     resolved "https://registry.yarnpkg.com/sass-graph/-/sass-graph-2.2.4.tgz#13fbd63cd1caf0908b9fd93476ad43a51d1e0b49"
+    integrity sha1-E/vWPNHK8JCLn9k0dq1DpR0eC0k=
     dependencies:
       glob "^7.0.0"
       lodash "^4.0.0"
       scss-tokenizer "^0.2.3"
       yargs "^7.0.0"
   
-  sass-loader@^4.0.0:
-    version "4.1.1"
-    resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-4.1.1.tgz#79ef9468cf0bf646c29529e1f2cba6bd6e51c7bc"
+  sass-loader@7.1.0:
+    version "7.1.0"
+    resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-7.1.0.tgz#16fd5138cb8b424bf8a759528a1972d72aad069d"
+    integrity sha512-+G+BKGglmZM2GUSfT9TLuEp6tzehHPjAMoRRItOojWIqIGPloVCMhNIQuG639eJ+y033PaGTSjLaTHts8Kw79w==
     dependencies:
-      async "^2.0.1"
-      loader-utils "^0.2.15"
-      object-assign "^4.1.0"
+      clone-deep "^2.0.1"
+      loader-utils "^1.0.1"
+      lodash.tail "^4.1.1"
+      neo-async "^2.5.0"
+      pify "^3.0.0"
+      semver "^5.5.0"
   
   sax@~1.2.1:
     version "1.2.4"
@@ -5500,6 +5812,7 @@ Lockfile:
   scss-tokenizer@^0.2.3:
     version "0.2.3"
     resolved "https://registry.yarnpkg.com/scss-tokenizer/-/scss-tokenizer-0.2.3.tgz#8eb06db9a9723333824d3f5530641149847ce5d1"
+    integrity sha1-jrBtualyMzOCTT9VMGQRSYR85dE=
     dependencies:
       js-base64 "^2.1.8"
       source-map "^0.4.2"
@@ -5511,6 +5824,11 @@ Lockfile:
   semver@5.3.0, semver@~5.3.0:
     version "5.3.0"
     resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
+  
+  semver@^5.5.0:
+    version "5.7.1"
+    resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
+    integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
   
   semver@~4.3.3:
     version "4.3.6"
@@ -5588,6 +5906,15 @@ Lockfile:
       inherits "^2.0.1"
       safe-buffer "^5.0.1"
   
+  shallow-clone@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/shallow-clone/-/shallow-clone-1.0.0.tgz#4480cd06e882ef68b2ad88a3ea54832e2c48b571"
+    integrity sha512-oeXreoKR/SyNJtRJMAKPDSvd28OqEwG4eR/xc856cRGBII7gX9lvAqDxusPm0846z/w/hWYjI1NpKwJ00NHzRA==
+    dependencies:
+      is-extendable "^0.1.1"
+      kind-of "^5.0.0"
+      mixin-object "^2.0.1"
+  
   shebang-command@^1.2.0:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
@@ -5615,12 +5942,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/sntp/-/sntp-1.0.9.tgz#6541184cc90aeea6c6e7b35e2659082443c66198"
     dependencies:
       hoek "2.x.x"
-  
-  sntp@2.x.x:
-    version "2.0.2"
-    resolved "https://registry.yarnpkg.com/sntp/-/sntp-2.0.2.tgz#5064110f0af85f7cfdb7d6b67a40028ce52b4b2b"
-    dependencies:
-      hoek "4.x.x"
   
   socket.io-adapter@0.5.0:
     version "0.5.0"
@@ -5750,6 +6071,13 @@ Lockfile:
     version "1.3.1"
     resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
   
+  stdout-stream@^1.4.0:
+    version "1.4.1"
+    resolved "https://registry.yarnpkg.com/stdout-stream/-/stdout-stream-1.4.1.tgz#5ac174cdd5cd726104aa0c0b2bd83815d8d535de"
+    integrity sha512-j4emi03KXqJWcIeF8eIXkjMFN1Cmb8gUlDYGeBALLPo5qdyTfA9bOtl8m33lRoC+vFMkP3gl0WsDr6+gzxbbTA==
+    dependencies:
+      readable-stream "^2.0.1"
+  
   stream-browserify@^2.0.1:
     version "2.0.1"
     resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.1.tgz#66266ee5f9bdb9940a4e4514cafb43bb71e5c9db"
@@ -5796,9 +6124,9 @@ Lockfile:
     dependencies:
       safe-buffer "~5.1.0"
   
-  stringstream@~0.0.4, stringstream@~0.0.5:
-    version "0.0.5"
-    resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.5.tgz#4e484cd4de5a0bbbee18e46307710a8a81621878"
+  stringstream@~0.0.4:
+    version "0.0.6"
+    resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.6.tgz#7880225b0d4ad10e30927d167a1d6f2fd3b33a72"
   
   strip-ansi@^3.0.0, strip-ansi@^3.0.1:
     version "3.0.1"
@@ -5889,7 +6217,16 @@ Lockfile:
       tar "^2.2.1"
       uid-number "^0.0.6"
   
-  tar@^2.0.0, tar@^2.2.1:
+  tar@^2.0.0:
+    version "2.2.2"
+    resolved "https://registry.yarnpkg.com/tar/-/tar-2.2.2.tgz#0ca8848562c7299b8b446ff6a4d60cdbb23edc40"
+    integrity sha512-FCEhQ/4rE1zYv9rYXJw/msRqsnmlje5jHP6huWeBZ704jUTy02c5AZyWujpMR1ax6mVw9NyJMfuK2CMDWVIfgA==
+    dependencies:
+      block-stream "*"
+      fstream "^1.0.12"
+      inherits "2"
+  
+  tar@^2.2.1:
     version "2.2.1"
     resolved "https://registry.yarnpkg.com/tar/-/tar-2.2.1.tgz#8e4d2a256c0e2185c6b18ad694aec968b83cb1d1"
     dependencies:
@@ -5964,10 +6301,25 @@ Lockfile:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/toposort/-/toposort-1.0.4.tgz#a86107690cbee8cae43b349d2f60162500924dfc"
   
-  tough-cookie@~2.3.0, tough-cookie@~2.3.3:
+  tough-cookie@~2.3.0:
     version "2.3.3"
     resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.3.3.tgz#0b618a5565b6dea90bf3425d04d55edc475a7561"
     dependencies:
+      punycode "^1.4.1"
+  
+  tough-cookie@~2.3.3:
+    version "2.3.4"
+    resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.3.4.tgz#ec60cee38ac675063ffc97a5c18970578ee83655"
+    integrity sha512-TZ6TTfI5NtZnuyy/Kecv+CnoROnyXn2DN97LontgQpCwsX2XyLYCC0ENhYkehSOwAp8rTQKc/NUIF7BkQ5rKLA==
+    dependencies:
+      punycode "^1.4.1"
+  
+  tough-cookie@~2.4.3:
+    version "2.4.3"
+    resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.4.3.tgz#53f36da3f47783b0925afa06ff9f3b165280f781"
+    integrity sha512-Q5srk/4vDM54WJsJio3XNn6K2sCG+CQ8G5Wz6bZhRZoAe/+TxjWB/GlFAnYEbkYVlON9FMk/fE3h2RLpPXo4lQ==
+    dependencies:
+      psl "^1.1.24"
       punycode "^1.4.1"
   
   trim-newlines@^1.0.0:
@@ -5977,6 +6329,13 @@ Lockfile:
   trim-right@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
+  
+  "true-case-path@^1.0.2":
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/true-case-path/-/true-case-path-1.0.3.tgz#f813b5a8c86b40da59606722b144e3225799f47d"
+    integrity sha512-m6s2OdQe5wgpFMC+pAJ+q9djG82O2jcHPOI6RNg1yy9rCYR+WD6Nbpl32fDpfC56nirdRy+opFa/Vk7HYhqaew==
+    dependencies:
+      glob "^7.1.2"
   
   tty-browserify@0.0.0:
     version "0.0.0"
@@ -6071,6 +6430,13 @@ Lockfile:
     version "1.1.3"
     resolved "https://registry.yarnpkg.com/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
   
+  uri-js@^4.2.2:
+    version "4.2.2"
+    resolved "https://registry.yarnpkg.com/uri-js/-/uri-js-4.2.2.tgz#94c540e1ff772956e2299507c010aea6c8838eb0"
+    integrity sha512-KY9Frmirql91X2Qgjry0Wd4Y+YTdrdZheS8TFwvkbLWf/G5KNJDCh6pKL5OZctEW4+0Baa5idK2ZQuELRwPznQ==
+    dependencies:
+      punycode "^2.1.0"
+  
   url-loader@0.5.7:
     version "0.5.7"
     resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-0.5.7.tgz#67e8779759f8000da74994906680c943a9b0925d"
@@ -6122,9 +6488,14 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   
-  uuid@^3.0.0, uuid@^3.1.0:
+  uuid@^3.0.0:
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
+  
+  uuid@^3.1.0, uuid@^3.3.2:
+    version "3.3.3"
+    resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
+    integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
   
   v8flags@^2.0.10:
     version "2.1.1"
@@ -6267,7 +6638,14 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/which-module/-/which-module-1.0.0.tgz#bba63ca861948994ff307736089e3b96026c2a4f"
   
-  which@1, which@^1.1.1, which@^1.2.1, which@^1.2.9:
+  which@1:
+    version "1.3.1"
+    resolved "https://registry.yarnpkg.com/which/-/which-1.3.1.tgz#a45043d54f5805316da8d62f9f50918d3da70b0a"
+    integrity sha512-HxJdYWq1MTIQbJ3nw0cqssHoTNU267KlrDuGZ1WYlxDStUtKUhOaJmh112/TZmHxxUfuJqPXSOm7tDyas0OSIQ==
+    dependencies:
+      isexe "^2.0.0"
+  
+  which@^1.1.1, which@^1.2.1, which@^1.2.9:
     version "1.3.0"
     resolved "https://registry.yarnpkg.com/which/-/which-1.3.0.tgz#ff04bdfc010ee547d780bec38e1ac1c2777d253a"
     dependencies:
@@ -6332,8 +6710,8 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.3.tgz#185a888c04eca46c3e4070d99f7b49de3528992d"
   
   xtend@^4.0.0, xtend@~4.0.1:
-    version "4.0.1"
-    resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
+    version "4.0.2"
+    resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   
   y18n@^3.2.1:
     version "3.2.1"
@@ -6352,6 +6730,7 @@ Lockfile:
   yargs-parser@^5.0.0:
     version "5.0.0"
     resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-5.0.0.tgz#275ecf0d7ffe05c77e64e7c86e4cd94bf0e1228a"
+    integrity sha1-J17PDX/+Bcd+ZOfIbkzZS/DhIoo=
     dependencies:
       camelcase "^3.0.0"
   
@@ -6376,6 +6755,7 @@ Lockfile:
   yargs@^7.0.0:
     version "7.1.0"
     resolved "https://registry.yarnpkg.com/yargs/-/yargs-7.1.0.tgz#6ba318eb16961727f5d284f8ea003e8d6154d0c8"
+    integrity sha1-a6MY6xaWFyf10oT46gA+jWFU0Mg=
     dependencies:
       camelcase "^3.0.0"
       cliui "^3.2.0"
@@ -6409,207 +6789,3 @@ Lockfile:
   yeast@0.1.2:
     version "0.1.2"
     resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
-
-Trace: 
-  Error: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass: Command failed.
-  Exit code: 1
-  Command: sh
-  Arguments: -c node scripts/build.js
-  Directory: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass
-  Output:
-  Building: /usr/local/bin/node /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/bin/node-gyp.js rebuild --verbose --libsass_ext= --libsass_cflags= --libsass_ldflags= --libsass_library=
-  gyp info it worked if it ends with ok
-  gyp verb cli [ '/usr/local/bin/node',
-  gyp verb cli   '/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/bin/node-gyp.js',
-  gyp verb cli   'rebuild',
-  gyp verb cli   '--verbose',
-  gyp verb cli   '--libsass_ext=',
-  gyp verb cli   '--libsass_cflags=',
-  gyp verb cli   '--libsass_ldflags=',
-  gyp verb cli   '--libsass_library=' ]
-  gyp info using node-gyp@3.6.2
-  gyp info using node@10.8.0 | darwin | x64
-  gyp verb command rebuild []
-  gyp verb command clean []
-  gyp verb clean removing "build" directory
-  gyp verb command configure []
-  gyp verb check python checking for Python executable "python2" in the PATH
-  gyp verb `which` failed Error: not found: python2
-  gyp verb `which` failed     at getNotFoundError (/Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:13:12)
-  gyp verb `which` failed     at F (/Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:68:19)
-  gyp verb `which` failed     at E (/Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:80:29)
-  gyp verb `which` failed     at /Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:89:16
-  gyp verb `which` failed     at /Users/markmuskardin/code/javascript/react-mic/node_modules/isexe/index.js:42:5
-  gyp verb `which` failed     at /Users/markmuskardin/code/javascript/react-mic/node_modules/isexe/mode.js:8:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed  python2 { Error: not found: python2
-  gyp verb `which` failed     at getNotFoundError (/Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:13:12)
-  gyp verb `which` failed     at F (/Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:68:19)
-  gyp verb `which` failed     at E (/Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:80:29)
-  gyp verb `which` failed     at /Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:89:16
-  gyp verb `which` failed     at /Users/markmuskardin/code/javascript/react-mic/node_modules/isexe/index.js:42:5
-  gyp verb `which` failed     at /Users/markmuskardin/code/javascript/react-mic/node_modules/isexe/mode.js:8:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed   stack:
-  gyp verb `which` failed    'Error: not found: python2\n    at getNotFoundError (/Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:13:12)\n    at F (/Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:68:19)\n    at E (/Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:80:29)\n    at /Users/markmuskardin/code/javascript/react-mic/node_modules/which/which.js:89:16\n    at /Users/markmuskardin/code/javascript/react-mic/node_modules/isexe/index.js:42:5\n    at /Users/markmuskardin/code/javascript/react-mic/node_modules/isexe/mode.js:8:5\n    at FSReqWrap.oncomplete (fs.js:152:21)',
-  gyp verb `which` failed   code: 'ENOENT' }
-  gyp verb check python checking for Python executable "python" in the PATH
-  gyp verb `which` succeeded python /usr/bin/python
-  gyp verb check python version `/usr/bin/python -c "import platform; print(platform.python_version());"` returned: "2.7.10\n"
-  gyp verb get node dir no --target version specified, falling back to host node version: 10.8.0
-  gyp verb command install [ '10.8.0' ]
-  gyp verb install input version string "10.8.0"
-  gyp verb install installing version: 10.8.0
-  gyp verb install --ensure was passed, so won't reinstall if already installed
-  gyp verb install version is already installed, need to check "installVersion"
-  gyp verb got "installVersion" 9
-  gyp verb needs "installVersion" 9
-  gyp verb install version is good
-  gyp verb get node dir target node version installed: 10.8.0
-  gyp verb build dir attempting to create "build" dir: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/build
-  gyp verb build dir "build" dir needed to be created? /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/build
-  gyp verb build/config.gypi creating config file
-  gyp verb build/config.gypi writing out config file: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/build/config.gypi
-  gyp verb config.gypi checking for gypi file: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/config.gypi
-  gyp verb common.gypi checking for gypi file: /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/common.gypi
-  gyp verb gyp gyp format was not specified; forcing "make"
-  gyp info spawn /usr/bin/python
-  gyp info spawn args [ '/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/gyp/gyp_main.py',
-  gyp info spawn args   'binding.gyp',
-  gyp info spawn args   '-f',
-  gyp info spawn args   'make',
-  gyp info spawn args   '-I',
-  gyp info spawn args   '/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass/build/config.gypi',
-  gyp info spawn args   '-I',
-  gyp info spawn args   '/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/addon.gypi',
-  gyp info spawn args   '-I',
-  gyp info spawn args   '/Users/markmuskardin/.node-gyp/10.8.0/include/node/common.gypi',
-  gyp info spawn args   '-Dlibrary=shared_library',
-  gyp info spawn args   '-Dvisibility=default',
-  gyp info spawn args   '-Dnode_root_dir=/Users/markmuskardin/.node-gyp/10.8.0',
-  gyp info spawn args   '-Dnode_gyp_dir=/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp',
-  gyp info spawn args   '-Dnode_lib_file=/Users/markmuskardin/.node-gyp/10.8.0/<(target_arch)/node.lib',
-  gyp info spawn args   '-Dmodule_root_dir=/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass',
-  gyp info spawn args   '-Dnode_engine=v8',
-  gyp info spawn args   '--depth=.',
-  gyp info spawn args   '--no-parallel',
-  gyp info spawn args   '--generator-output',
-  gyp info spawn args   'build',
-  gyp info spawn args   '-Goutput_dir=.' ]
-  gyp verb command build []
-  gyp verb build type Release
-  gyp verb architecture x64
-  gyp verb node dev dir /Users/markmuskardin/.node-gyp/10.8.0
-  gyp verb `which` succeeded for `make` /usr/bin/make
-  gyp info spawn make
-  gyp info spawn args [ 'V=1', 'BUILDTYPE=Release', '-C', 'build' ]
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/ast.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/ast.o ../src/libsass/src/ast.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/base64vlq.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/base64vlq.o ../src/libsass/src/base64vlq.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/bind.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/bind.o ../src/libsass/src/bind.cpp
-    cc '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/cencode.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/cencode.o ../src/libsass/src/cencode.c
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/color_maps.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/color_maps.o ../src/libsass/src/color_maps.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/constants.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/constants.o ../src/libsass/src/constants.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/context.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/context.o ../src/libsass/src/context.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/cssize.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/cssize.o ../src/libsass/src/cssize.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/emitter.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/emitter.o ../src/libsass/src/emitter.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/environment.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/environment.o ../src/libsass/src/environment.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/error_handling.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/error_handling.o ../src/libsass/src/error_handling.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/eval.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/eval.o ../src/libsass/src/eval.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/expand.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/expand.o ../src/libsass/src/expand.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/extend.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/extend.o ../src/libsass/src/extend.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/file.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/file.o ../src/libsass/src/file.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/functions.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/functions.o ../src/libsass/src/functions.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/inspect.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/inspect.o ../src/libsass/src/inspect.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/json.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/json.o ../src/libsass/src/json.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/lexer.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/lexer.o ../src/libsass/src/lexer.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/listize.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/listize.o ../src/libsass/src/listize.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/memory_manager.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/memory_manager.o ../src/libsass/src/memory_manager.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/node.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/node.o ../src/libsass/src/node.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/output.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/output.o ../src/libsass/src/output.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/parser.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/parser.o ../src/libsass/src/parser.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/plugins.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/plugins.o ../src/libsass/src/plugins.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/position.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/position.o ../src/libsass/src/position.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/prelexer.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/prelexer.o ../src/libsass/src/prelexer.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/remove_placeholders.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/remove_placeholders.o ../src/libsass/src/remove_placeholders.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/sass.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/sass.o ../src/libsass/src/sass.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/sass2scss.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/sass2scss.o ../src/libsass/src/sass2scss.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/sass_context.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/sass_context.o ../src/libsass/src/sass_context.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/sass_functions.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/sass_functions.o ../src/libsass/src/sass_functions.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/sass_util.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/sass_util.o ../src/libsass/src/sass_util.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/sass_values.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/sass_values.o ../src/libsass/src/sass_values.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/source_map.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/source_map.o ../src/libsass/src/source_map.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/to_c.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/to_c.o ../src/libsass/src/to_c.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/to_value.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/to_value.o ../src/libsass/src/to_value.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/units.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/units.o ../src/libsass/src/units.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/utf8_string.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/utf8_string.o ../src/libsass/src/utf8_string.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/util.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/util.o ../src/libsass/src/util.cpp
-    c++ '-DNODE_GYP_MODULE_NAME=libsass' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DLIBSASS_VERSION="3.3.6"' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=c++11 -stdlib=libc++ -fno-threadsafe-statics -fno-strict-aliasing -MMD -MF ./Release/.deps/Release/obj.target/libsass/src/libsass/src/values.o.d.raw   -c -o Release/obj.target/libsass/src/libsass/src/values.o ../src/libsass/src/values.cpp
-    rm -f Release/sass.a && ./gyp-mac-tool filter-libtool libtool  -static -o Release/sass.a Release/obj.target/libsass/src/libsass/src/ast.o Release/obj.target/libsass/src/libsass/src/base64vlq.o Release/obj.target/libsass/src/libsass/src/bind.o Release/obj.target/libsass/src/libsass/src/cencode.o Release/obj.target/libsass/src/libsass/src/color_maps.o Release/obj.target/libsass/src/libsass/src/constants.o Release/obj.target/libsass/src/libsass/src/context.o Release/obj.target/libsass/src/libsass/src/cssize.o Release/obj.target/libsass/src/libsass/src/emitter.o Release/obj.target/libsass/src/libsass/src/environment.o Release/obj.target/libsass/src/libsass/src/error_handling.o Release/obj.target/libsass/src/libsass/src/eval.o Release/obj.target/libsass/src/libsass/src/expand.o Release/obj.target/libsass/src/libsass/src/extend.o Release/obj.target/libsass/src/libsass/src/file.o Release/obj.target/libsass/src/libsass/src/functions.o Release/obj.target/libsass/src/libsass/src/inspect.o Release/obj.target/libsass/src/libsass/src/json.o Release/obj.target/libsass/src/libsass/src/lexer.o Release/obj.target/libsass/src/libsass/src/listize.o Release/obj.target/libsass/src/libsass/src/memory_manager.o Release/obj.target/libsass/src/libsass/src/node.o Release/obj.target/libsass/src/libsass/src/output.o Release/obj.target/libsass/src/libsass/src/parser.o Release/obj.target/libsass/src/libsass/src/plugins.o Release/obj.target/libsass/src/libsass/src/position.o Release/obj.target/libsass/src/libsass/src/prelexer.o Release/obj.target/libsass/src/libsass/src/remove_placeholders.o Release/obj.target/libsass/src/libsass/src/sass.o Release/obj.target/libsass/src/libsass/src/sass2scss.o Release/obj.target/libsass/src/libsass/src/sass_context.o Release/obj.target/libsass/src/libsass/src/sass_functions.o Release/obj.target/libsass/src/libsass/src/sass_util.o Release/obj.target/libsass/src/libsass/src/sass_values.o Release/obj.target/libsass/src/libsass/src/source_map.o Release/obj.target/libsass/src/libsass/src/to_c.o Release/obj.target/libsass/src/libsass/src/to_value.o Release/obj.target/libsass/src/libsass/src/units.o Release/obj.target/libsass/src/libsass/src/utf8_string.o Release/obj.target/libsass/src/libsass/src/util.o Release/obj.target/libsass/src/libsass/src/values.o
-    c++ '-DNODE_GYP_MODULE_NAME=binding' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_DARWIN_USE_64_BIT_INODE=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DBUILDING_NODE_EXTENSION' -I/Users/markmuskardin/.node-gyp/10.8.0/include/node -I/Users/markmuskardin/.node-gyp/10.8.0/src -I/Users/markmuskardin/.node-gyp/10.8.0/deps/uv/include -I/Users/markmuskardin/.node-gyp/10.8.0/deps/v8/include -I../../../../nan -I../src/libsass/include  -Os -gdwarf-2 -mmacosx-version-min=10.7 -arch x86_64 -Wall -Wendif-labels -W -Wno-unused-parameter -std=gnu++1y -stdlib=libc++ -fno-rtti -fno-exceptions -fno-threadsafe-statics -std=c++11 -MMD -MF ./Release/.deps/Release/obj.target/binding/src/binding.o.d.raw   -c -o Release/obj.target/binding/src/binding.o ../src/binding.cpp
-  In file included from ../src/binding.cpp:1:
-  In file included from ../../../../nan/nan.h:192:
-  ../../../../nan/nan_maybe_43_inl.h:112:15: error: no member named 'ForceSet' in 'v8::Object'
-    return obj->ForceSet(isolate->GetCurrentContext(), key, value, attribs);
-           ~~~  ^
-  In file included from ../src/binding.cpp:1:
-  ../../../../nan/nan.h:834:18: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
-      return node::MakeCallback(
-                   ^
-  /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:171:1: note: 'MakeCallback' has been explicitly marked deprecated here
-  NODE_DEPRECATED("Use MakeCallback(..., async_context)",
-  ^
-  /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:88:20: note: expanded from macro 'NODE_DEPRECATED'
-      __attribute__((deprecated(message))) declarator
-                     ^
-  In file included from ../src/binding.cpp:1:
-  ../../../../nan/nan.h:849:18: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
-      return node::MakeCallback(
-                   ^
-  /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:164:1: note: 'MakeCallback' has been explicitly marked deprecated here
-  NODE_DEPRECATED("Use MakeCallback(..., async_context)",
-  ^
-  /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:88:20: note: expanded from macro 'NODE_DEPRECATED'
-      __attribute__((deprecated(message))) declarator
-                     ^
-  In file included from ../src/binding.cpp:1:
-  ../../../../nan/nan.h:864:18: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
-      return node::MakeCallback(
-                   ^
-  /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:157:1: note: 'MakeCallback' has been explicitly marked deprecated here
-  NODE_DEPRECATED("Use MakeCallback(..., async_context)",
-  ^
-  /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:88:20: note: expanded from macro 'NODE_DEPRECATED'
-      __attribute__((deprecated(message))) declarator
-                     ^
-  In file included from ../src/binding.cpp:1:
-  ../../../../nan/nan.h:1473:31: warning: 'MakeCallback' is deprecated: Use MakeCallback(..., async_context) [-Wdeprecated-declarations]
-      return scope.Escape(node::MakeCallback(
-                                ^
-  /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:171:1: note: 'MakeCallback' has been explicitly marked deprecated here
-  NODE_DEPRECATED("Use MakeCallback(..., async_context)",
-  ^
-  /Users/markmuskardin/.node-gyp/10.8.0/include/node/node.h:88:20: note: expanded from macro 'NODE_DEPRECATED'
-      __attribute__((deprecated(message))) declarator
-                     ^
-  4 warnings and 1 error generated.
-  make: *** [Release/obj.target/binding/src/binding.o] Error 1
-  gyp ERR! build error 
-  gyp ERR! stack Error: `make` failed with exit code: 2
-  gyp ERR! stack     at ChildProcess.onExit (/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/lib/build.js:258:23)
-  gyp ERR! stack     at ChildProcess.emit (events.js:182:13)
-  gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:238:12)
-  gyp ERR! System Darwin 17.7.0
-  gyp ERR! command "/usr/local/bin/node" "/Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-gyp/bin/node-gyp.js" "rebuild" "--verbose" "--libsass_ext=" "--libsass_cflags=" "--libsass_ldflags=" "--libsass_library="
-  gyp ERR! cwd /Users/markmuskardin/code/javascript/react-mic/node_modules/nwb-sass/node_modules/node-sass
-  gyp ERR! node -v v10.8.0
-  gyp ERR! node-gyp -v v3.6.2
-  gyp ERR! not ok 
-  Build failed with error code: 1
-      at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
-      at ChildProcess.emit (events.js:182:13)
-      at maybeClose (internal/child_process.js:962:16)
-      at Socket.stream.socket.on (internal/child_process.js:381:11)
-      at Socket.emit (events.js:182:13)
-      at Pipe._handle.close (net.js:599:12)
