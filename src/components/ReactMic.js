@@ -5,20 +5,21 @@
 // http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
 
 import React, { Component }   from 'react'
-import { string, number, bool, func } from 'prop-types';
-import { MicrophoneRecorder } from '../libs/MicrophoneRecorder';
-import AudioContext           from '../libs/AudioContext';
-import AudioPlayer            from '../libs/AudioPlayer';
-import Visualizer             from '../libs/Visualizer';
+import {
+  string, number, bool, func
+} from 'prop-types'
+import { MicrophoneRecorder } from '../libs/MicrophoneRecorder'
+import AudioPlayer            from '../libs/AudioPlayer'
+import Visualizer             from '../libs/Visualizer'
 
 
 export default class ReactMic extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      microphoneRecorder  : null,
-      canvas              : null,
-      canvasCtx           : null
+      microphoneRecorder: null,
+      canvas: null,
+      canvasCtx: null
     }
   }
 
@@ -30,105 +31,117 @@ export default class ReactMic extends Component {
       onData,
       audioElem,
       audioBitsPerSecond,
+      echoCancellation,
+      autoGainControl,
+      noiseSuppression,
+      channelCount,
       mimeType
-    } = this.props;
-    const { visualizer } = this.refs;
-    const canvas = visualizer;
-    const canvasCtx = canvas.getContext("2d");
+    } = this.props
+    const { visualizer } = this.refs
+    const canvas = visualizer
+    const canvasCtx = canvas.getContext('2d')
     const options = {
-      audioBitsPerSecond : audioBitsPerSecond,
-      mimeType           : mimeType
+      audioBitsPerSecond,
+      mimeType
+    }
+    const soundOptions = {
+      echoCancellation,
+      autoGainControl,
+      noiseSuppression
     }
 
-    if(audioElem) {
-      AudioPlayer.create(audioElem);
+    if (audioElem) {
+      AudioPlayer.create(audioElem)
 
       this.setState({
-        canvas: canvas,
-        canvasCtx: canvasCtx
+        canvas,
+        canvasCtx
       }, () => {
-        this.visualize();
-      });
+        this.visualize()
+      })
     } else {
-
       this.setState({
         microphoneRecorder: new MicrophoneRecorder(
-                              onStart,
-                              onStop,
-                              onSave,
-                              onData,
-                              options
-                            ),
-        canvas: canvas,
-        canvasCtx: canvasCtx
+          onStart,
+          onStop,
+          onSave,
+          onData,
+          options,
+          soundOptions
+        ),
+        canvas,
+        canvasCtx
       }, () => {
-        this.visualize();
-      });
+        this.visualize()
+      })
     }
-
   }
 
   visualize = () => {
-    const self = this;
-    const { backgroundColor, strokeColor, width, height, visualSetting } = this.props;
-    const { canvas, canvasCtx } = this.state;
+    const self = this
+    const {
+      backgroundColor, strokeColor, width, height, visualSetting
+    } = this.props
+    const { canvas, canvasCtx } = this.state
 
-    if(visualSetting === 'sinewave') {
-      Visualizer.visualizeSineWave(canvasCtx, canvas, width, height, backgroundColor, strokeColor);
-    } else if(visualSetting === 'frequencyBars') {
-      Visualizer.visualizeFrequencyBars(canvasCtx, canvas, width, height, backgroundColor, strokeColor);
-    } else if(visualSetting === 'frequencyCircles') {
-      Visualizer.visualizeFrequencyCircles(canvasCtx, canvas, width, height, backgroundColor, strokeColor);
+    if (visualSetting === 'sinewave') {
+      Visualizer.visualizeSineWave(canvasCtx, canvas, width, height, backgroundColor, strokeColor)
+    } else if (visualSetting === 'frequencyBars') {
+      Visualizer.visualizeFrequencyBars(canvasCtx, canvas, width, height, backgroundColor, strokeColor)
+    } else if (visualSetting === 'frequencyCircles') {
+      Visualizer.visualizeFrequencyCircles(canvasCtx, canvas, width, height, backgroundColor, strokeColor)
     }
-
   }
 
   clear() {
-    const { width, height } = this.props;
-    const { canvasCtx  } = this.state;
-    canvasCtx.clearRect(0, 0, width, height);
+    const { width, height } = this.props
+    const { canvasCtx } = this.state
+    canvasCtx.clearRect(0, 0, width, height)
   }
 
   render() {
-    const { record, onStop, width, height } = this.props;
-    const { microphoneRecorder, canvasCtx } = this.state;
+    const {
+      record, onStop, width, height
+    } = this.props
+    const { microphoneRecorder, canvasCtx } = this.state
 
-    if(record) {
-      if(microphoneRecorder) {
-        microphoneRecorder.startRecording();
-
-      }
-    } else {
+    if (record) {
       if (microphoneRecorder) {
-        microphoneRecorder.stopRecording(onStop);
-        this.clear();
+        microphoneRecorder.startRecording()
       }
+    } else if (microphoneRecorder) {
+      microphoneRecorder.stopRecording(onStop)
+      this.clear()
     }
 
-    return (<canvas ref="visualizer" height={height} width={width} className={this.props.className}></canvas>);
+    return (<canvas ref="visualizer" height={height} width={width} className={this.props.className} />)
   }
 }
 
 ReactMic.propTypes = {
-  backgroundColor : string,
-  strokeColor     : string,
-  className       : string,
+  backgroundColor: string,
+  strokeColor: string,
+  className: string,
   audioBitsPerSecond: number,
-  mimeType        : string,
-  height          : number,
-  record          : bool.isRequired,
-  onStop          : func,
-  onData          : func
-};
+  mimeType: string,
+  height: number,
+  record: bool.isRequired,
+  onStop: func,
+  onData: func
+}
 
 ReactMic.defaultProps = {
-  backgroundColor   : 'rgba(255, 255, 255, 0.5)',
-  strokeColor       : '#000000',
-  className         : 'visualizer',
+  backgroundColor: 'rgba(255, 255, 255, 0.5)',
+  strokeColor: '#000000',
+  className: 'visualizer',
   audioBitsPerSecond: 128000,
-  mimeType          : 'audio/webm;codecs=opus',
-  record            : false,
-  width             : 640,
-  height            : 100,
-  visualSetting     : 'sinewave'
+  mimeType: 'audio/webm;codecs=opus',
+  record: false,
+  width: 640,
+  height: 100,
+  visualSetting: 'sinewave',
+  echoCancellation: false,
+  autoGainControl: false,
+  noiseSuppression: false,
+  channelCount: 2
 }

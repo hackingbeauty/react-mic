@@ -61,12 +61,6 @@ module.exports = {
       },
       __DEVELOPMENT__: false
     }),
-    new CopyWebpackPlugin([
-      {
-        from: 'src/libs/wasm/WasmMp3Encoder.wasm',
-        to: PATH_OUT
-      }
-    ]),
     new HtmlWebpackPlugin({
       hash: true,
       title: 'React-Mic',

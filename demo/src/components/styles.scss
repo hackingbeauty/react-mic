@@ -64,10 +64,10 @@ body #project-wrapper #project-container #content #controls {
 }
 body #project-wrapper #project-container #content #controls .column {
   float: left;
-  font-size: 2em;
+  font-size: 3em;
 }
 body #project-wrapper #project-container #content #controls .column:nth-child(even) {
-  font-size: 3em;
+  font-size: 2em;
 }
 body #project-wrapper #project-container #content #controls .column:nth-child(n+2):nth-child(-n+4) {
   color: white !important;
