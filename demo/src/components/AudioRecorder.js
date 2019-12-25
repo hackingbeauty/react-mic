@@ -129,7 +129,7 @@ class AudioRecorder extends Component {
         </div>
         <div>
           <p>If you want to record audio on ALL devices (iOS, Android, Desktop),
-          then get your copy of <a href="https://react-mic-gold.professionalreactapp.com/sales-page34701298">React-Mic-Gold</a>!  You can save audio as MP3 or WAV files.
+          then get your copy of <a href="https://react-mic-gold.professionalreactapp.com/sales-page34701298">React-Mic-Gold</a>!  You can save audio as MP3 or WAV files, and you can pause recordings.
           </p>
           <p>You can also get the <a href="https://hackingbeautyllc.clickfunnels.com/sales-page31558494">Voice Record Pro App Template</a> and develop any audio recording, speech recognition, voice activation, or language-learning app you could imagine.</p>
           <p>Need help?  Join the <a href="https://hackingbeauty-slack-invite.herokuapp.com
