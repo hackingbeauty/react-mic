@@ -6,11 +6,11 @@ Plug-n-play component for React apps.
 
 Audio is saved as [WebM](https://en.wikipedia.org/wiki/WebM) audio file format.  Works via the HTML5 MediaRecorder API ([currently only available in Chrome & Firefox](https://caniuse.com/#search=MediaRecorder)).
 
-**PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as a WAV file in order to get full cross-browser and cross-device support.
+**PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as an MP3 or WAV file in order to get full cross-browser and cross-device support.
 
-You can do that with the premium enhancement of this component called [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com/sales-page23901658).
+You can do that with the premium enhancement of this component called [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
 
-Companies that develop speech-recognition apps, voice-activated software, apps that require audio recording features, or language-learning products all use React-Mic-Plus.
+Companies that develop speech-recognition apps, voice-activated software, apps that require audio recording features, or language-learning products all use React-Mic-Gold.
 
 
 ## Installation
@@ -104,17 +104,35 @@ export class Example extends React.Component {
 }
 ```
 
+# React-Mic-Gold
+
+![Voice Record Pro](https://professionalreactapp.com/assets/images/react-mic-gold-voice-record-pro-iphone-encased-small.png)
+
+Get your copy of React-Mic-Gold, the premium enhanced version of React-Mic [here](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
+
+React-Mic-Gold lets you record audio as either MP3 or WAV files.  The MP3 audio format is super compressed which will result in small file sizes, and is widely supported.
+
+Encoding of recorded audio into MP3 format happens in the browser, within the [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298) component, via a combination of advanced Web technologies (Web Workers and Web Assembly).
+
+You won't have to continuously stream audio data to your back-end server or API endpoint to save audio as an MP3 file.
+
+Ultimately, the goal is this: develop one codebase and deploy an app that can record audio on *any* device (including iOS devices).
+
+One codebase, every device.  The beauty of building for the Web.
+
+React-Mic-Gold also comes with an optional pause feature and additional [premium enhancements](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
+
+
 # React-Mic-Plus
 
 ![Voice Record Pro](https://professionalreactapp.com/assets/images/voice-record-pro-iphone-encased-small.png)
 
-If you need a version of this React component that supports the WAV audio format so that you can record audio in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).
+If you need a version of this React component that supports the WAV audio format only, so that you can record audio in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).
 
-The goal: develop one codebase and deploy an app that can record audio on *any* device.  One codebase, every device.  The beauty of building for the Web.
-
-React-Mic-Plus also comes with an optional pause feature and additional [premium enhancements](https://react-mic-plus.professionalreactapp.com).
 
 [Demo](https://voicerecordpro.com/#/record) of React-Mic-Plus in action (using oscillation visualization).
+
+Note:  React-Mic-Plus only records audio in the WAV audio format.  If you need to save you audio files as MP3, then get your copy of [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
 
 Existing customers, please access the latest code updates from the private member's area [here](https://hackingbeautyllc.clickfunnels.com/react-mic-plus-members-area).
 
