@@ -6,11 +6,11 @@ Plug-n-play component for React apps.
 
 Audio is saved as [WebM](https://en.wikipedia.org/wiki/WebM) audio file format.  Works via the HTML5 MediaRecorder API ([currently only available in Chrome & Firefox](https://caniuse.com/#search=MediaRecorder)).
 
-**PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as a WAV file in order to get full cross-browser and cross-device support.
+**PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as an MP3 or WAV file in order to get full cross-browser and cross-device support.
 
-You can do that with the premium enhancement of this component called [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com/sales-page23901658).
+You can do that with the premium enhancement of this component called [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
 
-Companies that develop speech-recognition apps, voice-activated software, apps that require audio recording features, or language-learning products all use React-Mic-Plus.
+Companies that develop speech-recognition apps, voice-activated software, apps that require audio recording features, or language-learning products use React-Mic-Gold.
 
 
 ## Installation
@@ -39,15 +39,15 @@ MIT
 
 <ReactMic
   record={boolean}         // defaults -> false.  Set to true to begin recording
-  pause={boolean}          // defaults -> false.  Available in React-Mic-Plus upgrade only
+  pause={boolean}          // defaults -> false.  Available in React-Mic-Gold/Plus upgrade only
   visualSetting="sinewave" // defaults -> "sinewave".  Other option is "frequencyBars"
   className={string}       // provide css class name
   onStop={function}        // called when audio stops recording
   onData={function}        // called when chunk of audio data is available
-  onBlock={function}       // called if user selected "block" when prompted to allow microphone access.
-  //onBlock is available in React-Mic-Plus upgrade only.
-  strokeColor={string}     // sound wave color
+  onBlock={function}       // called if user selected "block" when prompted to allow microphone access...onBlock is available in React-Mic-Gold/Plus upgrade only.
+  strokeColor={string}     // sinewave or frequency bar color
   backgroundColor={string} // background color
+  mimeType="audio/mp3"     // defaults -> "audio/mp3".  Set to "audio/wav" for WAV audio format.  Available in React-Mic-Gold/Plus only.
 />
 
 ```
@@ -63,19 +63,14 @@ export class Example extends React.Component {
     this.state = {
       record: false
     }
-
   }
 
   startRecording = () => {
-    this.setState({
-      record: true
-    });
+    this.setState({ record: true });
   }
 
   stopRecording = () => {
-    this.setState({
-      record: false
-    });
+    this.setState({ record: false });
   }
 
   onData(recordedBlob) {
@@ -104,19 +99,41 @@ export class Example extends React.Component {
 }
 ```
 
+# React-Mic-Gold
+
+![Voice Record Pro](https://professionalreactapp.com/assets/images/react-mic-gold-voice-record-pro-iphone-encased-small.png)
+
+Get your copy of React-Mic-Gold, the premium enhanced version of React-Mic [here](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
+
+[React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298) lets you record audio as either MP3 or WAV files.  The MP3 audio format is super compressed which will result in small file sizes, and is widely supported across all devices.
+
+## Demo
+
+Check out the simple [demo](https://hackingbeauty.github.io/react-mic-gold/) of React-Mic-Gold in action [here](https://hackingbeauty.github.io/react-mic-gold/).
+
+Also check out React-Mic-Gold integrated into an actual app [here](https://voicerecordpro.com/#/record).
+
+## Details
+
+Encoding of recorded audio into MP3 format happens in the browser, via a combination of advanced Web technologies (Web Workers and Web Assembly).
+
+You won't have to continuously stream audio data to your back-end server or API endpoint to convert captured audio into an MP3 file.
+
+One codebase, every device.  The beauty of building for the Web.
+
+React-Mic-Gold also comes with an optional pause feature and additional [premium enhancements](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
+
+&nbsp;
+&nbsp;
+
 # React-Mic-Plus
 
 ![Voice Record Pro](https://professionalreactapp.com/assets/images/voice-record-pro-iphone-encased-small.png)
 
-If you need a version of this React component that supports the WAV audio format so that you can record audio in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).
+If you need a version of React-Mic that supports the WAV audio format only, so that you can record audio in *any* browser and mobile device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).
 
-The goal: develop one codebase and deploy an app that can record audio on *any* device.  One codebase, every device.  The beauty of building for the Web.
 
-React-Mic-Plus also comes with an optional pause feature and additional [premium enhancements](https://react-mic-plus.professionalreactapp.com).
-
-[Demo](https://voicerecordpro.com/#/record) of React-Mic-Plus in action (using oscillation visualization).
-
-Existing customers, please access the latest code updates from the private member's area [here](https://hackingbeautyllc.clickfunnels.com/react-mic-plus-members-area).
+Note:  React-Mic-Plus only records audio in the WAV audio format.  If you need to save you audio files as MP3, then get your copy of [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
 
 **PLEASE NOTE**: Apple does not allow audio recording from the Chrome browser on Iphone/iOS.  To record audio from a web application on an Iphone, a user must use the Safari browser.  There is no way around this.
 
@@ -142,7 +159,7 @@ With React-Sound-Display you can play back audio and synchronize it with awesome
 
 Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic, React-Mic-Plus, or React-Sound-Display.  I'm here to help you build amazing apps with audio recording capabilities.
 
-Customers of React-Mic-Plus and associated products frequently develop voice-activated apps, speech recognition apps, language learning apps, and much more.
+Customers of React-Mic-Gold, React-Mic-Plus, and associated products develop audio recording apps, voice-activated apps, speech recognition apps, language learning apps, and much more.
 
 &nbsp;
 &nbsp;
@@ -155,12 +172,12 @@ Leare more about the app template [here](https://hackingbeautyllc.clickfunnels.c
 
 Purchase of the expert template includes a video course which shows you how to install, configure, deploy, and change the UI theme of the template easily.
 
-![Voice Record Pro App Template](https://images.clickfunnels.com/cc/3d9378f44f4aaf8ff31dcdeb136c7e/big-browser-voice-record-pro.png)
+![Voice Record Pro App Template](https://images.clickfunnels.com/7e/c18561919d4387b238b64acaccedc6/New-Mockup-1.png)
 
 &nbsp;
 &nbsp;
 
-# React Training
+# Professional React Training
 
 Get the skills to become a 6 figure Front-End Engineer, and register your seat for the FREE training workshop ["How To Develop Professional React Apps"](https://professionalreactapp.com).
 
