@@ -148,9 +148,9 @@ If you need to play back audio with a super cool visualization, you can do that 
 
 With React-Sound-Display you can play back audio and synchronize it with awesome visualizations that will impress your users.  You can choose to display audio as either oscillations or frequency bars (your choice).
 
-[Demo](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/test-recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09) of React-Sound-Display (using oscillation visualization).
+[Demo](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09) of React-Sound-Display (using oscillation visualization).
 
-[Demo](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09) of React-Sound-Display (using frequency bars visualization).
+[Demo](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/test-recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09) of React-Sound-Display (using frequency bars visualization).
 
 &nbsp;
 &nbsp;
