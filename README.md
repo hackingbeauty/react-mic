@@ -105,21 +105,19 @@ export class Example extends React.Component {
 
 Get your copy of React-Mic-Gold, the premium enhanced version of React-Mic [here](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
 
-[React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298) lets you record audio as either MP3 or WAV files.  The MP3 audio format is super compressed which will result in small file sizes, and is widely supported across all devices.
+[React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298) lets you record audio as either MP3 or WAV files.  The MP3 audio file format is super compressed which will result in small file sizes, and is widely supported across all devices.  The WAV audio file format is uncompressed and is used when you need professional quality audio; however, the file size is *significantly* larger.
 
-## Demo
+## Demos
 
-Check out the simple [demo](https://hackingbeauty.github.io/react-mic-gold/) of React-Mic-Gold in action [here](https://hackingbeauty.github.io/react-mic-gold/).
+Check out the simple demo of React-Mic-Gold in action [here](https://hackingbeauty.github.io/react-mic-gold/).
 
-Also check out React-Mic-Gold integrated into an actual app [here](https://voicerecordpro.com/#/record).
+Also, check out React-Mic-Gold integrated into an actual app [here](https://voicerecordpro.com/#/record).
 
 ## Details
 
-Encoding of recorded audio into MP3 format happens in the browser, via a combination of advanced Web technologies (Web Workers and Web Assembly).
+In React-Mic-Gold, encoding of recorded audio into MP3 format happens in the browser, via a combination of advanced Web technologies (Web Workers and Web Assembly).
 
-You won't have to continuously stream audio data to your back-end server or API endpoint to convert captured audio into an MP3 file.
-
-One codebase, every device.  The beauty of building for the Web.
+You won't have to continuously stream audio data to your back-end server or API endpoint to convert captured audio into an MP3 file.  Althought you can if you want to.
 
 React-Mic-Gold also comes with an optional pause feature and additional [premium enhancements](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
 
@@ -137,27 +135,13 @@ Note:  React-Mic-Plus only records audio in the WAV audio format.  If you need t
 
 **PLEASE NOTE**: Apple does not allow audio recording from the Chrome browser on Iphone/iOS.  To record audio from a web application on an Iphone, a user must use the Safari browser.  There is no way around this.
 
-&nbsp;
-&nbsp;
-
-# React-Sound-Display
-
-![React-Sound-Display snapshot](https://professionalreactapp.com/assets/images/thumbnails/thumb-playback-view-2.png)
-
-If you need to play back audio with a super cool visualization, you can do that with [React-Sound-Display](https://react-sound-display.professionalreactapp.com).
-
-With React-Sound-Display you can play back audio and synchronize it with awesome visualizations that will impress your users.  You can choose to display audio as either oscillations or frequency bars (your choice).
-
-[Demo](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09) of React-Sound-Display (using oscillation visualization).
-
-[Demo](https://voicerecordpro.com/#/users/EskpUSvOc0TArFJhXveCvSUDyr92/test-recordings/5f2c9cc0-0e3b-11ea-9e25-a3ac66642b09) of React-Sound-Display (using frequency bars visualization).
 
 &nbsp;
 &nbsp;
 
 # Get Support
 
-Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic, React-Mic-Plus, or React-Sound-Display.  I'm here to help you build amazing apps with audio recording capabilities.
+Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic, React-Mic-Plus, or React-Sound-Gold.  I'm here to help you build amazing apps with audio recording capabilities.
 
 Customers of React-Mic-Gold, React-Mic-Plus, and associated products develop audio recording apps, voice-activated apps, speech recognition apps, language learning apps, and much more.
 
