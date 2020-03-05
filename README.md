@@ -39,15 +39,19 @@ MIT
 
 <ReactMic
   record={boolean}         // defaults -> false.  Set to true to begin recording
-  pause={boolean}          // defaults -> false.  Available in React-Mic-Gold/Plus upgrade only
+  pause={boolean}          // defaults -> false.  Available in React-Mic-Gold upgrade only
   visualSetting="sinewave" // defaults -> "sinewave".  Other option is "frequencyBars"
   className={string}       // provide css class name
   onStop={function}        // required - called when audio stops recording
   onData={function}        // optional - called when chunk of audio data is available
-  onBlock={function}       // optional - called if user selected "block" when prompted to allow microphone access...onBlock is available in React-Mic-Gold/Plus upgrade only.
+  onBlock={function}       // optional - called if user selected "block" when prompted to allow microphone access...onBlock is available in React-Mic-Gold upgrade only.
   strokeColor={string}     // sinewave or frequency bar color
   backgroundColor={string} // background color
-  mimeType="audio/mp3"     // defaults -> "audio/mp3".  Set to "audio/wav" for WAV audio format.  Available in React-Mic-Gold/Plus only.
+  mimeType="audio/mp3"     // defaults -> "audio/mp3".  Set to "audio/wav" for WAV audio format.  Available in React-Mic-Gold only.
+  echoCancellation={boolean} // defaults -> false
+  autoGainControl={boolean}  // defaults -> false
+  noiseSuppression={boolean} // defaults -> false
+  highpassFilter={boolean}   // defaults -> false
 />
 
 ```
