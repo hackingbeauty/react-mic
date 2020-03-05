@@ -34,7 +34,6 @@ export default class ReactMic extends Component {
       echoCancellation,
       autoGainControl,
       noiseSuppression,
-      highpassFilter,
       channelCount,
       mimeType
     } = this.props
@@ -48,8 +47,7 @@ export default class ReactMic extends Component {
     const soundOptions = {
       echoCancellation,
       autoGainControl,
-      noiseSuppression,
-      highpassFilter
+      noiseSuppression
     }
 
     if (audioElem) {
@@ -145,6 +143,5 @@ ReactMic.defaultProps = {
   echoCancellation: false,
   autoGainControl: false,
   noiseSuppression: false,
-  highpassFilter: false,
   channelCount: 2
 }

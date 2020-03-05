@@ -24,7 +24,6 @@ export class MicrophoneRecorder {
       echoCancellation,
       autoGainControl,
       noiseSuppression,
-      highpassFilter,
       channelCount
     } = soundOptions
 
@@ -36,13 +35,10 @@ export class MicrophoneRecorder {
 
     constraints = {
       audio: {
-        mandatory: {
-          echoCancellation,
-          autoGainControl,
-          noiseSuppression,
-          highpassFilter,
-          channelCount
-        }
+        echoCancellation,
+        autoGainControl,
+        noiseSuppression,
+        channelCount
       },
       video: false
     }
