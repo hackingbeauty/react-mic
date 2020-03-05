@@ -35,6 +35,7 @@ export default class ReactMic extends Component {
       autoGainControl,
       noiseSuppression,
       highpassFilter,
+      channelCount,
       mimeType
     } = this.props
     const { visualizer } = this.refs
@@ -144,5 +145,6 @@ ReactMic.defaultProps = {
   echoCancellation: false,
   autoGainControl: false,
   noiseSuppression: false,
-  highpassFilter: false
+  highpassFilter: false,
+  channelCount: 2
 }

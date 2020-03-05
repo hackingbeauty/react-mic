@@ -24,7 +24,8 @@ export class MicrophoneRecorder {
       echoCancellation,
       autoGainControl,
       noiseSuppression,
-      highpassFilter
+      highpassFilter,
+      channelCount
     } = soundOptions
 
     onStartCallback = onStart
@@ -36,10 +37,11 @@ export class MicrophoneRecorder {
     constraints = {
       audio: {
         mandatory: {
-          googEchoCancellation: echoCancellation,
-          googAutoGainControl: autoGainControl,
-          googNoiseSuppression: noiseSuppression,
-          googHighpassFilter: highpassFilter
+          echoCancellation,
+          autoGainControl,
+          noiseSuppression,
+          highpassFilter,
+          channelCount
         }
       },
       video: false
