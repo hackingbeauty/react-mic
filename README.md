@@ -1,5 +1,7 @@
+NEW training workshop ["How To Monetize Your Code"](http://www.howtomonetizeyourcode.com/webinar-registration-36943145)!  Learn how to combine your powerful coding skills with earning an income - and have a blast in the process :)
+
 # React-Mic
- 
+
 Record a user's voice and display as an oscillation (or frequency bars).
 
 Plug-n-play component for React apps.
