@@ -147,7 +147,9 @@ My name is Mark, I'm the creator of [React-Mic](https://github.com/hackingbeauty
 
 I strongly believe that the only way to learn is by doing.
 
-And the way I transform my students from novice to proficient is by teaching them how to develop and design an app I call [Voice Record Pro](https://voicerecordpro.com/).  It's the fastest way I can get you to be proficient because...you're actually developing a REAL production-ready app.  One that you'd get paid to develop in the industry.
+And the way I transform my students from novice to proficient is by teaching them how to develop and design an app I call [Voice Record Pro](https://voicerecordpro.com/).
+
+It's the fastest way I can get you to becoming proficient because you're actually developing a REAL production-ready app.  One that you'd get paid to develop in the industry.
 
 I hope to see you at the [workshop](https://professionalreactapp.com/)!
 
