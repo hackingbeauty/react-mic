@@ -143,7 +143,7 @@ Sign up for my FREE training workshop "[How To Develop Professional React Apps](
 
 The workshop is FILLED with good information that will help you either a) get a job or b) create your own applications using the insanely popular React.js ecosystem.
 
-My name is Mark, I'm the creator of [React-Mic](https://github.com/hackingbeauty/react-mic) and [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298) , and I'd be honored to be your mentor.
+My name is Mark, I'm the creator of [React-Mic](https://hackingbeauty.github.io/react-mic/) and [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298) , and I'd be honored to be your mentor.
 
 I strongly believe that the only way to learn is by doing.
 
