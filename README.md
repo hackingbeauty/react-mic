@@ -53,7 +53,6 @@ MIT
   echoCancellation={boolean} // defaults -> false
   autoGainControl={boolean}  // defaults -> false
   noiseSuppression={boolean} // defaults -> false
-  highpassFilter={boolean}   // defaults -> false
   channelCount={number}     // defaults -> 2 (stereo).  Specify 1 for mono.
 />
 
