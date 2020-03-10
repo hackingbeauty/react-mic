@@ -133,6 +133,15 @@ React-Mic-Gold also comes with an optional pause feature and additional [premium
 &nbsp;
 &nbsp;
 
+# Get Support
+
+Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic or React-Sound-Gold.  I'm here to help you build amazing apps with audio recording capabilities.
+
+Customers of React-Mic-Gold and associated products develop audio recording apps, voice-activated apps, speech recognition apps, language learning apps, and much more.
+
+&nbsp;
+&nbsp;
+
 # Professional React Training Workshop
 
 When I was learning how to develop apps with React, I didn't have a mentor.  I just learned everything through years of experience.
@@ -156,12 +165,3 @@ It's the fastest way I can get you to becoming proficient because you're actuall
 I hope to see you at the [workshop](https://professionalreactapp.com/)!
 
 ![Six Figure Front-End Engineer](https://professionalreactapp.com/assets/images/react-salary-large.png)
-
-# Get Support
-
-Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic or React-Sound-Gold.  I'm here to help you build amazing apps with audio recording capabilities.
-
-Customers of React-Mic-Gold and associated products develop audio recording apps, voice-activated apps, speech recognition apps, language learning apps, and much more.
-
-&nbsp;
-&nbsp;
