@@ -55,7 +55,7 @@ MIT
   noiseSuppression={boolean} // defaults -> false
   channelCount={number}     // defaults -> 2 (stereo).  Specify 1 for mono.
   bitRate={256000}          // defaults -> 128000 (128kbps).  React-Mic-Gold only.
-  sampleRate={96000}        // defaults -> 44100.  It accepts values only in range: 22050 to 96000
+  sampleRate={96000}        // defaults -> 44100 (44.1 kHz).  It accepts values only in range: 22050 to 96000.  React-Mic-Gold only.
   timeSlice={3000}          // defaults -> 4000 milliseconds.  The interval at which captured audio is returned to onData callback.  React-Mic-Gold only.
 />
 
