@@ -41,21 +41,22 @@ MIT
 
 <ReactMic
   record={boolean}         // defaults -> false.  Set to true to begin recording
-  pause={boolean}          // defaults -> false.  Available in React-Mic-Gold upgrade only
+  pause={boolean}          // defaults -> false.  React-Mic-Gold only
   visualSetting="sinewave" // defaults -> "sinewave".  Other option is "frequencyBars"
   className={string}       // provide css class name
   onStop={function}        // required - called when audio stops recording
   onData={function}        // optional - called when chunk of audio data is available
-  onBlock={function}       // optional - called if user selected "block" when prompted to allow microphone access...onBlock is available in React-Mic-Gold upgrade only.
+  onBlock={function}       // optional - called if user selected "block" when prompted to allow microphone access.  React-Mic-Gold only.
   strokeColor={string}     // sinewave or frequency bar color
   backgroundColor={string} // background color
-  mimeType="audio/mp3"     // defaults -> "audio/mp3".  Set to "audio/wav" for WAV audio format.  Available in React-Mic-Gold only.
+  mimeType="audio/mp3"     // defaults -> "audio/mp3".  Set to "audio/wav" for WAV audio format.  React-Mic-Gold only.
   echoCancellation={boolean} // defaults -> false
   autoGainControl={boolean}  // defaults -> false
   noiseSuppression={boolean} // defaults -> false
   channelCount={number}     // defaults -> 2 (stereo).  Specify 1 for mono.
-  bitRate={256000}          // defaults -> 128000 (128kbps).  Available in React-Mic-Gold only.
-  timeSlice={3000}          // defaults -> 4000ms.  The interval at which captured audio is returned to onData callback.  Available in React-Mic-Gold only.
+  bitRate={256000}          // defaults -> 128000 (128kbps).  React-Mic-Gold only.
+  sampleRate={96000}        // defaults -> 44100.  It accepts values only in range: 22050 to 96000
+  timeSlice={3000}          // defaults -> 4000 milliseconds.  The interval at which captured audio is returned to onData callback.  React-Mic-Gold only.
 />
 
 ```
