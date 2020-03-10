@@ -54,6 +54,8 @@ MIT
   autoGainControl={boolean}  // defaults -> false
   noiseSuppression={boolean} // defaults -> false
   channelCount={number}     // defaults -> 2 (stereo).  Specify 1 for mono.
+  bitRate={256000}          // defaults -> 128000 (128kbps).  Available in React-Mic-Gold only.
+  timeSlice={3000}          // defaults -> 4000ms.  The interval at which captured audio is returned to onData callback.  Available in React-Mic-Gold only.
 />
 
 ```
