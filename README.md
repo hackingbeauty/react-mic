@@ -133,6 +133,18 @@ React-Mic-Gold also comes with an optional pause feature and additional [premium
 &nbsp;
 &nbsp;
 
+# React-Mic-Plus
+
+If you need a version of this React component that only supports the WAV audio format on every device (iOS + Android), you can purchase [React-Mic-Plus](https://react-mic-plus.professionalreactapp.com).
+
+React-Mic-Plus also comes with an optional pause feature and additional [premium enhancements](https://react-mic-plus.professionalreactapp.com).
+
+**PLEASE NOTE**: Apple does not allow audio recording from the Chrome browser on Iphone/iOS.  To record audio from a web application on an Iphone, a user must use the Safari browser.  There is no way around this.
+
+&nbsp;
+&nbsp;
+
+
 # Get Support
 
 Join the [Slack channel](https://hackingbeauty-slack-invite.herokuapp.com) if you have any questions or problems with React-Mic or React-Sound-Gold.  I'm here to help you build amazing apps with audio recording capabilities.
