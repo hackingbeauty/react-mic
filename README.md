@@ -1,5 +1,3 @@
-NEW training workshop "[How To Monetize Your Code](http://www.howtomonetizeyourcode.com/webinar-registration-36943145)"!  Learn how to combine your powerful coding skills with earning an income - and have a blast in the process :)
-
 # React-Mic
 
 Record a user's voice and display as an oscillation (or frequency bars).
@@ -162,9 +160,9 @@ Of course, that entailed making a lot of mistakes and incurring technical debt.
 
 But that doesn't have to be you.  You can master React development in less than 1/2 the time by getting the right guidance.
 
-Sign up for my FREE training workshop "[How To Develop Professional React Apps](https://professionalreactapp.com/)", and I'll show you how companies create their software applications that make millions.
+Sign up for my exciting new training program at [ProfessionalReactApp.com](https://professionalreactapp.com/special-offer), and I'll show you how companies create their software applications that make millions.
 
-The workshop is FILLED with good information that will help you either a) get a job or b) create your own applications using the insanely popular React.js ecosystem.
+The training program is FILLED with good information that will help you either a) get a job or b) create your own applications using the insanely popular React.js ecosystem.
 
 My name is Mark, I'm the creator of [React-Mic](https://hackingbeauty.github.io/react-mic/) and [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298) , and I'd be honored to be your mentor.
 
@@ -174,6 +172,6 @@ And the way I transform my students from novice to proficient is by teaching the
 
 It's the fastest way I can get you to becoming proficient because you're actually developing a REAL production-ready app.  One that you'd get paid to develop in the industry.
 
-I hope to see you at the [workshop](https://professionalreactapp.com/)!
+I hope to meet you at the [training](https://professionalreactapp.com/special-offer)!
 
 ![Six Figure Front-End Engineer](https://professionalreactapp.com/assets/images/react-salary-large.png)
