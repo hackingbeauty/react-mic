@@ -1,0 +1,73 @@
+<head>
+   <meta charset="UTF-8">
+   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+   <meta content="utf-8" http-equiv="encoding">
+   <meta name="viewport" content="initial-scale=1">
+   <title>{{ page.title }}</title>
+
+   <meta class="metaTagTop" name="description" content="">
+   <meta class="metaTagTop" name="keywords" content="">
+   <meta class="metaTagTop" name="author" content="Mark Muskardin">
+   <meta class="metaTagTop" property="og:image" content="" id="social-image">
+   <meta property="og:title" content="The Full Stack DApps Training Workshop">
+   <meta property="og:description" content="">
+   <meta property="og:url" content="https://ethereum.fullstackdapps.com/how-to-develop-a-full-stack-dapp-workshop">
+   <meta property="og:type" content="website">
+   <link rel="stylesheet" media="screen" href="{{ site.baseurl }}/assets/css/lander.css">
+   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/styles.css" />
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">
+   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/sales-page.css" />
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7COswald:400,700%7CDroid+Sans:400,700%7CRoboto:400,700%7CLato:400,700%7CPT+Sans:400,700%7CSource+Sans+Pro:400,700%7CNoto+Sans:400,700%7CPT+Sans:400,700%7CUbuntu:400,700%7CBitter:400,700%7CPT+Serif:400,700%7CRokkitt:400,700%7CDroid+Serif:400,700%7CRaleway:400,700%7CInconsolata:400,700" rel="stylesheet" type="text/css">
+   <meta property="cf:time_zone" content="America/Los_Angeles">
+   <meta property="cf:app_domain" content="fullstackdapps.com">
+   <script src="/assets/javascript/yall.min.js"></script>
+   <script>
+      document.addEventListener("DOMContentLoaded", yall);
+   </script>
+   <link rel='icon' type='image/png' href='https://fullstackdapps.com/assets/favicons/favicon.ico'>
+   </link>
+
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157823162-1"></script>
+   <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'UA-157823162-1');
+   </script>
+   <!-- End Google Analytics Code -->
+
+   <!-- Facebook Pixel Code -->
+   <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '648297198906125');
+      fbq('track', 'PageView');
+   </script>
+   <!-- End Facebook Pixel Code -->
+
+   <!-- Start VWO Async Smartcode -->
+   <script type='text/javascript'>
+   window._vwo_code = window._vwo_code || (function(){
+   var account_id=475408,
+   settings_tolerance=2000,
+   library_tolerance=2500,
+   use_existing_jquery=false,
+   is_spa=1,
+   hide_element='body',
+
+   /* DO NOT EDIT BELOW THIS LINE */
+   f=false,d=document,code={use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){
+   window.settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b=hide_element?hide_element+'{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}':'',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&f='+(+is_spa)+'&r='+Math.random());return settings_timer; }};window._vwo_settings_timer = code.init(); return code; }());
+   </script>
+   <!-- End VWO Async Smartcode -->
+
+</head>

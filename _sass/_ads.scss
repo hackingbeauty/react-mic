@@ -1,0 +1,104 @@
+.ad-box {
+  max-width: 840px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 0 25px 0 #ccc;
+  border: 1px solid #CCCCCC;
+  display:inline-block;
+  padding-bottom: 20px;
+  margin-left: -10%;
+
+  p {
+    font-size: 19px;
+    font-family: medium-content-sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+  }
+
+  .button {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: .65em 0;
+    height: 70px;
+  }
+
+  .button--bright {
+    border: 1px solid #FFB74D;
+    background: linear-gradient(to bottom, #FFB74D, #FF9800);
+  }
+
+  .package__button {
+    max-width: 350px;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 27px;
+  }
+
+  h4 {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  .ad-box-header {
+    padding:10px;
+    background: #212121;
+    h3 {
+      color: white;
+      margin-top: 0px;
+      padding: 5px;
+      font-size: 25px;
+    }
+  }
+  .ad-box-content {
+    padding: .8em;
+  }
+
+  .left-section,
+  .right-section {
+    float: left;
+    text-align: center;
+  }
+
+  .left-section {
+    width: 30%;
+    margin-right: 20px;
+    img {
+      width: 150px;
+      margin-top:20px;
+    }
+  }
+  .right-section {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 1105px){
+
+  .ad-box {
+    width: 100%;
+    margin: 0 auto;
+
+    .left-section {
+      width: 40%;
+
+    }
+    .right-section {
+      width: 50%;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 605px) {
+
+  .left-section {
+    float: none !important;
+    margin:0 auto !important;
+  }
+  .right-section {
+    width: 100% !important;
+  }
+
+}

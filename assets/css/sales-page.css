@@ -1,0 +1,18 @@
+.strike-through {
+  text-decoration: line-through;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+nav#footerLinks {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+nav#footerLinks li {
+  display: inline;
+  margin: 20px;
+}

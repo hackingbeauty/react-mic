@@ -1,0 +1,32 @@
+#thank-you {
+  text-align: center;
+  margin-top: 50px;
+
+  h1 {
+    font-size: 49px;
+    text-transform: uppercase;
+    color: black;
+  }
+
+  p {
+    color: #888;
+    font-size: 26px;
+  }
+
+  .join-slack,
+  .tweet {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    border: 1px solid #3FCFD5;
+    padding: 15px;
+    color: #3FCFD5;
+    text-transform: uppercase;
+    margin: 20px;
+    &:hover{
+      background: #3FCFD5;
+      text-decoration: none;
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body cz-shortcut-listen="true">
+   {% include header.html %}
+   <div class="container u-maxWidth1000">
+      <div class="postMetaHeader u-paddingBottom10 row">
+        <div class="postMetaHeader-socialProof2 col u-size12of12 u-paddingBottom20">
+          <div class="col u-size12of12 js-postMetaLockup">
+            <div class="postMetaLockup postMetaLockup--authorWithBio u-flex js-postMetaLockup">
+              <div class="u-flex0">
+                <a class="link avatar u-baseColor--link" href="https://codeburst.io/@markmuskardin?source=post_header_lockup">
+                  <img src="https://cdn-images-1.medium.com/fit/c/60/60/1*RC1M92KO2HtyQXwS47ZsVA.jpeg" class="avatar-image avatar-image--small" alt="Go to the profile of Mark Muskardin">
+                </a>
+              </div>
+              <div class="u-flex1 u-paddingLeft15 u-overflowHidden">
+                <a class="link link link--darken link--darker u-baseColor--link author-name" href="http://hackingbeauty.com/about">Mark Muskardin</a>
+                <div class="postMetaInline u-xs-normalWrap u-xs-lineClamp2 u-xs-maxHeight2LineHeightBase">Senior Blockchain Developer & Web Engineer located in the San Francisco Bay Area. <br />
+                </div>
+                <div class="postMetaInline js-testPostMetaInlineSupplemental">
+                  <time>{{ page.date | date: "%B %e, %Y" }}</time>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main role="main">
+      <article class="u-sizeViewHeightMin100 u-overflowHidden postArticle postArticle--full is-withAccentColors" >
+        <div class="postArticle-content js-postField js-notesSource js-trackedPost">
+          <section class="section section--body section--first section--last">
+            <div class="section-content">
+              <div class="section-inner sectionLayout--insetColumn">
+                <h1>{{ page.title }}</h1>
+                {{ content }}
+                <br />
+                <br />
+                {% include dapp-training-ad.html %}
+              </div>
+            </div>
+          </section>
+        </div>
+
+        {% include disqus.html disqus_identifier=page.disqus_identifier %}
+      </article>
+    </main>
+  </body>
+</html>
