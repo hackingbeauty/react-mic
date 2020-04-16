@@ -33,7 +33,7 @@ class AudioRecorder extends Component {
   }
 
   onData(recordedBlob){
-    // console.log('ONDATA CALL IS BEING CALLED! ', recordedBlob);
+    console.log('ONDATA CALL IS BEING CALLED! ', recordedBlob);
   }
 
   onBlock() {
