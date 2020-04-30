@@ -6,10 +6,7 @@
   "jsnext:main": "es/index.js",
   "module": "es/index.js",
   "files": [
-    "css",
-    "es",
-    "lib",
-    "umd"
+    "dist"
   ],
   "keywords": [
     "react",
