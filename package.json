@@ -31,6 +31,7 @@
     "build:lib": "npm run clean && webpack --progress --verbose --colors --display-error-details --config ./webpack.lib.config.js",
     "build:demo": "npm run clean && webpack --progress --verbose --colors --display-error-details --config ./webpack.demo.config.js",
     "clean": "rimraf dist",
+    "lint": "eslint src/**",
     "start": "nwb serve-react-demo",
     "test": "nwb test",
     "test:coverage": "nwb test --coverage",

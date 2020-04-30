@@ -16,6 +16,9 @@ import Visualizer             from '../libs/Visualizer'
 export default class ReactMic extends Component {
   constructor(props) {
     super(props)
+
+    this.visualizerRef = React.createRef()
+
     this.state = {
       microphoneRecorder: null,
       canvas: null,
@@ -37,7 +40,7 @@ export default class ReactMic extends Component {
       channelCount,
       mimeType
     } = this.props
-    const { visualizer } = this.refs
+    const visualizer = this.visualizerRef.current
     const canvas = visualizer
     const canvasCtx = canvas.getContext('2d')
     const options = {
@@ -114,7 +117,14 @@ export default class ReactMic extends Component {
       this.clear()
     }
 
-    return (<canvas ref="visualizer" height={height} width={width} className={this.props.className} />)
+    return (
+      <canvas
+        ref={this.visualizerRef}
+        height={height}
+        width={width}
+        className={this.props.className}
+      />
+    )
   }
 }
 
@@ -127,7 +137,8 @@ ReactMic.propTypes = {
   height: number,
   record: bool.isRequired,
   onStop: func,
-  onData: func
+  onData: func,
+  onSave: func
 }
 
 ReactMic.defaultProps = {
