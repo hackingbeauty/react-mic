@@ -26,6 +26,22 @@ export default class ReactMic extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { record } = this.props;
+    const { microphoneRecorder } = this.state;
+    if (prevProps.record !== record) {
+      if (record) {
+        if (microphoneRecorder) {
+          microphoneRecorder.startRecording()
+        }
+      } else if (microphoneRecorder) {
+        microphoneRecorder.stopRecording(onStop)
+        this.clear()
+      }
+    }
+
+  };
+
   componentDidMount() {
     const {
       onSave,
@@ -81,7 +97,6 @@ export default class ReactMic extends Component {
   }
 
   visualize = () => {
-    const self = this
     const {
       backgroundColor, strokeColor, width, height, visualSetting
     } = this.props
@@ -103,19 +118,7 @@ export default class ReactMic extends Component {
   }
 
   render() {
-    const {
-      record, onStop, width, height
-    } = this.props
-    const { microphoneRecorder, canvasCtx } = this.state
-
-    if (record) {
-      if (microphoneRecorder) {
-        microphoneRecorder.startRecording()
-      }
-    } else if (microphoneRecorder) {
-      microphoneRecorder.stopRecording(onStop)
-      this.clear()
-    }
+    const { width, height } = this.props
 
     return (
       <canvas
