@@ -123,7 +123,11 @@ class AudioRecorder extends Component {
               </div>
             </div>
             <div id="audio-playback-controls">
-              <audio ref="audioSource" controls="controls" src={blobURL} controlsList="nodownload"/>
+              <audio
+                controls="controls"
+                src={blobURL}
+                controlsList="nodownload"
+              />
             </div>
           </div>
         </div>

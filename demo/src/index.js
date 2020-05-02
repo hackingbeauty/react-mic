@@ -13,7 +13,9 @@ export default class Demo extends Component {
   render() {
     return (
       <div>
-        <AudioRecorder/>
+        <React.StrictMode>
+          <AudioRecorder/>
+        </React.StrictMode>
       </div>
     )
   }
