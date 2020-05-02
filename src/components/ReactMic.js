@@ -27,8 +27,8 @@ export default class ReactMic extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { record } = this.props;
-    const { microphoneRecorder } = this.state;
+    const { record, onStop } = this.props
+    const { microphoneRecorder } = this.state
     if (prevProps.record !== record) {
       if (record) {
         if (microphoneRecorder) {
@@ -39,8 +39,7 @@ export default class ReactMic extends Component {
         this.clear()
       }
     }
-
-  };
+  }
 
   componentDidMount() {
     const {
