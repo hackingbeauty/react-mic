@@ -1,3 +1,5 @@
+_ATTENTION_ Machine Learning Engineres, Data Scientists, & AI Developers using speech-recognition technologies.  Learn how to develop applications that capture voice on any device [here](https://hackingbeautyllc.clickfunnels.com/optin1588882330260)!
+
 # React-Mic
 
 Record a user's voice and display as an oscillation (or frequency bars).  Plug-n-play component for React apps.
