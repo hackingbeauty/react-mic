@@ -12,7 +12,7 @@ Create a FREE account in the [React-Mic member's area](https://hackingbeautyllc.
 
 You can do that with the premium enhancement of this component called [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
 
-Companies that develop speech-recognition apps, voice-activated software, apps that require audio recording features, or language-learning products all use React-Mic-Gold.
+Companies that develop speech-recognition apps, voice-activated software, call center software, apps that require audio recording features, or language-learning products all use React-Mic-Gold.
 
 
 ## Installation
