@@ -118,6 +118,12 @@ Get your copy of React-Mic-Gold, the premium enhanced version of React-Mic [here
 
 [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298) lets you record audio as either MP3 or WAV files.  The MP3 audio file format is super compressed which will result in small file sizes, and is widely supported across all devices.  The WAV audio file format is uncompressed and is used when you need professional quality audio; however, the file size is *significantly* larger.
 
+React-Mic-Gold is built with WebAssembly and Web Workers.  The MP3/WAV encoding process takes place in the browser using WebAssembly which makes it super fast.  Via Web Workers, the encoding process occurs in a separate thread in the browser so the performance of your UI won't be affected.
+
+There's no need to set up a separate backend endpoint to convert captured voice/audio into MP3 or WAV.  It all happens in the browser.
+
+Plus, you can stream MP3/WAV to any endpoint as voice/audio is being captured via the onData callback.
+
 ## Demos
 
 Check out the simple demo of React-Mic-Gold in action [here](https://hackingbeauty.github.io/react-mic-gold/).
