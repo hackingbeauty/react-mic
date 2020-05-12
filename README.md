@@ -1,10 +1,10 @@
 # React-Mic
 
-Record a user's voice and display as an oscillation (or frequency bars).
-
-Plug-n-play component for React apps.
+Record a user's voice and display as an oscillation (or frequency bars).  Plug-n-play component for React apps.
 
 Audio is saved as [WebM](https://en.wikipedia.org/wiki/WebM) audio file format.  Works via the HTML5 MediaRecorder API ([currently only available in Chrome & Firefox](https://caniuse.com/#search=MediaRecorder)).
+
+Create a FREE account in the [React-Mic member's area](https://hackingbeautyllc.clickfunnels.com/optin1588882330260) to see how to integrate, configure, and style React-Mic in a professional React.js application.
 
 **PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as an MP3 or WAV file in order to get full cross-browser and cross-device support.
 
@@ -61,7 +61,7 @@ MIT
 
 ## Example
 
-The code snippet below is just a quick example of how to use React-Mic.  To see how to integrate React-Mic into a *real* applications, join the [React-Mic private member's area](https://hackingbeautyllc.clickfunnels.com/optin1588882330260).
+The code snippet below is just a quick example of how to use React-Mic.  To see how to integrate React-Mic into a *real* application, join the [React-Mic private member's area](https://hackingbeautyllc.clickfunnels.com/optin1588882330260) for a complete tutorial.
 
 ```js
 import { ReactMic } from 'react-mic';
