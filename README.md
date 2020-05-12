@@ -61,6 +61,8 @@ MIT
 
 ## Example
 
+The code snippet below is just a quick example of how to use React-Mic.  To see how to integrate React-Mic into a *real* applications, join the [React-Mic private member's area](https://hackingbeautyllc.clickfunnels.com/optin1588882330260).
+
 ```js
 import { ReactMic } from 'react-mic';
 
