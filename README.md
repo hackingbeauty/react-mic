@@ -1,4 +1,4 @@
-_ATTENTION_ Machine Learning Engineres, Data Scientists, & AI Developers using speech-recognition technologies.  Learn how to develop applications that capture voice on any device [here](https://react-mic-gold.professionalreactapp.com/optingejevo96)!
+_ATTENTION_ Machine Learning Engineers, Data Scientists, & AI Developers using speech-recognition technologies.  Learn how to develop applications that capture voice on any device [here](https://react-mic-gold.professionalreactapp.com/optingejevo96)!
 
 # React-Mic
 
