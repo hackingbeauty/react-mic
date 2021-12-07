@@ -24,7 +24,8 @@ export class MicrophoneRecorder {
       echoCancellation,
       autoGainControl,
       noiseSuppression,
-      channelCount
+      channelCount,
+      deviceId
     } = soundOptions
 
     onStartCallback = onStart
@@ -38,7 +39,8 @@ export class MicrophoneRecorder {
         echoCancellation,
         autoGainControl,
         noiseSuppression,
-        channelCount
+        channelCount,
+        deviceId
       },
       video: false
     }

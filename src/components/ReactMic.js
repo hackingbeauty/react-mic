@@ -53,7 +53,8 @@ export default class ReactMic extends Component {
       autoGainControl,
       noiseSuppression,
       channelCount,
-      mimeType
+      mimeType,
+      deviceId
     } = this.props
     const visualizer = this.visualizerRef.current
     const canvas = visualizer
@@ -65,7 +66,8 @@ export default class ReactMic extends Component {
     const soundOptions = {
       echoCancellation,
       autoGainControl,
-      noiseSuppression
+      noiseSuppression,
+      deviceId
     }
 
     if (audioElem) {
@@ -140,7 +142,8 @@ ReactMic.propTypes = {
   record: bool.isRequired,
   onStop: func,
   onData: func,
-  onSave: func
+  onSave: func,
+  deviceId: string
 }
 
 ReactMic.defaultProps = {
@@ -156,5 +159,6 @@ ReactMic.defaultProps = {
   echoCancellation: false,
   autoGainControl: false,
   noiseSuppression: false,
-  channelCount: 2
+  channelCount: 2,
+  deviceId: ''
 }
