@@ -1,0 +1,95 @@
+{
+  "name": "react-mic",
+  "version": "12.4.6",
+  "description": "Record audio from your microphone and display as a sound oscillation",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "react-component",
+    "microphone",
+    "MediaRecorder",
+    "volume meter",
+    "audio recording",
+    "record audio",
+    "web audio api",
+    "html5 canvas",
+    "getUserMedia",
+    "voice recognition",
+    "voice activation",
+    "speech recognition",
+    "language"
+  ],
+  "scripts": {
+    "build:lib": "npm run clean && webpack --progress --verbose --colors --display-error-details --config ./webpack.lib.config.js",
+    "build:demo": "npm run clean && webpack --progress --verbose --colors --display-error-details --config ./webpack.demo.config.js",
+    "clean": "rimraf dist",
+    "lint": "eslint src/**",
+    "start": "nwb serve-react-demo",
+    "test": "nwb test",
+    "test:coverage": "nwb test --coverage",
+    "test:watch": "nwb test --server",
+    "deploy": "npm run build:lib && npm run build:demo && gh-pages -d demo/dist"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.5.10",
+    "react": "16.x"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.0.0",
+    "nwb": "^0.23.0",
+    "nwb-sass": "^0.9.0",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/runtime": "^7.7.7",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.17.0",
+    "exports-loader": "^0.7.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-ga": "^2.7.0",
+    "rimraf": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.1",
+    "url-loader": "^3.0.0",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
+  },
+  "author": "Mark Muskardin",
+  "homepage": "https://hackingbeauty.github.io/react-mic",
+  "license": "MIT",
+  "repository": "https://github.com/hackingbeauty/react-mic",
+  "dependencies": {
+    "prop-types": "^15.5.10",
+    "react-ga": "^2.2.0"
+  },
+  "lint-staged": {
+    "./src/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

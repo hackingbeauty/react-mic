@@ -1,0 +1,10 @@
+/coverage
+/demo
+/dist
+/demo/dist
+/es
+/lib
+/node_modules
+/umd
+.DS_Store
+npm-debug.log*
