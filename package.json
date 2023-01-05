@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
-    "nwb": "^0.23.0",
+    "nwb": "^0.25.2",
     "nwb-sass": "^0.9.0",
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
@@ -60,7 +60,7 @@
     "exports-loader": "^0.7.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^5.0.2",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "react": "^16.12.0",
