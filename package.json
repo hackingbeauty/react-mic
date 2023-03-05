@@ -1,7 +1,7 @@
 {
-  "name": "react-mic",
-  "version": "12.4.6",
-  "description": "Record audio from your microphone and display as a sound oscillation",
+  "name": "react-voice-recorder",
+  "version": "1.0.0",
+  "description": "Record audio from your microphone",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -35,7 +35,7 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.10",
-    "react": "16.x"
+    "react": "17.x"
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
@@ -63,9 +63,8 @@
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-ga": "^2.7.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "rimraf": "^3.0.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.1.1",
@@ -79,7 +78,7 @@
   "repository": "https://github.com/hackingbeauty/react-mic",
   "dependencies": {
     "prop-types": "^15.5.10",
-    "react-ga": "^2.2.0"
+    "react-ga": "^3.3.1"
   },
   "lint-staged": {
     "./src/**/*.js": [

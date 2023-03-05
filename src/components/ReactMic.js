@@ -12,7 +12,6 @@ import { MicrophoneRecorder } from '../libs/MicrophoneRecorder'
 import AudioPlayer            from '../libs/AudioPlayer'
 import Visualizer             from '../libs/Visualizer'
 
-
 export default class ReactMic extends Component {
   constructor(props) {
     super(props)

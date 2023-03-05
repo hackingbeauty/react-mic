@@ -1,6 +1,6 @@
 _ATTENTION_ Machine Learning Engineres, Data Scientists, & AI Developers using speech-recognition technologies.  Learn how to develop applications that capture voice on any device [here](https://react-mic-gold.professionalreactapp.com/optingejevo96)!
 
-# React-Mic
+# React-Voice-Recorder
 
 Record a user's voice and display as an oscillation (or frequency bars).  Plug-n-play component for React apps.
 
@@ -17,9 +17,9 @@ Companies that develop speech-recognition apps, voice-activated software, call c
 
 ## Installation
 
-`npm install --save react-mic`
+`npm install --save react-voice-recorder`
 
-`yarn add react-mic`
+`yarn add react-voice-recorder`
 
 ## Demos
 
