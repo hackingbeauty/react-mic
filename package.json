@@ -38,15 +38,12 @@
     "react": "16.x"
   },
   "devDependencies": {
-    "gh-pages": "^1.0.0",
-    "nwb": "^0.23.0",
-    "nwb-sass": "^0.9.0",
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.7",
-    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-react": "^7.23.3",
     "@babel/runtime": "^7.7.7",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -56,18 +53,19 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react": "^7.33.2",
     "exports-loader": "^0.7.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^5.0.2",
+    "gh-pages": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-ga": "^2.7.0",
+    "nwb": "^0.23.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-ga": "^3.3.1",
     "rimraf": "^3.0.0",
-    "sass-loader": "^8.0.0",
     "style-loader": "^1.1.1",
     "url-loader": "^3.0.0",
     "webpack": "^4.41.4",
@@ -78,8 +76,8 @@
   "license": "MIT",
   "repository": "https://github.com/hackingbeauty/react-mic",
   "dependencies": {
-    "prop-types": "^15.5.10",
-    "react-ga": "^2.2.0"
+    "nwb-sass": "^0.10.2",
+    "prop-types": "^15.5.10"
   },
   "lint-staged": {
     "./src/**/*.js": [
