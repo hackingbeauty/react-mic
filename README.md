@@ -1,18 +1,10 @@
-_ATTENTION_ Machine Learning Engineres, Data Scientists, & AI Developers using speech-recognition technologies.  Learn how to develop applications that capture voice on any device [here](https://react-mic-gold.professionalreactapp.com/optingejevo96)!
+_ATTENTION_ THIS PACKAGE IS NO LONGER BEING MAINTAINED!  PLEASE CONSIDER USING AN ALTERNATE PACKAGE LIKE [MAKLOV'S REACT-MIC](https://github.com/maklov/react-mic).
 
 # React-Mic
 
 Record a user's voice and display as an oscillation (or frequency bars).  Plug-n-play component for React apps.
 
 Audio is saved as [WebM](https://en.wikipedia.org/wiki/WebM) audio file format.  Works via the HTML5 MediaRecorder API ([currently only available in Chrome & Firefox](https://caniuse.com/#search=MediaRecorder)).
-
-Create a FREE account in the [React-Mic member's area](https://react-mic-gold.professionalreactapp.com/optingejevo96) to see how to integrate, configure, and style React-Mic in a professional React.js application.
-
-**PLEASE NOTE**: The WebM audio format is not supported in Safari browsers (including Safari on iOS).  You need to save an audio recording as an MP3 or WAV file in order to get full cross-browser and cross-device support.
-
-You can do that with the premium enhancement of this component called [React-Mic-Gold](https://react-mic-gold.professionalreactapp.com/sales-page34701298).
-
-Companies that develop speech-recognition apps, voice-activated software, call center software, apps that require audio recording features, or language-learning products all use React-Mic-Gold.
 
 
 ## Installation
