@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
-    "nwb": "^0.23.0",
+    "nwb": "^0.25.2",
     "nwb-sass": "^0.9.0",
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
