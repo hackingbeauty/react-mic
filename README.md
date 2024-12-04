@@ -1,6 +1,6 @@
 _ATTENTION_ THIS PACKAGE IS NO LONGER BEING MAINTAINED!  PLEASE CONSIDER USING AN ALTERNATE PACKAGE LIKE [MAKLOV'S REACT-MIC](https://github.com/maklov/react-mic).
 
-# React-Mic
+# React-Voice-Recorder
 
 Record a user's voice and display as an oscillation (or frequency bars).  Plug-n-play component for React apps.
 
@@ -9,9 +9,9 @@ Audio is saved as [WebM](https://en.wikipedia.org/wiki/WebM) audio file format. 
 
 ## Installation
 
-`npm install --save react-mic`
+`npm install --save react-voice-recorder`
 
-`yarn add react-mic`
+`yarn add react-voice-recorder`
 
 ## Demos
 
