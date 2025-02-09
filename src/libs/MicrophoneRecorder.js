@@ -99,7 +99,8 @@ export class MicrophoneRecorder {
     }
   }
 
-  stopRecording() {
+  stopRecording(onStop) {
+    onStopCallback = onStop || onStopCallback;
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop()
 
